@@ -10,12 +10,13 @@ import { ProfileComponent } from './examples/profile/profile.component';
 import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
 
 const routes: Routes =[
-    { path: '', redirectTo: 'index', pathMatch: 'full' },
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'index',                component: ComponentsComponent },
     { path: 'nucleoicons',          component: NucleoiconsComponent },
     { path: 'examples/landing',     component: LandingComponent },
+    { path: 'examples/profile',     component: ProfileComponent },
     { path: 'login',                component: LoginComponent },
-    { path: 'examples/profile',     component: ProfileComponent }
+
 ];
 
 @NgModule({

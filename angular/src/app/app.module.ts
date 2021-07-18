@@ -9,11 +9,19 @@ import { ExamplesModule } from './examples/examples.module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+// import { LoginComponent } from './components/login/login.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+
+
+
 
 @NgModule({
     declarations: [
         AppComponent,
-        NavbarComponent
+        NavbarComponent,
+        // LoginComponent
     ],
     imports: [
         BrowserAnimationsModule,
@@ -22,7 +30,10 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
         RouterModule,
         AppRoutingModule,
         ComponentsModule,
-        ExamplesModule
+        ExamplesModule,
+        CommonModule,
+        BrowserModule,
+        HttpClientModule
     ],
     providers: [],
     bootstrap: [AppComponent]
