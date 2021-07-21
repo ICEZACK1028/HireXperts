@@ -14,9 +14,9 @@ function crearProfesion (req, res){
     profesionModel.find({ nombreProfesion: profesionConstructor.nombreProfesion}).exec((err, profesionEncontrada)=>{
         if(err) return res.status(500).send({ mensaje: 'Ha surgido un error'});
         if(profesionEncontrada && profesionEncontrada.length == 1) return res.status(500).send({mensaje: 'Esta profesion ya está en existencia, prueba con otra'});
-        profesionConstructor.save((err, profesionEncontrada) =>{
+        profesionConstructor.save((err, profesionGuardada) =>{
             if(err) return res.status(500).send({mensaje: 'Error al guardar la profesion'})
-            return res.status(200).send({profesionEncontrada})
+            return res.status(200).send({profesionGuardada})
         })        
     }
 )}
