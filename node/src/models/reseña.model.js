@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 var Schema = mongoose.Schema;
 
-var SolicitudSchema = Schema({
+var ReseñaSchema = Schema({
     titulo: String,
     descripcion: String,
     estrellas: Number,
@@ -9,4 +9,4 @@ var SolicitudSchema = Schema({
     contratante: {type: Schema.Types.ObjectId, ref:'usuarios'},
 })
 
-module.exports = mongoose.model('reseña', SolicitudSchema);
+module.exports = mongoose.model('reseña', ReseñaSchema);

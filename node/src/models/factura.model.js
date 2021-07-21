@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 var Schema = mongoose.Schema;
 
-var SolicitudSchema = Schema({
+var FacturaSchema = Schema({
     titulo: String,
     fechaInicial: Date,
     descripcion: String,
@@ -11,4 +11,4 @@ var SolicitudSchema = Schema({
     fechaFinal: Date,
 })
 
-module.exports = mongoose.model('factura', SolicitudSchema);
+module.exports = mongoose.model('factura', FacturaSchema);
