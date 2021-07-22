@@ -46,7 +46,7 @@ function eliminarEspecialidad(req, res){
 
     especialidadModel.findOneAndDelete({_id: idEspecialidad}, (err, especialidadEncontrada)=>{
         if(err) return res.status(500).send({mensaje: 'La especialidad no ha podido eliminarse'})
-        return res.status(200).send({mensaje: 'Especialidad eliminada con Exito'})
+        return res.status(200).send({mensaje: 'Especialidad eliminada con Éxito'})
     })
 }
 
