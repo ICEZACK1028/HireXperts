@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from 'app/models/usuario.model';
+import { UsuarioService } from 'app/services/usuario.service';
 import * as Rellax from 'rellax';
 
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
-  styleUrls: ['./perfil.component.scss']
+  styleUrls: ['./perfil.component.scss'],
+  providers: [UsuarioService]
 })
 export class PerfilComponent implements OnInit {
   zoom: number = 14;
@@ -16,7 +19,19 @@ export class PerfilComponent implements OnInit {
   focus;
   focus1;
 
-  constructor() { }
+  public idUsuario
+  public usuarioIdModel
+  public identidad
+  public token
+
+  constructor(private _usuarioService: UsuarioService) { 
+    this.identidad = this._usuarioService.getIdentidad();
+    this.token = this._usuarioService.getToken()
+    console.log(this.token);
+    this.obtenerUsuarioLogueado()
+
+    this.usuarioIdModel = new Usuario("","","","","","","","",new(Date),"","","","",0,"",{nombreProfesion:""},"","",false,0,false)
+  }
 
   ngOnInit() {
     var rellaxHeader = new Rellax('.rellax-header');
@@ -25,6 +40,8 @@ export class PerfilComponent implements OnInit {
       body.classList.add('profile-page');
       var navbar = document.getElementsByTagName('nav')[0];
       navbar.classList.add('navbar-transparent');
+      
+
   }
   ngOnDestroy(){
       var body = document.getElementsByTagName('body')[0];
@@ -32,6 +49,19 @@ export class PerfilComponent implements OnInit {
       var navbar = document.getElementsByTagName('nav')[0];
       navbar.classList.remove('navbar-transparent');
   }
+
+  obtenerUsuarioLogueado(){
+    this._usuarioService.obtenerUsuarioLogueado(this.token).subscribe(
+      (response:any) => {
+        console.log(response);
+        this.usuarioIdModel = response.usuarioEncontrado
+      },err => {
+
+      }
+    )
+  }
+
+  
 
 
 }
