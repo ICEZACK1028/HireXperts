@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from 'app/models/usuario.model';
+import { UsuarioService } from 'app/services/usuario.service';
 
 @Component({
   selector: 'app-register',
@@ -9,8 +11,11 @@ export class RegisterComponent implements OnInit {
   data : Date = new Date();
   focus;
   focus1;
+  usuarioModel: Usuario;
 
-  constructor() { }
+  constructor(private _usuarioService: UsuarioService) { 
+    this.usuarioModel = new Usuario("","","","","","","","","","","","","",0,"",{nombreProfesion:""},"","",false,0,false)
+  }
 
   ngOnInit() {
     var body = document.getElementsByTagName('body')[0];
@@ -25,6 +30,22 @@ export class RegisterComponent implements OnInit {
 
       var navbar = document.getElementsByTagName('nav')[0];
       navbar.classList.remove('navbar-transparent');
+  }
+
+  registrarUsuario(){
+    this._usuarioService.registro(this.usuarioModel).subscribe(
+      Response =>{
+        console.log(Response);
+        this.refreshPage();
+      },error=>{
+        console.log(<any>error);
+        
+      }
+    )
+  }
+
+  refreshPage(){
+    window.location.reload();
   }
 
 }
