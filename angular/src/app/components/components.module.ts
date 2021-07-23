@@ -15,6 +15,7 @@ import { NotificationComponent } from './notification/notification.component';
 import { NgbdModalBasic } from './modal/modal.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { PerfilComponent } from './perfil/perfil.component';
 import { RegisterComponent } from './register/register.component';
 
 @NgModule({
@@ -36,6 +37,7 @@ import { RegisterComponent } from './register/register.component';
         NgbdModalBasic,
         LoginComponent,
         HomeComponent,
+        PerfilComponent,
         RegisterComponent
     ],
     exports:[ ComponentsComponent ]

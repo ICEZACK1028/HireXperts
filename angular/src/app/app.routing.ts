@@ -9,6 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './examples/profile/profile.component';
 import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
 import { HomeComponent } from './components/home/home.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes =[
@@ -19,6 +20,7 @@ const routes: Routes =[
     { path: 'examples/profile',     component: ProfileComponent },
     { path: 'login',                component: LoginComponent },
     { path: 'home',                component: HomeComponent },
+    { path: 'perfil',                component: PerfilComponent },
     { path: 'register',                component: RegisterComponent },
 
 ];
