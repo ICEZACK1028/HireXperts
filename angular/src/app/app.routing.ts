@@ -10,6 +10,7 @@ import { ProfileComponent } from './examples/profile/profile.component';
 import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
 import { HomeComponent } from './components/home/home.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes =[
     { path: 'login',                component: LoginComponent },
     { path: 'home',                component: HomeComponent },
     { path: 'perfil',                component: PerfilComponent },
+    { path: 'register',                component: RegisterComponent },
 
 ];
 

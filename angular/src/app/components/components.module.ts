@@ -16,6 +16,7 @@ import { NgbdModalBasic } from './modal/modal.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
     imports: [
@@ -36,7 +37,8 @@ import { PerfilComponent } from './perfil/perfil.component';
         NgbdModalBasic,
         LoginComponent,
         HomeComponent,
-        PerfilComponent
+        PerfilComponent,
+        RegisterComponent
     ],
     exports:[ ComponentsComponent ]
 })
