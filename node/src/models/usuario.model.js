@@ -9,7 +9,7 @@ var UsuarioSchema = Schema({
     apellido: String,
     telefono: String,
     correo: String,
-    nacimiento: Date,
+    nacimiento: String,
     DIP: String,
     direccion: String,
     pais: String,
