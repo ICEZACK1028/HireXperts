@@ -1,7 +1,6 @@
 'use strict'
 
 const profesionModel = require('../models/profesion.model');
-const { param } = require('../routes/especialidad.routes');
 
 //FUNCION PARA CREAR UNA PROFESION
 
