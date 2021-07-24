@@ -35,11 +35,10 @@ export class RegisterComponent implements OnInit {
   registrarUsuario(){
     this._usuarioService.registro(this.usuarioModel).subscribe(
       Response =>{
-        console.log(Response);
-        this.refreshPage();
+        this.usuarioModel = Response.usuarioGuardado;
+        console.log(this.usuarioModel);
       },error=>{
         console.log(<any>error);
-        
       }
     )
   }
