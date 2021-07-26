@@ -22,8 +22,8 @@ export class LoginComponent implements OnInit {
     focus1;
 
     constructor(private _usuarioService: UsuarioService, private _router: Router) { 
-        this.usuarioModel = new Usuario("","","","","","","","",new Date(),"","","","",0,"",{nombreProfesion:""},"","",false,0,false)
-        this.usuarioLogin = new Usuario("","","","","","","","",new Date(),"","","","",0,"",{nombreProfesion:""},"","",false,0,false)
+        this.usuarioModel = new Usuario("","","","","","","","","","","","","",0,"",{nombreProfesion:""},"","",false,0,false)
+        this.usuarioLogin = new Usuario("","","","","","","","","","","","","",0,"",{nombreProfesion:""},"","",false,0,false)
     }
 
     ngOnInit() {

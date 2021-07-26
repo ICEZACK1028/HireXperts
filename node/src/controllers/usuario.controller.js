@@ -21,7 +21,7 @@ function registrarUsuario (req,res){
     usuarioConstructor.telefono = params.telefono;
     usuarioConstructor.correo = params.correo;
     usuarioConstructor.nacimiento = params.nacimiento;
-    usuarioConstructor.DPI = params.DPI;
+    usuarioConstructor.dpi = params.dpi;
     usuarioConstructor.direccion = params.direccion;
     usuarioConstructor.pais = params.pais;
     usuarioConstructor.ciudad = params.ciudad;

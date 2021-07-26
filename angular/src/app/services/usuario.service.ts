@@ -64,4 +64,7 @@ export class UsuarioService {
     return this._http.get(this.url + '/obtenerUsuarioLogueado', {headers:headersToken})
   }
 
+  registro(usuario: Usuario): Observable<any>{
+    return this._http.post(`${this.url}/registrarUsuario`, this.JsonConvert(usuario), {headers: this.headersVariable});
+  }
 }
