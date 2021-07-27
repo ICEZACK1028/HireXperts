@@ -1,0 +1,94 @@
+
+<div class="page-header" filter-color="blue">
+    <div class="page-header-image" style="background-image:url(assets/img/bg11.jpg)"></div>
+    <div class="container">
+        <div class="col-md- content-center">
+            <h2>Registrar Profesional</h2><br><br><br>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Usuario..." (focus)="focus=true" (blur)="focus=false" name='usuario' #usuario='ngModel' [(ngModel)]='usuarioLogin.usuario'>
+                    </div>
+
+                    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Usuario..." (focus)="focus=true" (blur)="focus=false" name='usuario' #usuario='ngModel' [(ngModel)]='usuarioLogin.usuario'>
+                    </div>
+
+                    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Usuario..." (focus)="focus=true" (blur)="focus=false" name='usuario' #usuario='ngModel' [(ngModel)]='usuarioLogin.usuario'>
+                    </div>
+
+                    
+                </div>
+
+                <div class="col-md-6">
+                    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                        </div>
+                          <input type="text" class="form-control" placeholder="Usuario..." (focus)="focus=true" (blur)="focus=false" name='usuario' #usuario='ngModel' [(ngModel)]='usuarioLogin.usuario'>
+                      </div>
+                      <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Usuario..." (focus)="focus=true" (blur)="focus=false" name='usuario' #usuario='ngModel' [(ngModel)]='usuarioLogin.usuario'>
+                    </div>
+                    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Usuario..." (focus)="focus=true" (blur)="focus=false" name='usuario' #usuario='ngModel' [(ngModel)]='usuarioLogin.usuario'>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    
+    <footer class="footer">
+        <div class="container">
+            
+            <nav>
+                <ul>
+                    <li>
+                        <a href="">
+                            PLK Team
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            About Us
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            Blog
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            Uso
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="copyright">
+                &copy;
+              {{data | date: 'yyyy'}}, Designed by
+                <a href="" target="_blank">PLK Team</a>. Coded by
+                <a href="" target="_blank">PLK Team</a>.
+            </div>
+        </div>
+    </footer>
+</div>
