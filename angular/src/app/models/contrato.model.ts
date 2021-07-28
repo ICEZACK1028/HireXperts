@@ -6,6 +6,9 @@ export class contrato{
         public descripcion: String,
         public trabajador: String,
         public contratante: String,
+        public descripcionR: String,
+        public status: String,
+        public fechaFinal: Date,
         public precio: Number,
     ){}
 }

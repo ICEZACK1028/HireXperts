@@ -7,6 +7,9 @@ var ContratoSchema = Schema({
     descripcion: String,
     trabajador: {type: Schema.Types.ObjectId, ref:'usuarios'},
     contratante: {type: Schema.Types.ObjectId, ref:'usuarios'},
+    descripcionR: String,
+    status: String,
+    fechaFinal: Date,
     precio: Number,
 })
 
