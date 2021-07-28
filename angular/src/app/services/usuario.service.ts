@@ -59,9 +59,8 @@ export class UsuarioService {
     return this._http.get(this.url + '/obtenerUsuarioId/' + id, {headers:headersToken})
   }
 
-  obtenerUsuarioLogueado(token){
-    let headersToken = this.headersVariable.set('Authorization', token)
-    return this._http.get(this.url + '/obtenerUsuarioLogueado', {headers:headersToken})
+  obtenerUsuarioLogueado(id){
+    return this._http.get(this.url + '/obtenerUsuarioLogueado/'+id, {headers:this.headersVariable})
   }
 
   registro(usuario: Usuario): Observable<any>{

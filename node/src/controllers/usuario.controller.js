@@ -89,7 +89,7 @@ function obtenerUsuarioId(req,res){
 }
 
 function obtenerUsuarioLogueado(req,res){
-    var idUsuario = req.user.sub
+    var idUsuario = req.params.idUsuario
 
     usuarioModel.findById(idUsuario,(err,usuarioEncontrado)=> {
         if (err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})

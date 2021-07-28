@@ -7,20 +7,29 @@
               <span class="button-bar"></span>
               <span class="button-bar"></span>
           </a>
-           <div ngbDropdownMenu>
-             <a class="dropdown-header">Dropdown header</a>
-             <a class="dropdown-item" href="#">Action</a>
-             <a class="dropdown-item" href="#">Another action</a>
-             <a class="dropdown-item" href="#">Something else here</a>
+           <div ngbDropdownMenu *ngIf="identidad.rol != ''">
+             <a class="dropdown-header">Menú</a>
+             <a class="dropdown-header" *ngIf="identidad.rol == ''">INICIA SESION</a>
+             <a class="dropdown-item" [routerLink]="['/index']" *ngIf='identidad.rol == "ROL_USUARIO"'>Perfil</a>
+             <a class="dropdown-item" [routerLink]="['/index']" *ngIf='identidad.rol == "ROL_USUARIO"'>Solicitudes</a>
+             <a class="dropdown-item" [routerLink]="['/index']" *ngIf='identidad.rol == "ROL_USUARIO"'>Trabajos</a>
+             <a class="dropdown-item" [routerLink]="['/index']" *ngIf='identidad.rol == "ROL_PROFESIONAL"'>Perfil</a>
+             <a class="dropdown-item" [routerLink]="['/index']" *ngIf='identidad.rol == "ROL_PROFESIONAL"'>Solicitudes</a>
+             <a class="dropdown-item" [routerLink]="['/index']" *ngIf='identidad.rol == "ROL_PROFESIONAL"'>Trabajos</a>
+             <div class="dropdown-divider" *ngIf='identidad.rol == "ROL_USUARIO"'></div>
+             <a class="dropdown-item" [routerLink]="['/index']" *ngIf='identidad.rol == "ROL_USUARIO"'>Hazte Profesional</a>
              <div class="dropdown-divider"></div>
-             <a class="dropdown-item" href="#">Separated link</a>
-             <div class="dropdown-divider"></div>
-             <a class="dropdown-item" href="#">One more separated link</a>
+             <a class="dropdown-item" [routerLink]="['/login']" (click)='cerrarSesion()' *ngIf='identidad.rol == "ROL_ADMIN"'>Cerrar Sesion</a>
+             <a class="dropdown-item" [routerLink]="['/login']" (click)='cerrarSesion()' *ngIf='identidad.rol == "ROL_USUARIO"'>Cerrar Sesion</a>
+             <a class="dropdown-item" [routerLink]="['/login']" (click)='cerrarSesion()' *ngIf='identidad.rol == "ROL_PROFESIONAL"'>Cerrar Sesion</a>
            </div>
          </div>
       </div>
         <div class="navbar-translate">
-            <a class="navbar-brand" [routerLink]="['/index']" placement="bottom" ngbTooltip="Designed by Invision. Coded by Creative Tim">
+            <a class="navbar-brand" [routerLink]="['/home']" placement="bottom" ngbTooltip="HireXperts" *ngIf="identidad.rol != ''">
+                HireXperts
+            </a>
+            <a class="navbar-brand" [routerLink]="['/login']" placement="bottom" ngbTooltip="HireXperts" *ngIf="identidad.rol == ''">
                 HireXperts
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarToggle()">
@@ -71,7 +80,9 @@
                 </li> -->
 
                 <li class="nav-item"><a class="nav-link">{{identidad.nombre}}</a></li>
-
+                <li class="nav-item" *ngIf='identidad.rol == "ROL_ADMIN"' (click)='cerrarSesion()'><button class="btn btn-primary nav-link" routerLink="/login" (click)='cerrarSesion()'>Cerrar Sesión</button>    </li>
+                <li class="nav-item" *ngIf='identidad.rol == "ROL_PROFESIONAL"' (click)='cerrarSesion()'><button class="btn btn-primary nav-link" routerLink="/login" (click)='cerrarSesion()'>Cerrar Sesión</button>  </li>
+                <li class="nav-item" *ngIf='identidad.rol == "ROL_USUARIO"' (click)='cerrarSesion()'><button class="btn btn-primary nav-link" routerLink="/login" (click)='cerrarSesion()'>Cerrar Sesión</button></li>
             </ul>
         </div>
     </div>

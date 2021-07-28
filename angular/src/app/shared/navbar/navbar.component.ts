@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { UsuarioService } from 'app/services/usuario.service';
 import { Usuario } from 'app/models/usuario.model';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-navbar',
@@ -13,7 +14,7 @@ export class NavbarComponent implements OnInit {
     private sidebarVisible: boolean;
     private identidad
 
-    constructor(public location: Location, private element : ElementRef, public _usuarioService: UsuarioService) {
+    constructor(public location: Location, private element : ElementRef, public _usuarioService: UsuarioService, private _router:Router) {
         this.sidebarVisible = false;
         this.identidad = this._usuarioService.getIdentidad()
     }
@@ -66,9 +67,10 @@ export class NavbarComponent implements OnInit {
     }
 
     cerrarSesion(){
-        localStorage.removeItem('token');
-        localStorage.removeItem('identidad');
-        window.location.replace('http://localhost:4200/home')
+        sessionStorage.removeItem('token')
+        sessionStorage.removeItem('identidad');
+        this._router.navigate(['/login'])
+        
       }
 
 }
