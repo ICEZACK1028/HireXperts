@@ -4,8 +4,7 @@
 const usuarioModel = require('../models/usuario.model');
 const bcrypt = require('bcrypt-nodejs');
 const jwt = require('../services/jwt');
-const { relativeTimeRounding } = require('moment');
-const { param } = require('../routes/usuario.routes');
+
 
 //Funciones
 
@@ -113,6 +112,26 @@ function editarUsuarios (req, res){
 
 }
 
+function registrarProfesional (req, res){
+    var params = req.body
+    var usuarioId =  req.user.sub
+
+    if (req.user.rol != 'ROL_USUARIO') return res.status(500).send({mensaje: 'No tienes permisos para ser profesional'})
+    usuarioModel.findByIdAndUpdate(usuarioId, {"profesion.$.nombreProfesion": params.profesion, 
+
+    descripcionP: params.descripcionP, direccionP: params.direccionP, verificado: false, 
+
+    estrellasP: 0, disponible:  true}, {new: true, useFindAndModify:false},
+
+    (err, profesionalRegistrado)=>{
+        if(err) return res.status(500).send({mensaje: 'Error al registrar un profesional'});
+        if(!profesionalRegistrado) return res.status(500).send({mensaje:'Error en la peticion'});
+        return res.status(200).send({profesionalRegistrado});
+    })
+}
+
+
+
 function eliminarMiPerfil (req, res){
     var usuarioId = req.params.usuarioId
     if (usuarioId != req.user.sub){
@@ -141,5 +160,6 @@ module.exports = {
     editarMiPerfil,
     editarUsuarios,
     eliminarMiPerfil,
-    eliminarUsuarios
+    eliminarUsuarios,
+    registrarProfesional
 }
