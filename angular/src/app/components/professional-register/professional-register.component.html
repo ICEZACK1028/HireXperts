@@ -3,16 +3,23 @@
     <div class="page-header-image" style="background-image:url(assets/img/bg11.jpg)"></div>
     <div class="container">
         <div class="col-md- content-center">
-            <h2>Registrar Profesional</h2><br><br><br>
+            <h2>Registrar Profesional</h2>
+            <button class="btn btn-primary btn-round" (click)="open(classic)">Agregar Profesion</button>
+            
             <form>
                 <div class="row">
                     <div class="col-md-6">
                         <p>Profesión</p>
+                        
                         <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Profesión..." (focus)="focus=true" (blur)="focus=false" name='profesion' #profesion='ngModel' [(ngModel)]='usuarioModelAdd.profesion'>
+                            <select class="form-select select-input" id="profesion" aria-label="Default select example" name="profesion" #profesion="ngModel" [(ngModel)]="usuarioModelAdd.profesion"> 
+                                <option *ngFor="let prof of profesionModelGet" value={{prof._id}} >{{prof.nombreProfesion}}</option>
+                            </select>
+                            <!-- <input type="text" class="form-control" placeholder="Profesión..." (focus)="focus=true" (blur)="focus=false" name='profesion' #profesion='ngModel' [(ngModel)]='usuarioModelAdd.profesion'> -->
+
                         </div>
                         <p>Dirección</p>
                         <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
@@ -33,6 +40,7 @@
                           </div>
                     </div>
                 </div>
+
                 <button type="button" class="btn btn-primary buttonSubmit">REGISTRARSE</button>
                 </form>
 
@@ -76,3 +84,32 @@
         </div>
     </footer>
 </div>
+
+<ng-template #classic let-c="close" let-d="dismiss">
+ <div class="modal-header">
+     <h5 class="modal-title text-center">Modal title</h5>
+     <button type="button" class="close" (click)="d('Cross click')">
+         <span aria-hidden="true">&times;</span>
+     </button>
+ </div>
+ <div class="modal-body">
+    <p>Profesión</p>
+    <div class="form-group">
+        <input type="text" value="" placeholder="Regular" class="form-control" name='nombreProfesion' #nombreProfesion='ngModel' [(ngModel)]='profesionModelAdd.nombreProfesion' />
+    </div>
+    <p>Imagen</p>
+    <div class="form-group">
+        <input type="text" value="" placeholder="Regular" class="form-control" name='imagen' #imagen='ngModel' [(ngModel)]='profesionModelAdd.imagen' />
+    </div>
+
+</div>
+ <div class="modal-footer">
+     <div class="left-side">
+         <button type="button" class="btn btn-default btn-link" (click)="c('Close click')">Cancelar</button>
+     </div>
+     <div class="divider"></div>
+     <div class="right-side">
+         <button type="button" class="btn btn-primary btn-link" (click)="agregarProfesion()">Guardar</button>
+     </div>
+ </div>
+</ng-template>

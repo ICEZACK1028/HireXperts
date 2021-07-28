@@ -4,12 +4,6 @@
 const usuarioModel = require('../models/usuario.model');
 const bcrypt = require('bcrypt-nodejs');
 const jwt = require('../services/jwt');
-<<<<<<< HEAD
-const { model } = require('mongoose');
-const { findById } = require('../models/usuario.model');
-=======
-
->>>>>>> Figueros
 
 //Funciones
 
