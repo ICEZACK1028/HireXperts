@@ -50,13 +50,18 @@ export class UsuarioService {
     return this.token;
   }
 
-  obtenerUsuarioId(id){
-    return this._http.get(this.url + '/ObtenerUsuarioId/' + id, {headers:this.headersVariable})
-  }
+  // obtenerUsuarioId(id){
+  //   return this._http.get(this.url + '/ObtenerUsuarioId/' + id, {headers:this.headersVariable})
+  // }
   
-  obtenerUsuarioLogueado(id, token){
+  obtenerUsuarioId(id, token){
     let headersToken = this.headersVariable.set('Authorization', token)
-    return this._http.get(this.url + '/ObtenerUsuarioId/' + id, {headers:headersToken})
+    return this._http.get(this.url + '/obtenerUsuarioId/' + id, {headers:headersToken})
+  }
+
+  obtenerUsuarioLogueado(token){
+    let headersToken = this.headersVariable.set('Authorization', token)
+    return this._http.get(this.url + '/obtenerUsuarioLogueado', {headers:headersToken})
   }
 
 }

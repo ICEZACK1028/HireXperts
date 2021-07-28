@@ -134,12 +134,35 @@ function eliminarUsuarios (req, res){
 
 }
 
+function obtenerUsuarioId(req,res){
+    var idUsuario = req.params.idUsuario
+
+    usuarioModel.findById(idUsuario,(err,usuarioEncontrado)=> {
+        if (err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
+        if(!usuarioEncontrado) return res.status(500).send({mensaje:'EL usuario no existe'})
+
+        return res.status(200).send({usuarioEncontrado})
+    })
+}
+
+function obtenerUsuarioLogueado(req,res){
+    var idUsuario = req.user.sub
+
+    usuarioModel.findById(idUsuario,(err,usuarioEncontrado)=> {
+        if (err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
+        if(!usuarioEncontrado) return res.status(500).send({mensaje:'EL usuario no existe'})
+
+        return res.status(200).send({usuarioEncontrado})
+    })
+}
 module.exports = {
     registrarUsuario,
     login,
-    obtenerUsuarios,
-    editarMiPerfil,
-    editarUsuarios,
+    obtenerUsuarioId,
+    obtenerUsuarioLogueado,
+    eliminarUsuarios,
     eliminarMiPerfil,
-    eliminarUsuarios
+    editarUsuarios,
+    editarMiPerfil,
+    obtenerUsuarios,
 }
