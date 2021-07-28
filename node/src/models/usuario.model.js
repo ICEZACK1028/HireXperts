@@ -16,9 +16,7 @@ var UsuarioSchema = Schema({
     ciudad: String,
     estrellas: Number,
     imagen: String,
-    profesion:{
-        nombreProfesion:String
-    },
+    profesion:String,
     descripcionP: String,
     direccionP: String,
     verificado: Boolean,
