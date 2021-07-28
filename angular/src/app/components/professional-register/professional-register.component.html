@@ -26,7 +26,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Dirección..." (focus)="focus=true" (blur)="focus=false" name='usuario' #usuario='ngModel' [(ngModel)]='usuarioModelAdd.direccionP'>
+                            <input type="text" class="form-control" placeholder="Dirección..." (focus)="focus=true" (blur)="focus=false" name='direccionP' #direccionP='ngModel' [(ngModel)]='usuarioModelAdd.direccionP'>
                         </div>
                 
                     </div>
@@ -36,12 +36,12 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
                             </div>
-                            <textarea class="form-control textAreaInput" name="name" rows="4" cols="80" placeholder="Describete como profesional..." name='usuario' #usuario='ngModel' [(ngModel)]='usuarioModelAdd.profesionP'></textarea>
+                            <textarea class="form-control textAreaInput" name="name" rows="4" cols="80" placeholder="Describete como profesional..." name='descripcionP' #descripcionP='ngModel' [(ngModel)]='usuarioModelAdd.descripcionP'></textarea>
                           </div>
                     </div>
                 </div>
 
-                <button type="button" class="btn btn-primary buttonSubmit">REGISTRARSE</button>
+                <button type="button" class="btn btn-primary buttonSubmit" (click)='registrarProfesional()'>REGISTRARSE</button>
                 </form>
 
         </div>

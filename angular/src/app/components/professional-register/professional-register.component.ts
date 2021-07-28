@@ -4,6 +4,9 @@ import { Usuario } from 'app/models/usuario.model';
 import { ProfesionService } from 'app/services/profesion.service';
 import { UsuarioService } from 'app/services/usuario.service';
 import {NgbModal, ModalDismissReasons }from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2'
+
 
 @Component({
   selector: 'app-professional-register',
@@ -17,13 +20,14 @@ export class ProfessionalRegisterComponent implements OnInit {
   focus1;
   closeResult: string;
 
+  public token
   public usuarioModelAdd
   public profesionModelAdd
   public profesionModelGet: Profesion
 
 
-  constructor(private _usuarioService:UsuarioService, private _profesionService: ProfesionService, private modalService: NgbModal) { 
-    this.usuarioModelAdd = new Usuario("","","","","","","","","","","","","",0,"",{nombreProfesion:""},"","",false,0,false)
+  constructor(private _usuarioService:UsuarioService, private _profesionService: ProfesionService, private modalService: NgbModal, private _router:Router) { 
+    this.usuarioModelAdd = new Usuario("","","","","","","","","","","","","",0,"","","","",false,0,false)
     this.profesionModelAdd = new Profesion('','','')
   }
 
@@ -47,6 +51,28 @@ export class ProfessionalRegisterComponent implements OnInit {
     )
   }
 
+  registrarProfesional(){
+    this._usuarioService.registrarProfesional(this.usuarioModelAdd,this.token).subscribe(
+      response => {
+        console.log(response);
+        Swal.fire(
+          'Listo!!!',
+          'Se registró como profesional exitosamente',
+          'success'
+        )
+        this._router.navigate(['/home'])
+      },error => {
+        Swal.fire(
+          'Hubo un error!',
+          'Intente de nuevo más tarde',
+          'error'
+        )
+      }
+    )
+  }
+
+
+
   ngOnInit() {
     var body = document.getElementsByTagName('body')[0];
     body.classList.add('login-page');
@@ -54,6 +80,7 @@ export class ProfessionalRegisterComponent implements OnInit {
     var navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.add('navbar-transparent');
     this.obtenerProfesiones()
+    this.token = this._usuarioService.getToken()
 
   }
   ngOnDestroy(){

@@ -15,9 +15,7 @@ export class Usuario {
         public ciudad: String,
         public estrellas: Number,
         public imagen: String,
-        public profesion:{
-            nombreProfesion:String
-        },
+        public profesion:String,
         public descripcionP: String,
         public direccionP: String,
         public verificado: Boolean,
