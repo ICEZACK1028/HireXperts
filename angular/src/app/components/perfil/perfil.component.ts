@@ -44,6 +44,7 @@ export class PerfilComponent implements OnInit {
       
       this._activatedRoute.paramMap.subscribe(dataRuta =>{
         this.idUsuario = dataRuta.get('idUsuario');
+        console.log(this.idUsuario);
       })
       this.obtenerUsuarioId()
 

@@ -2,7 +2,7 @@
     <div class="page-header page-header-small" filter-color="orange">
         <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url(assets/img/bg11.jpg) ;">
         </div>
-        <div class="container">
+        <div class="container" >
             <div class="content-center" >
                 <div class="photo-container" style="margin-top: 100px;">
                     <img src="{{usuarioIdModel.imagen}}" >
@@ -10,21 +10,8 @@
                 <h3 class="title">{{usuarioIdModel.nombre}}</h3>
                 <p class="category" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">{{usuarioIdModel.profesion}}</p>
                 <p class="category" *ngIf="usuarioIdModel.rol == 'ROL_ADMIN'">Administrador</p>
-                <div class="content" *ngIf="usuarioIdModel.rol == 'ROL_USUARIO'">
-                    <div class="social-description" >
-                        <h2>26</h2>
-                        <p>Puntuación</p>
-                    </div>
-                    <div class="social-description">
-                        <h2>26</h2>
-                        <p>Reseñas</p>
-                    </div>
-                    <div class="social-description">
-                        <h2>48</h2>
-                        <p>Contratos</p>
-                    </div>
-                </div>
-                <div class="content" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'" style="margin-bottom: 70px; z-index: 999;">
+
+                <div class="content"  style="margin-bottom: 70px; z-index: 999;">
                     <div class="social-description">
                         <h2>26</h2>
                         <p>Puntuación</p>
@@ -42,16 +29,14 @@
             </div>
         </div>
     </div>
+    
 
     <div class="section adelante">
         <div class="container ">
-          <div class="button-container" *ngIf="identidad._id == usuarioIdModel._id">
+          <div class="button-container"  >
               
-                <button  class="btn btn-primary btn-round btn-lg" style="cursor: pointer;">Editar</button>
-
-                <button  class="btn btn-info btn-round btn-lg" style="cursor: pointer;" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">Contratar</button>
-                
-              
+                <button  class="btn btn-primary btn-round btn-lg" style="cursor: pointer;" *ngIf="identidad._id == usuarioIdModel._id">Editar</button>
+                <button  class="btn btn-info btn-round btn-lg" style="cursor: pointer;" *ngIf="identidad._id != idUsuario && 'ROL_PROFESIONAL' == usuarioIdModel.rol">Contratar</button>
           </div>
 
           <div *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
@@ -59,83 +44,14 @@
               <h5 class="description info-contacto" >{{usuarioIdModel.descripcionP}}</h5>
           </div>
 
-          <!-- SECCION PAGINAS ADMIN -->
-            <div class="row" *ngIf="usuarioIdModel.rol == 'ROL_USUARIO'">
-                <div class="col-md-12">
-                    <h4 class="title text-center">Mi Perfil</h4>
-                      <ngb-tabset [justify]="'center'" type="pills" class="nav nav-pills nav-pills-primary  nav-pills-just-icons justify-content-center tab-space">
-                          <ngb-tab>
-                            <ng-template ngbTabTitle>
-                              <i class="now-ui-icons business_badge"></i>
-                            </ng-template>
-                              <ng-template ngbTabContent>
-                                <div class="row">
-                                  <div class="col-md-10 ml-auto mr-auto">
-                                      <h2 style="text-align: center;">Información de Contacto</h2>
-                                      <div class="row collections">
-                                          <div class="col-md-6">
-                                              <img src="assets/img/bg1.jpg" alt="" class="img-raised">
-                                              <img src="assets/img/bg3.jpg" alt="" class="img-raised">
-                                          </div>
-                                          <div class="col-md-6">
-                                              <img src="assets/img/bg8.jpg" alt="" class="img-raised">
-                                              <img src="assets/img/bg7.jpg" alt="" class="img-raised">
-                                          </div>
-                                      </div>
-                                  </div>
-                                </div>
-                              </ng-template>
-                          </ngb-tab>
-                          <ngb-tab>
-                            <ng-template ngbTabTitle>
-                              <i class="now-ui-icons location_world"></i>
-                            </ng-template>
-                              <ng-template ngbTabContent>
-                                <div class="row">
-                                  <div class="col-md-10 ml-auto mr-auto">
-                                      <div class="row collections">
-                                          <div class="col-md-6">
-                                              <img src="assets/img/bg6.jpg" class="img-raised">
-                                              <img src="assets/img/bg11.jpg" alt="" class="img-raised">
-                                          </div>
-                                          <div class="col-md-6">
-                                              <img src="assets/img/bg7.jpg" alt="" class="img-raised">
-                                              <img src="assets/img/bg8.jpg" alt="" class="img-raised">
-                                          </div>
-                                      </div>
-                                  </div>
-                                </div>
-                              </ng-template>
-                          </ngb-tab>
-                          <ngb-tab>
-                            <ng-template ngbTabTitle>
-                              <i class="now-ui-icons sport_user-run"></i>
-                            </ng-template>
-                              <ng-template ngbTabContent>
-                                <div class="row">
-                                  <div class="col-md-10 ml-auto mr-auto">
-                                      <div class="row collections">
-                                          <div class="col-md-6">
-                                              <img src="assets/img/bg3.jpg" alt="" class="img-raised">
-                                              <img src="assets/img/bg8.jpg" alt="" class="img-raised">
-                                          </div>
-                                          <div class="col-md-6">
-                                              <img src="assets/img/bg7.jpg" alt="" class="img-raised">
-                                              <img src="assets/img/bg6.jpg" class="img-raised">
-                                          </div>
-                                      </div>
-                                  </div>
-                                </div>
-                              </ng-template>
-                          </ngb-tab>
-                      </ngb-tabset>
-                </div>
-            </div>
+
 
             <!-- SECCION PAGINAS PROFESIONAL -->
-            <div class="container info-contacto" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
+            <div class="container info-contacto" >
 
-                
+                <div *ngIf="identidad._id == idUsuario && usuarioIdModel.rol == 'ROL_USUARIO'">
+                    <br><br>
+                </div>
 
                 <h2 style="text-align: center;">Información de Contácto</h2>
                 <div class="row">
@@ -150,12 +66,12 @@
                             <input type="text" value="{{usuarioIdModel.telefono}}" placeholder="DPI" class="form-control divition" disabled/>
                         </div>
                         <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.correo}}" placeholder="Usuario" class="form-control divition" disabled/>
+                            <input type="text" value="{{usuarioIdModel.correo}}" placeholder="Correo" class="form-control divition" disabled/>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.DPI}}" placeholder="Dirección" class="form-control divition" disabled/>
+                            <input type="text" value="{{usuarioIdModel.dpi}}" placeholder="Dirección" class="form-control divition" disabled/>
                         </div>
                         <div class="input-group">
                             <input type="text" value="{{usuarioIdModel.direccion}}" placeholder="Dirección" class="form-control divition" disabled/>
@@ -169,21 +85,23 @@
                     </div>
                 </div>
 
-                <h2 style="text-align: center; padding-top: 40px;">Información de Profesional</h2>
-                <div class="row">
-                    <div class="col-6">
-                        <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.profesion}}" placeholder="Nombre" class="form-control divition" disabled/>
+                <div *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
+                    <h2 style="text-align: center; padding-top: 40px;">Información de Profesional</h2>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="input-group">
+                                <input type="text" value="{{usuarioIdModel.profesion}}" placeholder="Nombre" class="form-control divition" disabled/>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" value="{{usuarioIdModel.direccionP}}" placeholder="País" class="form-control divition" disabled/>
+                            </div>
+                    
+                    
                         </div>
-                        <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.direccionP}}" placeholder="País" class="form-control divition" disabled/>
-                        </div>
-                        
-                       
-                    </div>
-                    <div class="col-6">
-                        <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.estrellasP}}" placeholder="DPI" class="form-control divition" disabled/>
+                        <div class="col-6">
+                            <div class="input-group">
+                                <input type="text" value="{{usuarioIdModel.estrellasP}}" placeholder="DPI" class="form-control divition" disabled/>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -197,15 +115,20 @@
     </div>
 
 
-        <div class="nav-tabs-navigation" data-tabs-color="orange" >
+        <div class="nav-tabs-navigation bg-blanco" data-tabs-color="orange" >
             <div class="nav-tabs-wrapper">
-                <ngb-tabset [justify]="'center'" class="text-center bg-blanco" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
-                    <ngb-tab title="Trabajos Recientes" >
+                <ngb-tabset [justify]="'center'" class="text-center bg-blanco" >
+                    <ngb-tab title="Ultimos Contratos" >
                       <ng-template ngbTabContent >
                         <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
                       </ng-template>
                     </ngb-tab>
-                    <ngb-tab title="Reseñas">
+                    <ngb-tab title="Reseñas" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
+                      <ng-template ngbTabContent>
+                          <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
+                      </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="Reseñas" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
                       <ng-template ngbTabContent>
                           <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
                       </ng-template>
