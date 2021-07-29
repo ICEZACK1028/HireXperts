@@ -57,6 +57,9 @@
                 <div class="input-group">
                     <input type="text" value="" placeholder="Dirección" class="form-control divition" name="direccion" #direccion="ngModel" [(ngModel)]="usuarioModel.direccion"/>
                 </div>
+                <div class="input-group">
+                    <textarea class="form-control" placeholder="Imagen" id="floatingTextarea" name="imagen" #imagen="ngModel" [(ngModel)]="usuarioModel.imagen"></textarea>
+                </div>
             </div>
             <div class="col-4 col-lg-3">
                 <div class="form-group">
@@ -83,15 +86,8 @@
                         </div>
                     </div>
                 </div> -->
-                <button class="btn btn-primary" (click)='registrarUsuario()'>Registrarse</button>
+                <button class="btn btn-primary" routerLink="/login" (click)='registrarUsuario()'>Registrarse</button>
             </div>
-            
-            <!-- <div class="col-4 col-lg-3" >
-                <div class="form-floating">
-                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-                    <label for="floatingTextarea2">Comments</label>
-                  </div>
-            </div> -->
             <div class="col-4 col-lg-3" >
                 <img src="https://image.freepik.com/vector-gratis/ilustracion-concepto-inicio-sesion_114360-739.jpg " style="margin-left: 60px">
             </div>
