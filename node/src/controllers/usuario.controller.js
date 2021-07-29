@@ -41,6 +41,7 @@ function registrarUsuario (req,res){
                     if(usuarioGuardado){
                         return res.status(200).send({ usuarioGuardado });
                     }else{
+                        console.log(err)
                         return res.status(500).send({ 
                             mensaje: 'No se ha podido registrar el usuario, inténtalo de nuevo' 
                         });
