@@ -76,8 +76,6 @@ function login(req, res) {
     
 }
 
-<<<<<<< HEAD
-=======
 function obtenerUsuarioId(req,res){
     var idUsuario = req.params.idUsuario
 
@@ -100,7 +98,6 @@ function obtenerUsuarioLogueado(req,res){
     })
 }
 
->>>>>>> 54a0bd1479d009315e3fd9815fe7e6faee196ec3
 function obtenerUsuarios (req, res){
     usuarioModel.find((err, usuariosEncontrados)=>{
         if(err) return res.status(404).send({ mensaje: 'Error en la peticion para obtener todos los usuarios existentes'});
