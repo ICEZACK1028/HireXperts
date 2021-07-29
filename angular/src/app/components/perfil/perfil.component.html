@@ -28,8 +28,7 @@
                 </div>
             </div>
         </div>
-    </div>
-    
+    </div> 
 
     <div class="section adelante">
         <div class="container ">
@@ -44,8 +43,6 @@
               <h5 class="description info-contacto" >{{usuarioIdModel.descripcionP}}</h5>
           </div>
 
-
-
             <!-- SECCION PAGINAS PROFESIONAL -->
             <div class="container info-contacto" >
 
@@ -56,29 +53,37 @@
                 <h2 style="text-align: center;">Información de Contácto</h2>
                 <div class="row">
                     <div class="col-6">
+                        <p>Nombre:</p>
                         <div class="input-group">
                             <input type="text" value="{{usuarioIdModel.nombre}}" placeholder="Nombre" class="form-control divition" disabled/>
                         </div>
+                        <p>Apellido:</p>
                         <div class="input-group">
                             <input type="text" value="{{usuarioIdModel.apellido}}" placeholder="País" class="form-control divition" disabled/>
                         </div>
+                        <p>Telefono:</p>
                         <div class="input-group">
                             <input type="text" value="{{usuarioIdModel.telefono}}" placeholder="DPI" class="form-control divition" disabled/>
                         </div>
+                        <p>Correo:</p>
                         <div class="input-group">
                             <input type="text" value="{{usuarioIdModel.correo}}" placeholder="Correo" class="form-control divition" disabled/>
                         </div>
                     </div>
                     <div class="col-6">
+                        <p>DPI:</p>
                         <div class="input-group">
                             <input type="text" value="{{usuarioIdModel.dpi}}" placeholder="Dirección" class="form-control divition" disabled/>
                         </div>
+                        <p>Direccion:</p>
                         <div class="input-group">
                             <input type="text" value="{{usuarioIdModel.direccion}}" placeholder="Dirección" class="form-control divition" disabled/>
                         </div>
+                        <p>País:</p>
                         <div class="input-group">
                             <input type="text" value="{{usuarioIdModel.pais}}" placeholder="Dirección" class="form-control divition" disabled/>
                         </div>
+                        <p>Ciudad:</p>
                         <div class="input-group">
                             <input type="text" value="{{usuarioIdModel.ciudad}}" placeholder="Dirección" class="form-control divition" disabled/>
                         </div>
@@ -95,8 +100,6 @@
                             <div class="input-group">
                                 <input type="text" value="{{usuarioIdModel.direccionP}}" placeholder="País" class="form-control divition" disabled/>
                             </div>
-                    
-                    
                         </div>
                         <div class="col-6">
                             <div class="input-group">
@@ -105,17 +108,13 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
-        
-    
-
     </div>
 
-
-        <div class="nav-tabs-navigation bg-blanco" data-tabs-color="orange" >
+        <!-- TABS PROFESIONAL -->
+        <div class="nav-tabs-navigation bg-blanco" data-tabs-color="orange" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
             <div class="nav-tabs-wrapper">
                 <ngb-tabset [justify]="'center'" class="text-center bg-blanco" >
                     <ngb-tab title="Ultimos Contratos" >
@@ -123,12 +122,12 @@
                         <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
                       </ng-template>
                     </ngb-tab>
-                    <ngb-tab title="Reseñas" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
+                    <ngb-tab title="Reseñas" >
                       <ng-template ngbTabContent>
                           <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
                       </ng-template>
                     </ngb-tab>
-                    <ngb-tab title="Reseñas" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
+                    <ngb-tab title="Reseñas" >
                       <ng-template ngbTabContent>
                           <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
                       </ng-template>
@@ -138,6 +137,14 @@
             </div>
         </div>
 
+        <!-- SECCION USUARIO -->
+        <div class="container" *ngIf="usuarioIdModel.rol == 'ROL_USUARIO'">
+
+            <h2 style="text-align: center;">Últimos Contratos</h2>
+
+            
+
+        </div>
 
 
     <footer class="footer footer-default">
