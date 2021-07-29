@@ -1,6 +1,7 @@
 <div class="wrapper">
     <div class="page-header page-header-small" filter-color="orange">
-        <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url(https://www.wallpapertip.com/wmimgs/81-811946_fondos-de-pantalla-para-pc-8k.jpg) ;">
+        <div class="page-header-image rellax-header" data-rellax-speed="-8"
+            style="background-image: url(https://www.wallpapertip.com/wmimgs/81-811946_fondos-de-pantalla-para-pc-8k.jpg) ;">
         </div>
         <div class="container">
             <div class="content-center">
@@ -11,13 +12,13 @@
                 <p class="category" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">Photographer</p>
                 <p class="category" *ngIf="usuarioIdModel.rol == 'ROL_ADMIN'">Administrador y amo</p>
                 <div class="content" *ngIf="usuarioIdModel.rol == 'ROL_USUARIO'">
-                    <div class="social-description" >
+                    <div class="social-description">
                         <h2>26</h2>
                         <p>Puntuación</p>
                     </div>
                     <div class="social-description">
                         <h2>26</h2>
-                        <p>Reseñas</p>
+                        <p>Resenas</p>
                     </div>
                     <div class="social-description">
                         <h2>48</h2>
@@ -31,7 +32,7 @@
                     </div>
                     <div class="social-description">
                         <h2>26</h2>
-                        <p>Reseñas</p>
+                        <p>Resenas</p>
                     </div>
                     <div class="social-description">
                         <h2>48</h2>
@@ -53,127 +54,138 @@
 
     <div class="section">
         <div class="container">
-          <div class="button-container">
-              <a href="#button" class="btn btn-primary btn-round btn-lg">Follow</a>
-              <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Twitter">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Instagram">
-                <i class="fab fa-instagram"></i>
-              </a>
-          </div>
+            <div class="button-container">
+                <a href="#button" class="btn btn-primary btn-round btn-lg">Follow</a>
+                <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip"
+                    title="Follow me on Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip"
+                    title="Follow me on Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
 
-          <div *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
-              <h3 class="title">Descripción Profesional</h3>
-              <h5 class="description" >{{usuarioIdModel.descripcionP}}</h5>
-          </div>
+            <div *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
+                <h3 class="title">Descripción Profesional</h3>
+                <h5 class="description">{{usuarioIdModel.descripcionP}}</h5>
+            </div>
 
-          <!-- SECCION PAGINAS ADMIN -->
+            <!-- SECCION PAGINAS ADMIN -->
             <div class="row" *ngIf="usuarioIdModel.rol == 'ROL_USUARIO'">
                 <div class="col-md-12">
                     <h4 class="title text-center">Mi Perfil</h4>
-                      <ngb-tabset [justify]="'center'" type="pills" class="nav nav-pills nav-pills-primary  nav-pills-just-icons justify-content-center tab-space">
-                          <ngb-tab>
+                    <ngb-tabset [justify]="'center'" type="pills"
+                        class="nav nav-pills nav-pills-primary  nav-pills-just-icons justify-content-center tab-space">
+                        <ngb-tab>
                             <ng-template ngbTabTitle>
-                              <i class="now-ui-icons business_badge"></i>
+                                <i class="now-ui-icons business_badge"></i>
                             </ng-template>
-                              <ng-template ngbTabContent>
+                            <ng-template ngbTabContent>
                                 <div class="row">
-                                  <div class="col-md-10 ml-auto mr-auto">
-                                      <h2 style="text-align: center;">Información de Contacto</h2>
-                                      <div class="row collections">
-                                          <div class="col-md-6">
-                                              <img src="assets/img/bg1.jpg" alt="" class="img-raised">
-                                              <img src="assets/img/bg3.jpg" alt="" class="img-raised">
-                                          </div>
-                                          <div class="col-md-6">
-                                              <img src="assets/img/bg8.jpg" alt="" class="img-raised">
-                                              <img src="assets/img/bg7.jpg" alt="" class="img-raised">
-                                          </div>
-                                      </div>
-                                  </div>
+                                    <div class="col-md-10 ml-auto mr-auto">
+                                        <h2 style="text-align: center;">Información de Contacto</h2>
+                                        <div class="row collections">
+                                            <div class="col-md-6">
+                                                <img src="assets/img/bg1.jpg" alt="" class="img-raised">
+                                                <img src="assets/img/bg3.jpg" alt="" class="img-raised">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <img src="assets/img/bg8.jpg" alt="" class="img-raised">
+                                                <img src="assets/img/bg7.jpg" alt="" class="img-raised">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                              </ng-template>
-                          </ngb-tab>
-                          <ngb-tab>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab>
                             <ng-template ngbTabTitle>
-                              <i class="now-ui-icons location_world"></i>
+                                <i class="now-ui-icons location_world"></i>
                             </ng-template>
-                              <ng-template ngbTabContent>
+                            <ng-template ngbTabContent>
                                 <div class="row">
-                                  <div class="col-md-10 ml-auto mr-auto">
-                                      <div class="row collections">
-                                          <div class="col-md-6">
-                                              <img src="assets/img/bg6.jpg" class="img-raised">
-                                              <img src="assets/img/bg11.jpg" alt="" class="img-raised">
-                                          </div>
-                                          <div class="col-md-6">
-                                              <img src="assets/img/bg7.jpg" alt="" class="img-raised">
-                                              <img src="assets/img/bg8.jpg" alt="" class="img-raised">
-                                          </div>
-                                      </div>
-                                  </div>
+                                    <div class="col-md-10 ml-auto mr-auto">
+                                        <div class="row collections">
+                                            <div class="col-md-6">
+                                                <img src="assets/img/bg6.jpg" class="img-raised">
+                                                <img src="assets/img/bg11.jpg" alt="" class="img-raised">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <img src="assets/img/bg7.jpg" alt="" class="img-raised">
+                                                <img src="assets/img/bg8.jpg" alt="" class="img-raised">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                              </ng-template>
-                          </ngb-tab>
-                          <ngb-tab>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab>
                             <ng-template ngbTabTitle>
-                              <i class="now-ui-icons sport_user-run"></i>
+                                <i class="now-ui-icons sport_user-run"></i>
                             </ng-template>
-                              <ng-template ngbTabContent>
+                            <ng-template ngbTabContent>
                                 <div class="row">
-                                  <div class="col-md-10 ml-auto mr-auto">
-                                      <div class="row collections">
-                                          <div class="col-md-6">
-                                              <img src="assets/img/bg3.jpg" alt="" class="img-raised">
-                                              <img src="assets/img/bg8.jpg" alt="" class="img-raised">
-                                          </div>
-                                          <div class="col-md-6">
-                                              <img src="assets/img/bg7.jpg" alt="" class="img-raised">
-                                              <img src="assets/img/bg6.jpg" class="img-raised">
-                                          </div>
-                                      </div>
-                                  </div>
+                                    <div class="col-md-10 ml-auto mr-auto">
+                                        <div class="row collections">
+                                            <div class="col-md-6">
+                                                <img src="assets/img/bg3.jpg" alt="" class="img-raised">
+                                                <img src="assets/img/bg8.jpg" alt="" class="img-raised">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <img src="assets/img/bg7.jpg" alt="" class="img-raised">
+                                                <img src="assets/img/bg6.jpg" class="img-raised">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                              </ng-template>
-                          </ngb-tab>
-                      </ngb-tabset>
+                            </ng-template>
+                        </ngb-tab>
+                    </ngb-tabset>
                 </div>
             </div>
 
             <!-- SECCION PAGINAS PROFESIONAL -->
             <div class="container" *ngIf="usuarioIdModel.rol == 'ROL_ADMIN'">
 
-                
+
 
                 <h2 style="text-align: center; padding-top: 40px;">Información de Contácto</h2>
                 <div class="row">
                     <div class="col-6">
                         <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.nombre}}" placeholder="Nombre" class="form-control divition" disabled/>
+                            <input type="text" value="{{usuarioIdModel.nombre}}" placeholder="Nombre"
+                                class="form-control divition" disabled />
                         </div>
                         <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.apellido}}" placeholder="País" class="form-control divition" disabled/>
+                            <input type="text" value="{{usuarioIdModel.apellido}}" placeholder="País"
+                                class="form-control divition" disabled />
                         </div>
                         <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.telefono}}" placeholder="DPI" class="form-control divition" disabled/>
+                            <input type="text" value="{{usuarioIdModel.telefono}}" placeholder="DPI"
+                                class="form-control divition" disabled />
                         </div>
                         <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.correo}}" placeholder="Usuario" class="form-control divition" disabled/>
+                            <input type="text" value="{{usuarioIdModel.correo}}" placeholder="Usuario"
+                                class="form-control divition" disabled />
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.DPI}}" placeholder="Dirección" class="form-control divition" disabled/>
+                            <input type="text" value="{{usuarioIdModel.DPI}}" placeholder="Dirección"
+                                class="form-control divition" disabled />
                         </div>
                         <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.direccion}}" placeholder="Dirección" class="form-control divition" disabled/>
+                            <input type="text" value="{{usuarioIdModel.direccion}}" placeholder="Dirección"
+                                class="form-control divition" disabled />
                         </div>
                         <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.pais}}" placeholder="Dirección" class="form-control divition" disabled/>
+                            <input type="text" value="{{usuarioIdModel.pais}}" placeholder="Dirección"
+                                class="form-control divition" disabled />
                         </div>
                         <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.ciudad}}" placeholder="Dirección" class="form-control divition" disabled/>
+                            <input type="text" value="{{usuarioIdModel.ciudad}}" placeholder="Dirección"
+                                class="form-control divition" disabled />
                         </div>
                     </div>
                 </div>
@@ -182,17 +194,20 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.profesion}}" placeholder="Nombre" class="form-control divition" disabled/>
+                            <input type="text" value="{{usuarioIdModel.profesion}}" placeholder="Nombre"
+                                class="form-control divition" disabled />
                         </div>
                         <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.direccionP}}" placeholder="País" class="form-control divition" disabled/>
+                            <input type="text" value="{{usuarioIdModel.direccionP}}" placeholder="País"
+                                class="form-control divition" disabled />
                         </div>
-                        
-                       
+
+
                     </div>
                     <div class="col-6">
                         <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.estrellasP}}" placeholder="DPI" class="form-control divition" disabled/>
+                            <input type="text" value="{{usuarioIdModel.estrellasP}}" placeholder="DPI"
+                                class="form-control divition" disabled />
                         </div>
                     </div>
                 </div>

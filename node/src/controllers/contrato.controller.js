@@ -9,11 +9,11 @@ function crearContrato(req, res) {
 
     var params = req.body;
 
-    if(params.trabajo == null, params.descripcion == null, params.fechaInicio == null, params.trabajador == null) return res.status(500).send({mensaje: "Por favor, ingrese la información deseada"});
+    if(params.titulo == null || params.descripcion == null || params.fechaInicial == null) return res.status(500).send({mensaje: "Por favor, ingrese la información deseada"});
 
-    contratoConstructor.trabajo = params.trabajo;
+    contratoConstructor.titulo = params.titulo;
     contratoConstructor.descripcion = params.descripcion;
-    contratoConstructor.fechaInicio = params.fechaInicio;
+    contratoConstructor.fechaInicial = params.fechaInicial;
     contratoConstructor.trabajador = idTrabajador;
     contratoConstructor.contratante = idContratante;
 
