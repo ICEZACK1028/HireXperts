@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Usuario } from 'app/models/usuario.model';
 import { UsuarioService } from 'app/services/usuario.service';
 import * as Rellax from 'rellax';
-
+import {NgbModal, ModalDismissReasons }from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-perfil',
@@ -19,6 +19,8 @@ export class PerfilComponent implements OnInit {
   data : Date = new Date();
   focus;
   focus1;
+  closeResult: string;
+
 
   public idUsuario
   public usuarioIdModel
@@ -26,7 +28,7 @@ export class PerfilComponent implements OnInit {
   public token
   
 
-  constructor(private _usuarioService: UsuarioService, private _activatedRoute: ActivatedRoute) { 
+  constructor(private _usuarioService: UsuarioService, private _activatedRoute: ActivatedRoute, private modalService: NgbModal) { 
     this.identidad = this._usuarioService.getIdentidad();
     this.token = this._usuarioService.getToken()
     console.log(this.token);
@@ -55,6 +57,35 @@ export class PerfilComponent implements OnInit {
       var navbar = document.getElementsByTagName('nav')[0];
       navbar.classList.remove('navbar-transparent');
   }
+
+  open(content, type) {
+    if (type === 'sm') {
+        console.log('aici');
+        this.modalService.open(content, { size: 'sm' }).result.then((result) => {
+            this.closeResult = `Closed with: ${result}`;
+        }, (reason) => {
+            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        });
+    } else {
+        this.modalService.open(content).result.then((result) => {
+            this.closeResult = `Closed with: ${result}`;
+        }, (reason) => {
+            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        });
+    }
+}
+
+private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+        return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+        return 'by clicking on a backdrop';
+    } else {
+        return  `with: ${reason}`;
+    }
+}
+
+  // INICIO DE FUNCIONES
 
   obtenerUsuarioId(){
     this._usuarioService.obtenerUsuarioId(this.idUsuario,this.token).subscribe(
