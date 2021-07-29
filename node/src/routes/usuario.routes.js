@@ -15,6 +15,8 @@ api.delete('/eliminarMiPerfil/:usuarioId', usuarioController.eliminarMiPerfil);
 api.get('/obtenerUsuarios', usuarioController.obtenerUsuarios);
 api.delete('/eliminarUsuarios/usuarioId', usuarioController.eliminarUsuarios);
 api.put('/editarUsuarios/usuarioId', usuarioController.editarUsuarios);
+api.get('/obtenerUsuarioId/:idUsuario', md_authentication.ensureAuth, usuarioController.obtenerUsuarioId)
+api.get('/obtenerUsuarioLogueado', md_authentication.ensureAuth, usuarioController.obtenerUsuarioLogueado)
 
 
 //Exportación

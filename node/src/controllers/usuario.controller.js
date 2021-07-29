@@ -4,8 +4,8 @@
 const usuarioModel = require('../models/usuario.model');
 const bcrypt = require('bcrypt-nodejs');
 const jwt = require('../services/jwt');
-const { relativeTimeRounding } = require('moment');
-const { param } = require('../routes/usuario.routes');
+const { model } = require('mongoose');
+const { findById } = require('../models/usuario.model');
 
 //Funciones
 
@@ -166,4 +166,5 @@ module.exports = {
     editarUsuarios,
     editarMiPerfil,
     obtenerUsuarios,
+    obtenerUsuarioLogueado
 }
