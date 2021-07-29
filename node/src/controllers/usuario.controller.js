@@ -4,8 +4,6 @@
 const usuarioModel = require('../models/usuario.model');
 const bcrypt = require('bcrypt-nodejs');
 const jwt = require('../services/jwt');
-const { model } = require('mongoose');
-const { findById } = require('../models/usuario.model');
 
 //Funciones
 
@@ -77,30 +75,90 @@ function login(req, res) {
     
 }
 
-function obtenerUsuarioId(req,res){
-    var idUsuario = req.params.idUsuario
-
-    usuarioModel.findById(idUsuario,(err,usuarioEncontrado)=> {
-        if (err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
-        if(!usuarioEncontrado) return res.status(500).send({mensaje:'EL usuario no existe'})
-
-        return res.status(200).send({usuarioEncontrado})
+function obtenerUsuarios (req, res){
+    usuarioModel.find((err, usuariosEncontrados)=>{
+        if(err) return res.status(404).send({ mensaje: 'Error en la peticion para obtener todos los usuarios existentes'});
+        if(!usuariosEncontrados) return res.status(404).send({mensaje:'No hay usuarios existentes'});
+        return res.status(200).send({usuariosEncontrados});
     })
 }
 
-function obtenerUsuarioLogueado(req,res){
-    var idUsuario = req.user.sub
+function editarMiPerfil (req, res){
+    var usuarioId = req.params.usuarioID;
+    var params = req.body
+    delete params.password
+    delete params.rol
+    delete params.estrellas
 
-    usuarioModel.findById(idUsuario,(err,usuarioEncontrado)=> {
-        if (err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
-        if(!usuarioEncontrado) return res.status(500).send({mensaje:'EL usuario no existe'})
-
-        return res.status(200).send({usuarioEncontrado})
+    if(usuarioId = req.user.sub){
+        return res.status(500).send({mensaje: 'No tienes permisos para editar mi perfil'})
+    }
+    usuarioModel.findByIdAndUpdate(usuarioId, params, { new: true}, (err, perfilActualizado)=>{
+        if (err) return res.status(500).send({mensaje: 'Error al editar mi perfil'});
+        if(!perfilActualizado) return res.status(500).send({mensaje: 'No se ha podido actualizar mi perfil'});
+        return res.status(200).send({perfilActualizado});
     })
 }
+
+function editarUsuarios (req, res){
+    var params = req.body
+    var usuarioId = req.params.usuarioId
+
+    usuarioModel.findOneAndUpdate({_id: usuarioId}, {usuario: params.usuario, nombre: params.nombre, apellido: params.apellido, telefono: params.telefono, correo: params.correo, nacimiento: params.nacimiento, DPI: params.DPI , direccion: params.direccion, ciudad: params.ciudad, imagen: params.imagen}, {new: true, useFindAndModify:false}, (err, usuarioActualizado)=>{
+        if(err) return res.status(500).send({mensaje: 'Error al actualizar el usuario'})
+        return res.status(200).send({usuarioActualizado})
+    })
+
+}
+
+function registrarProfesional (req, res){
+    var params = req.body
+    var usuarioId =  req.user.sub
+
+    if (req.user.rol != 'ROL_USUARIO') return res.status(500).send({mensaje: 'No tienes permisos para ser profesional'})
+    usuarioModel.findByIdAndUpdate(usuarioId, {profesion: params.profesion, 
+
+    descripcionP: params.descripcionP, direccionP: params.direccionP, verificado: false, 
+
+    estrellasP: 0, disponible:  true}, {new: true, useFindAndModify:false},
+
+    (err, profesionalRegistrado)=>{
+        if(err) return res.status(500).send({mensaje: 'Error al registrar un profesional'});
+        if(!profesionalRegistrado) return res.status(500).send({mensaje:'Error en la peticion'});
+        return res.status(200).send({profesionalRegistrado});
+    })
+}
+
+
+
+function eliminarMiPerfil (req, res){
+    var usuarioId = req.params.usuarioId
+    if (usuarioId != req.user.sub){
+        return res.status(500).send({mensaje: 'No tienes permisos para eliminar mi perfil'})
+    }
+    usuarioModel.findByIdAndDelete(usuarioId, (err, perfilEliminado)=>{
+        if(err) return res.status(500).send({mensaje: 'Error al eliminar mi perfil'});
+        if(!perfilEliminado) return res.status(500).send({mensaje: 'No se ha podido eliminar el perfil'});
+        return res.status(200).send({mensaje:'Perfil eliminado'})
+    })
+}
+
+function eliminarUsuarios (req, res){
+    var usuarioId = req.params.usuarioId
+    usuarioModel.findOneAndDelete({_id: usuarioId}, (err, usuarioEliminado)=>{
+        if(err) return res.status(500).send({mensaje:'El usuario no ha podido eliminarse'})
+        return res.status(200).send({mensaje: 'Usuario eliminado con exito'})
+    })
+
+}
+
 module.exports = {
     registrarUsuario,
     login,
-    obtenerUsuarioId,
-    obtenerUsuarioLogueado
+    obtenerUsuarios,
+    editarMiPerfil,
+    editarUsuarios,
+    eliminarMiPerfil,
+    eliminarUsuarios,
+    registrarProfesional
 }
