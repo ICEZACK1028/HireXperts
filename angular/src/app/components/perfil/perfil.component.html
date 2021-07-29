@@ -1,15 +1,15 @@
 <div class="wrapper">
     <div class="page-header page-header-small" filter-color="orange">
-        <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url(https://www.wallpapertip.com/wmimgs/81-811946_fondos-de-pantalla-para-pc-8k.jpg) ;">
+        <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url(assets/img/bg11.jpg) ;">
         </div>
         <div class="container">
-            <div class="content-center">
-                <div class="photo-container">
-                    <img src="{{usuarioIdModel.imagen}}" alt="">
+            <div class="content-center" >
+                <div class="photo-container" style="margin-top: 100px;">
+                    <img src="{{usuarioIdModel.imagen}}" >
                 </div>
                 <h3 class="title">{{usuarioIdModel.nombre}}</h3>
-                <p class="category" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">Photographer</p>
-                <p class="category" *ngIf="usuarioIdModel.rol == 'ROL_ADMIN'">Administrador y amo</p>
+                <p class="category" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">{{usuarioIdModel.profesion}}</p>
+                <p class="category" *ngIf="usuarioIdModel.rol == 'ROL_ADMIN'">Administrador</p>
                 <div class="content" *ngIf="usuarioIdModel.rol == 'ROL_USUARIO'">
                     <div class="social-description" >
                         <h2>26</h2>
@@ -24,7 +24,7 @@
                         <p>Contratos</p>
                     </div>
                 </div>
-                <div class="content" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
+                <div class="content" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'" style="margin-bottom: 70px; z-index: 999;">
                     <div class="social-description">
                         <h2>26</h2>
                         <p>Puntuación</p>
@@ -37,35 +37,26 @@
                         <h2>48</h2>
                         <p>Contratos</p>
                     </div>
-                    <div class="social-description">
-                        <h2>48</h2>
-                        <p>Contratos</p>
-                    </div>
-                    <div class="social-description ">
-                        <h2>48</h2>
-                        <p>Contratos</p>
-                    </div>
-                    <br><br><br><br>
+
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="section">
-        <div class="container">
-          <div class="button-container">
-              <a href="#button" class="btn btn-primary btn-round btn-lg">Follow</a>
-              <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Twitter">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Instagram">
-                <i class="fab fa-instagram"></i>
-              </a>
+    <div class="section adelante">
+        <div class="container ">
+          <div class="button-container" *ngIf="identidad._id == usuarioIdModel._id">
+              
+                <button  class="btn btn-primary btn-round btn-lg" style="cursor: pointer;">Editar</button>
+
+                <button  class="btn btn-info btn-round btn-lg" style="cursor: pointer;" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">Contratar</button>
+                
+              
           </div>
 
           <div *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
               <h3 class="title">Descripción Profesional</h3>
-              <h5 class="description" >{{usuarioIdModel.descripcionP}}</h5>
+              <h5 class="description info-contacto" >{{usuarioIdModel.descripcionP}}</h5>
           </div>
 
           <!-- SECCION PAGINAS ADMIN -->
@@ -142,11 +133,11 @@
             </div>
 
             <!-- SECCION PAGINAS PROFESIONAL -->
-            <div class="container" *ngIf="usuarioIdModel.rol == 'ROL_ADMIN'">
+            <div class="container info-contacto" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
 
                 
 
-                <h2 style="text-align: center; padding-top: 40px;">Información de Contácto</h2>
+                <h2 style="text-align: center;">Información de Contácto</h2>
                 <div class="row">
                     <div class="col-6">
                         <div class="input-group">
@@ -199,10 +190,30 @@
 
             </div>
         </div>
+
+        
+    
+
     </div>
 
 
+        <div class="nav-tabs-navigation" data-tabs-color="orange" >
+            <div class="nav-tabs-wrapper">
+                <ngb-tabset [justify]="'center'" class="text-center bg-blanco" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
+                    <ngb-tab title="Trabajos Recientes" >
+                      <ng-template ngbTabContent >
+                        <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
+                      </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="Reseñas">
+                      <ng-template ngbTabContent>
+                          <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
+                      </ng-template>
+                    </ngb-tab>
 
+                </ngb-tabset>
+            </div>
+        </div>
 
 
 

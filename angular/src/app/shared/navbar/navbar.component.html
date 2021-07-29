@@ -10,10 +10,10 @@
            <div ngbDropdownMenu *ngIf="identidad.rol != ''">
              <a class="dropdown-header">Menú</a>
              <a class="dropdown-header" *ngIf="identidad.rol == ''">INICIA SESION</a>
-             <a class="dropdown-item" [routerLink]="['/index']" *ngIf='identidad.rol == "ROL_USUARIO"'>Perfil</a>
+             <a class="dropdown-item" [routerLink]="['/perfil',identidad._id]" *ngIf='identidad.rol == "ROL_USUARIO"'>Perfil</a>
              <a class="dropdown-item" [routerLink]="['/index']" *ngIf='identidad.rol == "ROL_USUARIO"'>Solicitudes</a>
              <a class="dropdown-item" [routerLink]="['/index']" *ngIf='identidad.rol == "ROL_USUARIO"'>Trabajos</a>
-             <a class="dropdown-item" [routerLink]="['/index']" *ngIf='identidad.rol == "ROL_PROFESIONAL"'>Perfil</a>
+             <a class="dropdown-item" [routerLink]="['/perfil', identidad._id]" *ngIf='identidad.rol == "ROL_PROFESIONAL"'>Perfil</a>
              <a class="dropdown-item" [routerLink]="['/index']" *ngIf='identidad.rol == "ROL_PROFESIONAL"'>Solicitudes</a>
              <a class="dropdown-item" [routerLink]="['/index']" *ngIf='identidad.rol == "ROL_PROFESIONAL"'>Trabajos</a>
              <div class="dropdown-divider" *ngIf='identidad.rol == "ROL_USUARIO"'></div>

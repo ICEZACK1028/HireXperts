@@ -21,7 +21,7 @@ const routes: Routes =[
     { path: 'examples/profile',     component: ProfileComponent },
     { path: 'login',                component: LoginComponent },
     { path: 'home',                component: HomeComponent },
-    { path: 'perfil',                component: PerfilComponent },
+    { path: 'perfil/:idUsuario',                component: PerfilComponent },
     { path: 'register',                component: RegisterComponent },
     { path: 'professional-register',                component: ProfessionalRegisterComponent },
 

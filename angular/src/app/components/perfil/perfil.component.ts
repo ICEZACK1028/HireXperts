@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Usuario } from 'app/models/usuario.model';
 import { UsuarioService } from 'app/services/usuario.service';
 import * as Rellax from 'rellax';
@@ -23,12 +24,12 @@ export class PerfilComponent implements OnInit {
   public usuarioIdModel
   public identidad
   public token
+  
 
-  constructor(private _usuarioService: UsuarioService) { 
+  constructor(private _usuarioService: UsuarioService, private _activatedRoute: ActivatedRoute) { 
     this.identidad = this._usuarioService.getIdentidad();
     this.token = this._usuarioService.getToken()
     console.log(this.token);
-    this.obtenerUsuarioLogueado()
 
     this.usuarioIdModel = new Usuario("","","","","","","","",Date(),"","","","",0,"","","","",false,0,false)
   }
@@ -41,6 +42,10 @@ export class PerfilComponent implements OnInit {
       var navbar = document.getElementsByTagName('nav')[0];
       navbar.classList.add('navbar-transparent');
       
+      this._activatedRoute.paramMap.subscribe(dataRuta =>{
+        this.idUsuario = dataRuta.get('idUsuario');
+      })
+      this.obtenerUsuarioId()
 
   }
   ngOnDestroy(){
@@ -50,13 +55,11 @@ export class PerfilComponent implements OnInit {
       navbar.classList.remove('navbar-transparent');
   }
 
-  obtenerUsuarioLogueado(){
-    this._usuarioService.obtenerUsuarioLogueado(this.token).subscribe(
+  obtenerUsuarioId(){
+    this._usuarioService.obtenerUsuarioId(this.idUsuario,this.token).subscribe(
       (response:any) => {
         console.log(response);
         this.usuarioIdModel = response.usuarioEncontrado
-      },err => {
-
       }
     )
   }
