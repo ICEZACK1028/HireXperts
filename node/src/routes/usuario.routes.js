@@ -10,6 +10,11 @@ var api = express.Router();
 
 api.post('/registrarUsuario', usuarioController.registrarUsuario);
 api.post('/login', usuarioController.login);
+<<<<<<< HEAD
+=======
+api.get('/obtenerUsuarioId/:idUsuario', md_authentication.ensureAuth, usuarioController.obtenerUsuarioId)
+api.get('/obtenerUsuarioLogueado/:idUsuario', usuarioController.obtenerUsuarioLogueado)
+>>>>>>> 54a0bd1479d009315e3fd9815fe7e6faee196ec3
 api.put('/editarMiPerfil/:usuarioId', usuarioController.editarMiPerfil);
 api.put('/registrarProfesional', md_authentication.ensureAuth,  usuarioController.registrarProfesional);
 api.delete('/eliminarMiPerfil/:usuarioId', usuarioController.eliminarMiPerfil);

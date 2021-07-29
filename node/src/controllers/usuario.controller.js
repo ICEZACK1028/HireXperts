@@ -76,6 +76,31 @@ function login(req, res) {
     
 }
 
+<<<<<<< HEAD
+=======
+function obtenerUsuarioId(req,res){
+    var idUsuario = req.params.idUsuario
+
+    usuarioModel.findById(idUsuario,(err,usuarioEncontrado)=> {
+        if (err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
+        if(!usuarioEncontrado) return res.status(500).send({mensaje:'EL usuario no existe'})
+
+        return res.status(200).send({usuarioEncontrado})
+    })
+}
+
+function obtenerUsuarioLogueado(req,res){
+    var idUsuario = req.params.idUsuario
+
+    usuarioModel.findById(idUsuario,(err,usuarioEncontrado)=> {
+        if (err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
+        if(!usuarioEncontrado) return res.status(500).send({mensaje:'EL usuario no existe'})
+
+        return res.status(200).send({usuarioEncontrado})
+    })
+}
+
+>>>>>>> 54a0bd1479d009315e3fd9815fe7e6faee196ec3
 function obtenerUsuarios (req, res){
     usuarioModel.find((err, usuariosEncontrados)=>{
         if(err) return res.status(404).send({ mensaje: 'Error en la peticion para obtener todos los usuarios existentes'});
@@ -117,7 +142,7 @@ function registrarProfesional (req, res){
     var usuarioId =  req.user.sub
 
     if (req.user.rol != 'ROL_USUARIO') return res.status(500).send({mensaje: 'No tienes permisos para ser profesional'})
-    usuarioModel.findByIdAndUpdate(usuarioId, {profesion: params.profesion, 
+    usuarioModel.findByIdAndUpdate(usuarioId, {rol:'ROL_PROFESIONAL',profesion: params.profesion, 
 
     descripcionP: params.descripcionP, direccionP: params.direccionP, verificado: false, 
 
@@ -161,5 +186,7 @@ module.exports = {
     editarUsuarios,
     eliminarMiPerfil,
     eliminarUsuarios,
+    obtenerUsuarioId,
+    obtenerUsuarioLogueado,
     registrarProfesional
 }

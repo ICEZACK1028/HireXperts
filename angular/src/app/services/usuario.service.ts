@@ -59,12 +59,17 @@ export class UsuarioService {
     return this._http.get(this.url + '/obtenerUsuarioId/' + id, {headers:headersToken})
   }
 
-  obtenerUsuarioLogueado(token){
-    let headersToken = this.headersVariable.set('Authorization', token)
-    return this._http.get(this.url + '/obtenerUsuarioLogueado', {headers:headersToken})
+  obtenerUsuarioLogueado(id){
+    return this._http.get(this.url + '/obtenerUsuarioLogueado/'+id, {headers:this.headersVariable})
   }
 
   registro(usuario: Usuario): Observable<any>{
     return this._http.post(`${this.url}/registrarUsuario`, this.JsonConvert(usuario), {headers: this.headersVariable});
+  }
+
+  registrarProfesional(usuario:Usuario,token): Observable<any>{
+    let params = JSON.stringify(usuario)
+    let headersToken = this.headersVariable.set('Authorization', token)
+    return this._http.put(this.url+'/registrarProfesional',params,{headers:headersToken})
   }
 }

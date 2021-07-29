@@ -11,6 +11,7 @@ import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.compo
 import { HomeComponent } from './components/home/home.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ProfessionalRegisterComponent } from './components/professional-register/professional-register.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -22,6 +23,7 @@ const routes: Routes =[
     { path: 'home',                component: HomeComponent },
     { path: 'perfil',                component: PerfilComponent },
     { path: 'register',                component: RegisterComponent },
+    { path: 'professional-register',                component: ProfessionalRegisterComponent },
 
 ];
 

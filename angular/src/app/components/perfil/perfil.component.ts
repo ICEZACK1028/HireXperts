@@ -30,7 +30,11 @@ export class PerfilComponent implements OnInit {
     console.log(this.token);
     this.obtenerUsuarioLogueado()
 
+<<<<<<< HEAD
     this.usuarioIdModel = new Usuario("","","","","","","","","","","","","",0,"",{nombreProfesion:""},"","",false,0,false)
+=======
+    this.usuarioIdModel = new Usuario("","","","","","","","",Date(),"","","","",0,"","","","",false,0,false)
+>>>>>>> 54a0bd1479d009315e3fd9815fe7e6faee196ec3
   }
 
   ngOnInit() {
