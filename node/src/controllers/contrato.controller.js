@@ -16,6 +16,7 @@ function crearContrato(req, res) {
     contratoConstructor.fechaInicial = params.fechaInicial;
     contratoConstructor.trabajador = idTrabajador;
     contratoConstructor.contratante = idContratante;
+    contratoConstructor.status = "solicitudInicio"
 
     contratoModel.find({trabajo: contratoConstructor.trabajo, fechaInicio: contratoConstructor.fechaInicio, trabajador: contratoConstructor.trabajador})
     .exec((err, contratoEncontrada) => {
