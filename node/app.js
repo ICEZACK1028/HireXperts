@@ -7,6 +7,11 @@ const cors = require('cors');
 
 //Rutas 
 const usuario_rutas= require('./src/routes/usuario.routes');
+const profesion_rutas= require('./src/routes/profesion.routes');
+const especialidad_rutas= require('./src/routes/especialidad.routes');
+const solicitud_rutas = require('./src/routes/solicitud.routes');
+const resena_rutas = require('./src/routes/resena.routes');
+const contrato_rutas = require('./src/routes/contrato.routes');
 
 //Middlewares
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -14,7 +19,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //Carga de Rutas
-app.use('/api', usuario_rutas);
+app.use('/api', usuario_rutas, profesion_rutas, especialidad_rutas, solicitud_rutas, resena_rutas, contrato_rutas);
 
 //Exportación
 module.exports = app;

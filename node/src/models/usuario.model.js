@@ -10,7 +10,7 @@ var UsuarioSchema = Schema({
     telefono: String,
     correo: String,
     nacimiento: Date,
-    DIP: String,
+    DPI: String,
     direccion: String,
     pais: String,
     ciudad: String,
