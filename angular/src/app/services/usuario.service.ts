@@ -50,54 +50,26 @@ export class UsuarioService {
     return this.token;
   }
 
+  // obtenerUsuarioId(id){
+  //   return this._http.get(this.url + '/ObtenerUsuarioId/' + id, {headers:this.headersVariable})
+  // }
+  
+  obtenerUsuarioId(id, token){
+    let headersToken = this.headersVariable.set('Authorization', token)
+    return this._http.get(this.url + '/obtenerUsuarioId/' + id, {headers:headersToken})
+  }
+
+  obtenerUsuarioLogueado(id){
+    return this._http.get(this.url + '/obtenerUsuarioLogueado/'+id, {headers:this.headersVariable})
+  }
+
   registro(usuario: Usuario): Observable<any>{
     return this._http.post(`${this.url}/registrarUsuario`, this.JsonConvert(usuario), {headers: this.headersVariable});
   }
 
-  registrarAdmin(usuario: Usuario): Observable<any>{
-    let headersToken = this.headersVariable.set('Authorization', this.getToken());
-
-    return this._http.post(`${this.url}/registrarAdministrador`, this.JsonConvert(usuario), {headers: headersToken});
+  registrarProfesional(usuario:Usuario,token): Observable<any>{
+    let params = JSON.stringify(usuario)
+    let headersToken = this.headersVariable.set('Authorization', token)
+    return this._http.put(this.url+'/registrarProfesional',params,{headers:headersToken})
   }
-
-  listarUsuarios(): Observable<any>{
-    return this._http.get(`${this.url}/listarUsuarios`, {headers: this.headersVariable});
-  }
-
-  verUsuario(id:string): Observable<any>{
-    let headersToken = this.headersVariable.set('Authorization', this.getToken());
-
-    return this._http.get(`${this.url}/verUsuario/${id}`, {headers: headersToken});
-  }
-
-  verUsuarioLogueado(): Observable<any>{
-    let headersToken = this.headersVariable.set('Authorization', this.getToken());
-
-    return this._http.get(`${this.url}/verUsuarioLogueado`, {headers: headersToken});
-  }
-
-  editarUsuario(usuario: Usuario): Observable<any>{
-    let headersToken = this.headersVariable.set('Authorization', this.getToken());
-
-    return this._http.put(`${this.url}/editarUsuario/${usuario._id}`, this.JsonConvert(usuario), {headers: headersToken});
-  }
-
-  editarPerfil(usuario: Usuario): Observable<any>{
-    let headersToken = this.headersVariable.set('Authorization', this.getToken());
-
-    return this._http.put(`${this.url}/editarPerfil/${usuario._id}`, this.JsonConvert(usuario), {headers: headersToken});
-  }
-
-  eliminarUsuario(id:String): Observable<any>{
-    let headersToken = this.headersVariable.set('Authorization', this.getToken());
-
-    return this._http.delete(`${this.url}/eliminarUsuario/${id}`, {headers: headersToken});
-  }
-
-  eliminarPerfil(id:String): Observable<any>{
-    let headersToken = this.headersVariable.set('Authorization', this.getToken());
-
-    return this._http.delete(`${this.url}/eliminarPerfil/${id}`, {headers: headersToken});
-  }
-
 }

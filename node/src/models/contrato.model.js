@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var ContratoSchema = Schema({
     titulo: String,
-    fechaInicial: Date,
+    fechaInicial: String,
     descripcion: String,
     trabajador: {type: Schema.Types.ObjectId, ref:'usuarios'},
     contratante: {type: Schema.Types.ObjectId, ref:'usuarios'},

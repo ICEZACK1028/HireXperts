@@ -1,0 +1,231 @@
+<div class="wrapper">
+    <div class="page-header page-header-small" filter-color="orange">
+        <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url(assets/img/bg11.jpg) ;">
+        </div>
+        <div class="container" >
+            <div class="content-center" >
+                <div class="photo-container" style="margin-top: 100px;">
+                    <img src="{{usuarioIdModel.imagen}}" >
+                </div>
+                <h3 class="title">{{usuarioIdModel.nombre}}</h3>
+                <p class="category" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">{{usuarioIdModel.profesion}}</p>
+                <p class="category" *ngIf="usuarioIdModel.rol == 'ROL_ADMIN'">Administrador</p>
+
+                <div class="content"  style="margin-bottom: 70px; z-index: 999;">
+                    <div class="social-description">
+                        <h2>26</h2>
+                        <p>Puntuación</p>
+                    </div>
+                    <div class="social-description">
+                        <h2>26</h2>
+                        <p>Reseñas</p>
+                    </div>
+                    <div class="social-description">
+                        <h2>48</h2>
+                        <p>Contratos</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <div class="section adelante">
+        <div class="container ">
+          <div class="button-container"  >
+              
+                <button  class="btn btn-primary btn-round btn-lg" style="cursor: pointer;" *ngIf="identidad._id == usuarioIdModel._id">Editar</button>
+                <button  class="btn btn-info btn-round btn-lg" style="cursor: pointer;" *ngIf="identidad._id != idUsuario && 'ROL_PROFESIONAL' == usuarioIdModel.rol"  (click)="open(classic)">Contratar</button>
+          </div>
+
+          <div *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
+              <h3 class="title">Descripción Profesional</h3>
+              <h5 class="description info-contacto" >{{usuarioIdModel.descripcionP}}</h5>
+          </div>
+
+            <!-- SECCION PAGINAS PROFESIONAL -->
+            <div class="container info-contacto" >
+
+                <div *ngIf="identidad._id == idUsuario && usuarioIdModel.rol == 'ROL_USUARIO'">
+                    <br><br>
+                </div>
+
+                <h2 style="text-align: center;">Información de Contácto</h2>
+                <div class="row">
+                    <div class="col-6">
+                        <p>Nombre:</p>
+                        <div class="input-group">
+                            <input type="text" value="{{usuarioIdModel.nombre}}" placeholder="Nombre" class="form-control divition" disabled/>
+                        </div>
+                        <p>Apellido:</p>
+                        <div class="input-group">
+                            <input type="text" value="{{usuarioIdModel.apellido}}" placeholder="País" class="form-control divition" disabled/>
+                        </div>
+                        <p>Telefono:</p>
+                        <div class="input-group">
+                            <input type="text" value="{{usuarioIdModel.telefono}}" placeholder="DPI" class="form-control divition" disabled/>
+                        </div>
+                        <p>Correo:</p>
+                        <div class="input-group">
+                            <input type="text" value="{{usuarioIdModel.correo}}" placeholder="Correo" class="form-control divition" disabled/>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <p>DPI:</p>
+                        <div class="input-group">
+                            <input type="text" value="{{usuarioIdModel.dpi}}" placeholder="Dirección" class="form-control divition" disabled/>
+                        </div>
+                        <p>Direccion:</p>
+                        <div class="input-group">
+                            <input type="text" value="{{usuarioIdModel.direccion}}" placeholder="Dirección" class="form-control divition" disabled/>
+                        </div>
+                        <p>País:</p>
+                        <div class="input-group">
+                            <input type="text" value="{{usuarioIdModel.pais}}" placeholder="Dirección" class="form-control divition" disabled/>
+                        </div>
+                        <p>Ciudad:</p>
+                        <div class="input-group">
+                            <input type="text" value="{{usuarioIdModel.ciudad}}" placeholder="Dirección" class="form-control divition" disabled/>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
+                    <h2 style="text-align: center; padding-top: 40px;">Información de Profesional</h2>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="input-group">
+                                <input type="text" value="{{usuarioIdModel.profesion}}" placeholder="Nombre" class="form-control divition" disabled/>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" value="{{usuarioIdModel.direccionP}}" placeholder="País" class="form-control divition" disabled/>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group">
+                                <input type="text" value="{{usuarioIdModel.estrellasP}}" placeholder="DPI" class="form-control divition" disabled/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+        <!-- TABS PROFESIONAL -->
+        <div class="nav-tabs-navigation bg-blanco" data-tabs-color="orange" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
+            <div class="nav-tabs-wrapper">
+                <ngb-tabset [justify]="'center'" class="text-center bg-blanco" >
+                    <ngb-tab title="Ultimos Contratos" >
+                      <ng-template ngbTabContent >
+                        <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
+                      </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="Reseñas" >
+                      <ng-template ngbTabContent>
+                          <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
+                      </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="Reseñas" >
+                      <ng-template ngbTabContent>
+                          <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
+                      </ng-template>
+                    </ngb-tab>
+
+                </ngb-tabset>
+            </div>
+        </div>
+
+        <!-- SECCION USUARIO -->
+        <div class="container" *ngIf="usuarioIdModel.rol == 'ROL_USUARIO'">
+
+            <h2 style="text-align: center;">Últimos Contratos</h2>
+
+            
+
+        </div>
+
+
+    <footer class="footer footer-default">
+        <div class="container">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="https://www.creative-tim.com">
+                            Creative Tim
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.creative-tim.com/about-us">
+                            About Us
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://blog.creative-tim.com">
+                            Blog
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">
+                            MIT License
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="copyright">
+                &copy;
+                {{data | date: 'yyyy'}}, Designed by
+                <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by
+                <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
+            </div>
+        </div>
+    </footer>
+
+</div>
+<ng-template #classic let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h5 class="modal-title text-center">Contrata a {{usuarioIdModel.nombre}}</h5>
+        <button type="button" class="close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="col-7">
+                <p>Titulo:</p>
+                <div class="form-group">
+                    <input type="text" value="" placeholder="Titulo de Solicitud..." class="form-control" />
+                </div>
+            </div>
+            <div class="col-5">
+                <p>Fecha de Inicio:</p>
+                <div class="input-group">
+                    <input type="date" class="form-control datetimepicker" placeholder="Fecha de nacimiento" name="fechaInicio">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <p>Descripcion de la Solicitud:</p>
+            <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+
+                
+                <textarea class="form-control textAreaInput" name="name" rows="4" cols="80" placeholder="Describa lo que necesita de manera clara y concisa..." name='descripcionP'></textarea>
+            </div>
+        </div>
+
+        <!-- Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. -->
+    </div>
+    <div class="modal-footer">
+        <div class="left-side">
+            <button type="button" class="btn btn-default btn-link" (click)="c('Close click')">Cancelar</button>
+        </div>
+        <div class="divider"></div>
+        <div class="right-side">
+            <button type="button" class="btn btn-primary btn-link" (click)="c('Close click')">Enviar</button>
+        </div>
+    </div>
+   </ng-template>
+

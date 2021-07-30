@@ -1,4 +1,4 @@
-export class profesion{
+export class Profesion{
     constructor(
         public _id: String,
         public nombreProfesion: String,

@@ -10,6 +10,8 @@ var api = express.Router();
 
 api.post('/registrarUsuario', usuarioController.registrarUsuario);
 api.post('/login', usuarioController.login);
+api.get('/obtenerUsuarioId/:idUsuario', md_authentication.ensureAuth, usuarioController.obtenerUsuarioId)
+api.get('/obtenerUsuarioLogueado/:idUsuario', usuarioController.obtenerUsuarioLogueado)
 api.put('/editarMiPerfil/:usuarioId', usuarioController.editarMiPerfil);
 api.put('/registrarProfesional', md_authentication.ensureAuth,  usuarioController.registrarProfesional);
 api.delete('/eliminarMiPerfil/:usuarioId', usuarioController.eliminarMiPerfil);

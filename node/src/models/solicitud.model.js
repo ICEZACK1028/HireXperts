@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var SolicitudSchema = Schema({
     trabajo: String,
     descripcion: String,
-    fechaInicio: Date,
+    fechaInicio: String,
     trabajador: {type: Schema.Types.ObjectId, ref:'usuarios'},
     contratante: {type: Schema.Types.ObjectId, ref:'usuarios'},
 })

@@ -5,7 +5,6 @@ const usuarioModel = require('../models/usuario.model');
 const bcrypt = require('bcrypt-nodejs');
 const jwt = require('../services/jwt');
 
-
 //Funciones
 
 //FUNCIÓN PARA REGISTRAR UN USUARIO
@@ -20,7 +19,7 @@ function registrarUsuario (req,res){
     usuarioConstructor.telefono = params.telefono;
     usuarioConstructor.correo = params.correo;
     usuarioConstructor.nacimiento = params.nacimiento;
-    usuarioConstructor.DPI = params.DPI;
+    usuarioConstructor.dpi = params.dpi;
     usuarioConstructor.direccion = params.direccion;
     usuarioConstructor.pais = params.pais;
     usuarioConstructor.ciudad = params.ciudad;
@@ -42,6 +41,7 @@ function registrarUsuario (req,res){
                     if(usuarioGuardado){
                         return res.status(200).send({ usuarioGuardado });
                     }else{
+                        console.log(err)
                         return res.status(500).send({ 
                             mensaje: 'No se ha podido registrar el usuario, inténtalo de nuevo' 
                         });
@@ -74,6 +74,28 @@ function login(req, res) {
         }
     })
     
+}
+
+function obtenerUsuarioId(req,res){
+    var idUsuario = req.params.idUsuario
+
+    usuarioModel.findById(idUsuario,(err,usuarioEncontrado)=> {
+        if (err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
+        if(!usuarioEncontrado) return res.status(500).send({mensaje:'EL usuario no existe'})
+
+        return res.status(200).send({usuarioEncontrado})
+    })
+}
+
+function obtenerUsuarioLogueado(req,res){
+    var idUsuario = req.params.idUsuario
+
+    usuarioModel.findById(idUsuario,(err,usuarioEncontrado)=> {
+        if (err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
+        if(!usuarioEncontrado) return res.status(500).send({mensaje:'EL usuario no existe'})
+
+        return res.status(200).send({usuarioEncontrado})
+    })
 }
 
 function obtenerUsuarios (req, res){
@@ -117,7 +139,7 @@ function registrarProfesional (req, res){
     var usuarioId =  req.user.sub
 
     if (req.user.rol != 'ROL_USUARIO') return res.status(500).send({mensaje: 'No tienes permisos para ser profesional'})
-    usuarioModel.findByIdAndUpdate(usuarioId, {profesion: params.profesion, 
+    usuarioModel.findByIdAndUpdate(usuarioId, {rol:'ROL_PROFESIONAL',profesion: params.profesion, 
 
     descripcionP: params.descripcionP, direccionP: params.direccionP, verificado: false, 
 
@@ -161,5 +183,7 @@ module.exports = {
     editarUsuarios,
     eliminarMiPerfil,
     eliminarUsuarios,
+    obtenerUsuarioId,
+    obtenerUsuarioLogueado,
     registrarProfesional
 }
