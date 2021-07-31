@@ -9,7 +9,7 @@ function solicitudInicio(req, res) {
 
     var params = req.body;
 
-    if(params.titulo == null || params.descripcion == null || params.fechaInicial == null) return res.status(500).send({mensaje: "Por favor, ingrese la información deseada"});
+    // if(params.titulo == null || params.descripcion == null || params.fechaInicial == null) return res.status(500).send({mensaje: "Por favor, ingrese la información deseada"});
 
     contratoConstructor.titulo = params.titulo;
     contratoConstructor.descripcion = params.descripcion;
@@ -27,7 +27,7 @@ function solicitudInicio(req, res) {
         if(contratoEncontrada && contratoEncontrada.length >= 1 ) return res.status(500).send({mensaje: "Contrato ya existente"});
         contratoConstructor.save((err, contratoGuardado) => {
             if(err) return res.status(500).send({mensaje: "Error al guardar contrato"});
-            return res.status(200).send(contratoGuardado)
+            return res.status(200).send({contratoGuardado})
         })
     })
 }
