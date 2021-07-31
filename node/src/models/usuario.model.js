@@ -16,7 +16,7 @@ var UsuarioSchema = Schema({
     ciudad: String,
     estrellas: Number,
     imagen: String,
-    profesion:String,
+    profesion: {type: Schema.Types.ObjectId, ref:'profesion'},
     descripcionP: String,
     direccionP: String,
     verificado: Boolean,
