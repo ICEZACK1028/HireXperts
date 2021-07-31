@@ -8,7 +8,7 @@
                     <img src="{{usuarioIdModel.imagen}}" >
                 </div>
                 <h3 class="title">{{usuarioIdModel.nombre}}</h3>
-                <!-- <p class="category" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">{{usuarioIdModel.profesion.nombreProfesion}}</p> -->
+                <p class="category" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">{{usuarioIdModel.profesion.nombreProfesion}}</p>
                 <p class="category" *ngIf="usuarioIdModel.rol == 'ROL_ADMIN'">Administrador</p>
 
                 <div class="content"  style="margin-bottom: 70px; z-index: 999;">
@@ -95,7 +95,7 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="input-group">
-                                <input type="text" value="{{usuarioIdModel.profesion}}" placeholder="Nombre" class="form-control divition" disabled/>
+                                <input type="text" value="{{usuarioIdModel.profesion.nombreProfesion}}" placeholder="Nombre" class="form-control divition" disabled/>
                             </div>
                             <div class="input-group">
                                 <input type="text" value="{{usuarioIdModel.direccionP}}" placeholder="País" class="form-control divition" disabled/>

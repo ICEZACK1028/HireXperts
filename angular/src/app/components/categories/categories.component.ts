@@ -30,7 +30,7 @@ export class CategoriesComponent implements OnInit {
       var body = document.getElementsByTagName('body')[0];
       body.classList.add('profile-page');
       var navbar = document.getElementsByTagName('nav')[0];
-      navbar.classList.remove('navbar-transparent');
+      navbar.classList.add('navbar-transparent');
 
       this.obtenerProfesiones()
       this.obtenerProfesionales()
