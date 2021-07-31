@@ -26,6 +26,8 @@ api.get('/obtenerTrabajadorSolicitudRespuesta', md_authentication.ensureAuth, co
 api.get('/obtenerTrabajadorTrabajoCancelado', md_authentication.ensureAuth, contratoController.obtenerTrabajadorTrabajoCancelado);
 api.get('/obtenerTrabajadorTrabajoFinalizado', md_authentication.ensureAuth, contratoController.obtenerTrabajadorTrabajoFinalizado);
 api.get('/obtenerTrabajadorTrabajoProceso', md_authentication.ensureAuth, contratoController.obtenerTrabajadorTrabajoProceso);
+api.get('/obtenerContratosContratanteTrabajoFinalizado', md_authentication.ensureAuth, contratoController.obtenerContratosContratanteTrabajoFinalizado);
+api.get('/obtenerContratosTrabajadorTrabajoFinalizado', md_authentication.ensureAuth, contratoController.obtenerContratosTrabajadorTrabajoFinalizado);
 
 //Exportación
 module.exports= api;

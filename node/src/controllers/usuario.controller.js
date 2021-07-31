@@ -2,6 +2,7 @@
 
 //Importaciones
 const usuarioModel = require('../models/usuario.model');
+const profesionModel = require('../models/profesion.model');
 const bcrypt = require('bcrypt-nodejs');
 const jwt = require('../services/jwt');
 
@@ -221,6 +222,20 @@ function obtenerProfesionalesNombre(req, res){
     })
 }
 
+function obtenerProfesionalesNombreProfesion(req, res){
+    var rolProfesional = 'ROL_PROFESIONAL';
+    var nombreProfesion = req.params.nombreProfesion;
+    profesionModel.findOne({nombreProfesion: nombreProfesion}).exec( (err, profesionEncontrada)=>{
+        if(err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
+        if(!profesionEncontrada || profesionEncontrada.length == 0) return res.status(500).send({mensaje: 'No se han encontrado profesiones'})
+        usuarioModel.find({profesion: profesionEncontrada._id, rol: rolProfesional}, (err, usuariosEncontrados) => {
+            if(err) return res.status(500).send({mensaje: "Error al hacer la busqueda"});
+            if(!usuariosEncontrados || usuariosEncontrados.length == 0) return res.status(500).send({mensaje: "No se han encontrado profesionales"});
+            return res.status(200).send({usuariosEncontrados});
+        })
+    })
+}
+
 
 
 module.exports = {
@@ -240,4 +255,5 @@ module.exports = {
     obtenerProfesionalesPorEstrellasDescendente,
     obtenerProfesionalesEstadoTrue,
     obtenerProfesionalesNombre,
+    obtenerProfesionalesNombreProfesion,
 }
