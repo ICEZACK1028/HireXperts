@@ -75,9 +75,10 @@ function trabajoCancelado(req, res) {
 }
 
 function trabajoFinalizado(req, res) {
+    var fechaFinalizacion = new Date();
     var idContrato = req.params.contrato;
 
-    contratoModel.findByIdAndUpdate(idContrato, {status: "trabajoFinalizado"}, {new: true, useFindAndModify:false}, (err, contratoActualizado) => {
+    contratoModel.findByIdAndUpdate(idContrato, {status: "trabajoFinalizado", fechaFinal: fechaFinalizacion}, {new: true, useFindAndModify:false}, (err, contratoActualizado) => {
         if(err) return res.status(500).send({mensaje: "Error al finalizar contrato"});
            return res.status(200).send({contratoActualizado})
     }
