@@ -119,6 +119,17 @@
                 <ngb-tabset [justify]="'center'" class="text-center bg-blanco" >
                     <ngb-tab title="Ultimos Contratos" >
                       <ng-template ngbTabContent >
+                          
+                        <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;">
+                            <div class="card-header">Header</div>
+                            <div class="card-body">
+                              <h5 class="card-title">Primary card title</h5>
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                          </div>
+                          
+                          
+
                         <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
                       </ng-template>
                     </ngb-tab>
@@ -196,13 +207,13 @@
             <div class="col-7">
                 <p>Titulo:</p>
                 <div class="form-group">
-                    <input type="text" value="" placeholder="Titulo de Solicitud..." class="form-control" />
+                    <input type="text" value="" placeholder="Titulo de Solicitud..." class="form-control" id='titulo' name='titulo' #titulo='ngModel' [(ngModel)]='contratoModelAdd.trabajo'/>
                 </div>
             </div>
             <div class="col-5">
                 <p>Fecha de Inicio:</p>
                 <div class="input-group">
-                    <input type="date" class="form-control datetimepicker" placeholder="Fecha de nacimiento" name="fechaInicio">
+                    <input type="date" class="form-control datetimepicker" placeholder="Fecha de inicio"  id='fechaInicio' name="fechaInicio" #fechaInicio='ngModel' [(ngModel)]='contratoModelAdd.fechaInicio'>
                 </div>
             </div>
         </div>
@@ -212,7 +223,7 @@
             <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
 
                 
-                <textarea class="form-control textAreaInput" name="name" rows="4" cols="80" placeholder="Describa lo que necesita de manera clara y concisa..." name='descripcionP'></textarea>
+                <textarea class="form-control textAreaInput" rows="4" cols="80" placeholder="Describa lo que necesita de manera clara y concisa..." name='descripcion' #descripcion='ngModel' [(ngModel)]='contratoModelAdd.descripcion'></textarea>
             </div>
         </div>
 
@@ -224,7 +235,7 @@
         </div>
         <div class="divider"></div>
         <div class="right-side">
-            <button type="button" class="btn btn-primary btn-link" (click)="c('Close click')">Enviar</button>
+            <button type="button" class="btn btn-primary btn-link"  (click)="solicitudInicio()" (click)="c('Close click')">Enviar</button>
         </div>
     </div>
    </ng-template>
