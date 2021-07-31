@@ -211,6 +211,16 @@ function obtenerProfesionalesEstadoTrue(req, res){
     })
 }
 
+function obtenerProfesionalesNombre(req, res){
+    var rolProfesional = 'ROL_PROFESIONAL';
+    var params = req.body;
+    usuarioModel.find({rol: rolProfesional,  nombre: { $regex: params.nombre, $options: 'i' } }, (err, usuariosEncontrados)=>{
+        if(err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
+        if(!usuariosEncontrados || usuariosEncontrados.length == 0) return res.status(500).send({mensaje: 'No se han encontrado profesionales'})
+        return res.status(200).send({usuariosEncontrados})
+    })
+}
+
 
 
 module.exports = {
@@ -228,5 +238,6 @@ module.exports = {
     obtenerProfesionales,
     obtenerProfesionalesPorProfesion,
     obtenerProfesionalesPorEstrellasDescendente,
-    obtenerProfesionalesEstadoTrue
+    obtenerProfesionalesEstadoTrue,
+    obtenerProfesionalesNombre,
 }
