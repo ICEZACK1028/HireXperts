@@ -64,9 +64,30 @@ function trabajoProceso(req, res) {
     
     }
 
+function trabajoCancelado(req, res) {
+    var idContrato = req.params.contrato;
+
+    contratoModel.findByIdAndUpdate(idContrato, {status: "trabajoCancelado"}, {new: true, useFindAndModify:false}, (err, contratoActualizado) => {
+        if(err) return res.status(500).send({mensaje: "Error al cancelar contrato"});
+           return res.status(200).send({contratoActualizado})
+    }
+    )
+}
+
+function trabajoFinalizado(req, res) {
+    var idContrato = req.params.contrato;
+
+    contratoModel.findByIdAndUpdate(idContrato, {status: "trabajoFinalizado"}, {new: true, useFindAndModify:false}, (err, contratoActualizado) => {
+        if(err) return res.status(500).send({mensaje: "Error al finalizar contrato"});
+           return res.status(200).send({contratoActualizado})
+    }
+    )
+}
+
 module.exports = {
     solicitudInicio,
     solicitudRespuesta,
     trabajoProceso,
-
+    trabajoCancelado,
+    trabajoFinalizado,
 }
