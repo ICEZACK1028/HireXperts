@@ -72,4 +72,8 @@ export class UsuarioService {
     let headersToken = this.headersVariable.set('Authorization', token)
     return this._http.put(this.url+'/registrarProfesional',params,{headers:headersToken})
   }
+
+  obtenerProfesionales(){
+    return this._http.get(this.url+'/obtenerProfesionales', {headers:this.headersVariable})
+  }
 }

@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ProfessionalRegisterComponent } from './components/professional-register/professional-register.component';
+import { CategoriesComponent } from './components/categories/categories.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -24,6 +25,7 @@ const routes: Routes =[
     { path: 'perfil/:idUsuario',                component: PerfilComponent },
     { path: 'register',                component: RegisterComponent },
     { path: 'professional-register',                component: ProfessionalRegisterComponent },
+    { path: 'categories',                component: CategoriesComponent}
 
 ];
 

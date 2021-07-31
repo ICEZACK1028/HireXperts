@@ -8,7 +8,7 @@
                     <img src="{{usuarioIdModel.imagen}}" >
                 </div>
                 <h3 class="title">{{usuarioIdModel.nombre}}</h3>
-                <p class="category" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">{{usuarioIdModel.profesion}}</p>
+                <!-- <p class="category" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">{{usuarioIdModel.profesion.nombreProfesion}}</p> -->
                 <p class="category" *ngIf="usuarioIdModel.rol == 'ROL_ADMIN'">Administrador</p>
 
                 <div class="content"  style="margin-bottom: 70px; z-index: 999;">
