@@ -4,6 +4,10 @@ import { Usuario } from 'app/models/usuario.model';
 import { UsuarioService } from 'app/services/usuario.service';
 import * as Rellax from 'rellax';
 import {NgbModal, ModalDismissReasons }from '@ng-bootstrap/ng-bootstrap';
+import { contrato } from 'app/models/contrato.model';
+import { ContratoService } from 'app/services/contrato.service';
+import Swal from 'sweetalert2'
+
 
 @Component({
   selector: 'app-perfil',
@@ -26,14 +30,17 @@ export class PerfilComponent implements OnInit {
   public usuarioIdModel
   public identidad
   public token
+  public contratoModelAdd
   
 
-  constructor(private _usuarioService: UsuarioService, private _activatedRoute: ActivatedRoute, private modalService: NgbModal) { 
+  constructor(private _usuarioService: UsuarioService, private _activatedRoute: ActivatedRoute, private modalService: NgbModal,
+    private _contratoService: ContratoService) { 
     this.identidad = this._usuarioService.getIdentidad();
     this.token = this._usuarioService.getToken()
     console.log(this.token);
 
     this.usuarioIdModel = new Usuario("","","","","","","","",Date(),"","","","",0,"","","","",false,0,false)
+    this.contratoModelAdd = new contrato("","",new Date(),"","","","","",new Date(),0)
   }
 
   ngOnInit() {
@@ -92,6 +99,19 @@ private getDismissReason(reason: any): string {
       (response:any) => {
         console.log(response);
         this.usuarioIdModel = response.usuarioEncontrado
+      }
+    )
+  }
+
+  solicitudInicio(){
+    this._contratoService.solicitudInicio(this.contratoModelAdd,this.idUsuario,this.token).subscribe(
+      response => {
+        console.log(response.contratoGuardado);
+        Swal.fire(
+          'Listo!!!',
+          'Se envió la solicitud con exito',
+          'success'
+        )
       }
     )
   }
