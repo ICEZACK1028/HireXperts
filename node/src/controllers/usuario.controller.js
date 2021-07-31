@@ -76,28 +76,6 @@ function login(req, res) {
     
 }
 
-function obtenerUsuarioId(req,res){
-    var idUsuario = req.params.idUsuario
-
-    usuarioModel.findById(idUsuario,(err,usuarioEncontrado)=> {
-        if (err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
-        if(!usuarioEncontrado) return res.status(500).send({mensaje:'EL usuario no existe'})
-
-        return res.status(200).send({usuarioEncontrado})
-    })
-}
-
-function obtenerUsuarioLogueado(req,res){
-    var idUsuario = req.params.idUsuario
-
-    usuarioModel.findById(idUsuario,(err,usuarioEncontrado)=> {
-        if (err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
-        if(!usuarioEncontrado) return res.status(500).send({mensaje:'EL usuario no existe'})
-
-        return res.status(200).send({usuarioEncontrado})
-    })
-}
-
 function obtenerUsuarios (req, res){
     usuarioModel.find((err, usuariosEncontrados)=>{
         if(err) return res.status(404).send({ mensaje: 'Error en la peticion para obtener todos los usuarios existentes'});
@@ -175,15 +153,63 @@ function eliminarUsuarios (req, res){
 
 }
 
+function obtenerUsuarioId(req,res){
+    var idUsuario = req.params.idUsuario
+
+    usuarioModel.find(idUsuario).populate('profesion').exec((err, usuarioEncontrado) => {
+        if (err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
+        if(!usuarioEncontrado) return res.status(500).send({mensaje:'EL usuario no existe'})
+
+        return res.status(200).send({usuarioEncontrado})
+    })
+}
+
+function obtenerUsuarioLogueado(req,res){
+    var idUsuario = req.user.sub
+
+    usuarioModel.findById(idUsuario,(err,usuarioEncontrado)=> {
+        if (err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
+        if(!usuarioEncontrado) return res.status(500).send({mensaje:'EL usuario no existe'})
+
+        return res.status(200).send({usuarioEncontrado})
+    })
+}
+
+function obtenerProfesionales (req, res){
+    var rolUsuario = 'ROL_PROFESIONAL'
+    usuarioModel.find({rol: rolUsuario}, (err, usuariosEncontrados)=>{
+        if (err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
+        if(!usuariosEncontrados) return res.status(500).send({mensaje:'No existen usuarios profesionales'})
+        return res.status(200).send({usuariosEncontrados})
+    })
+}
+
+function obtenerProfesionalesPorProfesion(req, res){
+
+}
+
+function obtenerProfesionalesPorEstrellasDescendente (req, res){
+
+}
+
+function obtenerProfesionalesEstadoTrue(req, res){
+
+}
+
 module.exports = {
     registrarUsuario,
     login,
-    obtenerUsuarios,
-    editarMiPerfil,
-    editarUsuarios,
-    eliminarMiPerfil,
-    eliminarUsuarios,
     obtenerUsuarioId,
     obtenerUsuarioLogueado,
-    registrarProfesional
+    eliminarUsuarios,
+    eliminarMiPerfil,
+    editarUsuarios,
+    editarMiPerfil,
+    obtenerUsuarios,
+    obtenerUsuarioLogueado,
+    registrarProfesional,
+    obtenerProfesionales,
+    obtenerProfesionalesPorProfesion,
+    obtenerProfesionalesPorEstrellasDescendente,
+    obtenerProfesionalesEstadoTrue
 }

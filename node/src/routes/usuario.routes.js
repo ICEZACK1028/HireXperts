@@ -18,7 +18,10 @@ api.delete('/eliminarMiPerfil/:usuarioId', usuarioController.eliminarMiPerfil);
 api.get('/obtenerUsuarios', usuarioController.obtenerUsuarios);
 api.delete('/eliminarUsuarios/usuarioId', usuarioController.eliminarUsuarios);
 api.put('/editarUsuarios/usuarioId', usuarioController.editarUsuarios);
-
+api.get('/obtenerProfesionales', usuarioController.obtenerProfesionales);
+api.get('obtenerProfesionalesPorProfesion', usuarioController.obtenerProfesionalesPorProfesion);
+api.get('obtenerProfesionalesPorEstrellasDescendente', usuarioController.obtenerProfesionalesPorEstrellasDescendente);
+api.get('obtenerProfesionalesEstadoTrue', usuarioController.obtenerProfesionalesEstadoTrue);
 
 //Exportación
 module.exports= api;
