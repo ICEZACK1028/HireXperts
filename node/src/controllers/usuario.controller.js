@@ -185,15 +185,30 @@ function obtenerProfesionales (req, res){
 }
 
 function obtenerProfesionalesPorProfesion(req, res){
-
+    var profesionId = req.params.profesionId;
+    usuarioModel.find({profesion: profesionId}, (err, usuariosEncontrados)=>{
+        if(err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
+        if(!usuariosEncontrados) return res.status(500).send({mensaje: 'No existen usuarios con esta profesion'})
+        return res.status(200).send({usuariosEncontrados})
+    })
 }
 
 function obtenerProfesionalesPorEstrellasDescendente (req, res){
+    var rolUsuario = 'ROL_PROFESIONAL'
+    usuarioModel.find({rol: rolUsuario}, (err, usuariosOrdenados)=>{
+        if(err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
+        if(!usuariosOrdenados) return res.status(500).send({mensaje: 'No existen usuarios como para poder ordenar'})
+        return res.status(200).send({usuariosOrdenados})
+    }).sort({"estrellasP":-1})
 
 }
 
 function obtenerProfesionalesEstadoTrue(req, res){
-
+    usuarioModel.find({disponible: true}, (err, usuariosEncontrados)=>{
+        if(err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
+        if(!usuariosEncontrados) return res.status(500).send({mensaje: 'No existen usuarios Disponibles'})
+        return res.status(200).send({usuariosEncontrados})
+    })
 }
 
 module.exports = {
