@@ -156,7 +156,7 @@ function eliminarUsuarios (req, res){
 function obtenerUsuarioId(req,res){
     var idUsuario = req.params.idUsuario
 
-    usuarioModel.find({_id: idUsuario}).populate("profesion").exec((err, usuarioEncontrado) => {
+    usuarioModel.findOne({_id: idUsuario}).populate("profesion").exec((err, usuarioEncontrado) => {
         if (err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
         if(!usuarioEncontrado) return res.status(500).send({mensaje:'EL usuario no existe'})
 
@@ -177,7 +177,7 @@ function obtenerUsuarioLogueado(req,res){
 
 function obtenerProfesionales (req, res){
     var rolUsuario = 'ROL_PROFESIONAL'
-    usuarioModel.find({rol: rolUsuario}, (err, usuariosEncontrados)=>{
+    usuarioModel.find({rol:rolUsuario}).populate('profesion').exec( (err, usuariosEncontrados)=>{
         if (err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
         if(!usuariosEncontrados) return res.status(500).send({mensaje:'No existen usuarios profesionales'})
         return res.status(200).send({usuariosEncontrados})
@@ -186,7 +186,7 @@ function obtenerProfesionales (req, res){
 
 function obtenerProfesionalesPorProfesion(req, res){
     var profesionId = req.params.profesionId;
-    usuarioModel.find({profesion: profesionId}, (err, usuariosEncontrados)=>{
+    usuarioModel.find({profesion: profesionId}).populate('profesion').exec( (err, usuariosEncontrados)=>{
         if(err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
         if(!usuariosEncontrados) return res.status(500).send({mensaje: 'No existen usuarios con esta profesion'})
         return res.status(200).send({usuariosEncontrados})
@@ -213,8 +213,8 @@ function obtenerProfesionalesEstadoTrue(req, res){
 
 function obtenerProfesionalesNombre(req, res){
     var rolProfesional = 'ROL_PROFESIONAL';
-    var params = req.body;
-    usuarioModel.find({rol: rolProfesional,  nombre: { $regex: params.nombre, $options: 'i' } }, (err, usuariosEncontrados)=>{
+    var nombreProfesional = req.params.nombreProfesional;
+    usuarioModel.find({rol: rolProfesional,  nombre: { $regex: nombreProfesional, $options: 'i' } }).populate('profesion').exec( (err, usuariosEncontrados)=>{
         if(err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
         if(!usuariosEncontrados || usuariosEncontrados.length == 0) return res.status(500).send({mensaje: 'No se han encontrado profesionales'})
         return res.status(200).send({usuariosEncontrados})

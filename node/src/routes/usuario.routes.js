@@ -22,7 +22,7 @@ api.get('/obtenerProfesionales', usuarioController.obtenerProfesionales);
 api.get('/obtenerProfesionalesPorProfesion/:profesionId', usuarioController.obtenerProfesionalesPorProfesion);
 api.get('/obtenerProfesionalesPorEstrellasDescendente', usuarioController.obtenerProfesionalesPorEstrellasDescendente);
 api.get('/obtenerProfesionalesEstadoTrue', usuarioController.obtenerProfesionalesEstadoTrue);
-api.get('/obtenerProfesionalesNombre', usuarioController.obtenerProfesionalesNombre);
+api.get('/obtenerProfesionalesNombre/:nombreProfesional', usuarioController.obtenerProfesionalesNombre);
 
 
 
