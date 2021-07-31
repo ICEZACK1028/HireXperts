@@ -156,7 +156,7 @@ function eliminarUsuarios (req, res){
 function obtenerUsuarioId(req,res){
     var idUsuario = req.params.idUsuario
 
-    usuarioModel.find(idUsuario).populate('profesion').exec((err, usuarioEncontrado) => {
+    usuarioModel.find({_id: idUsuario}).exec((err, usuarioEncontrado) => {
         if (err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
         if(!usuarioEncontrado) return res.status(500).send({mensaje:'EL usuario no existe'})
 
