@@ -16,12 +16,14 @@ api.put('/editarMiPerfil/:usuarioId', usuarioController.editarMiPerfil);
 api.put('/registrarProfesional', md_authentication.ensureAuth,  usuarioController.registrarProfesional);
 api.delete('/eliminarMiPerfil/:usuarioId', usuarioController.eliminarMiPerfil);
 api.get('/obtenerUsuarios', usuarioController.obtenerUsuarios);
-api.delete('/eliminarUsuarios/usuarioId', usuarioController.eliminarUsuarios);
-api.put('/editarUsuarios/usuarioId', usuarioController.editarUsuarios);
+api.delete('/eliminarUsuarios/:usuarioId', usuarioController.eliminarUsuarios);
+api.put('/editarUsuarios/:usuarioId', usuarioController.editarUsuarios);
 api.get('/obtenerProfesionales', usuarioController.obtenerProfesionales);
-api.get('obtenerProfesionalesPorProfesion', usuarioController.obtenerProfesionalesPorProfesion);
-api.get('obtenerProfesionalesPorEstrellasDescendente', usuarioController.obtenerProfesionalesPorEstrellasDescendente);
-api.get('obtenerProfesionalesEstadoTrue', usuarioController.obtenerProfesionalesEstadoTrue);
+api.get('/obtenerProfesionalesPorProfesion/:profesionId', usuarioController.obtenerProfesionalesPorProfesion);
+api.get('/obtenerProfesionalesPorEstrellasDescendente', usuarioController.obtenerProfesionalesPorEstrellasDescendente);
+api.get('/obtenerProfesionalesEstadoTrue', usuarioController.obtenerProfesionalesEstadoTrue);
+
+
 
 //Exportación
 module.exports= api;
