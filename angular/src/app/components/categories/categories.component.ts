@@ -19,8 +19,15 @@ export class CategoriesComponent implements OnInit {
   public identidad
   public profesionModelGet: Profesion
   public profesionalModelGet: Usuario
+  public profesionalProfesionGet: Usuario
+  public profesionalBusqueda: Usuario
+  public nombreBusqueda
+  public profesionBusqueda
+  public status = 'inicio'
+  public nombreProfesional
 
   constructor(private _profesionService: ProfesionService, private _usuarioService: UsuarioService) { 
+    this.profesionalBusqueda = new Usuario("","","","","","","","",Date(),"","","","",0,"","","","",false,0,false)
 
   }
 
@@ -62,5 +69,26 @@ export class CategoriesComponent implements OnInit {
       }
     )
   }
+
+  obtenerProfesionalesPorProfesion(idProfesion){
+    this._usuarioService.obtenerProfesionalesPorProfesion(idProfesion).subscribe(
+      (response:any) => {
+        console.log(response);
+        this.profesionalProfesionGet = response.usuariosEncontrados
+        this.status = 'activo2'
+      }
+    )
+  }
+
+  obtenerProfesionalesNombre(){
+    this._usuarioService.obtenerProfesionalesNombre(this.nombreProfesional).subscribe(
+      (response:any) => {
+        console.log(response);
+        this.profesionalProfesionGet = response.usuariosEncontrados
+        this.status = 'busquedaNombre'
+      }
+    )
+  }
+
 
 }

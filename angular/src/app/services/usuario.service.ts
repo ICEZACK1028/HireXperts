@@ -73,7 +73,15 @@ export class UsuarioService {
     return this._http.put(this.url+'/registrarProfesional',params,{headers:headersToken})
   }
 
-  obtenerProfesionales(){
+  obtenerProfesionales():Observable<any>{
     return this._http.get(this.url+'/obtenerProfesionales', {headers:this.headersVariable})
+  }
+
+  obtenerProfesionalesPorProfesion(idProfesion): Observable<any>{
+    return this._http.get(this.url+'/obtenerProfesionalesPorProfesion/'+idProfesion,{headers:this.headersVariable})
+  }
+
+  obtenerProfesionalesNombre(nombreProfesional):Observable<any>{
+    return this._http.get(this.url+'/obtenerProfesionalesNombre/'+nombreProfesional,{headers:this.headersVariable})
   }
 }

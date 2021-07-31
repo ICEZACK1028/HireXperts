@@ -186,7 +186,7 @@ function obtenerProfesionales (req, res){
 
 function obtenerProfesionalesPorProfesion(req, res){
     var profesionId = req.params.profesionId;
-    usuarioModel.find({profesion: profesionId}, (err, usuariosEncontrados)=>{
+    usuarioModel.find({profesion: profesionId}).populate('profesion').exec( (err, usuariosEncontrados)=>{
         if(err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
         if(!usuariosEncontrados) return res.status(500).send({mensaje: 'No existen usuarios con esta profesion'})
         return res.status(200).send({usuariosEncontrados})
@@ -213,8 +213,8 @@ function obtenerProfesionalesEstadoTrue(req, res){
 
 function obtenerProfesionalesNombre(req, res){
     var rolProfesional = 'ROL_PROFESIONAL';
-    var params = req.body;
-    usuarioModel.find({rol: rolProfesional,  nombre: { $regex: params.nombre, $options: 'i' } }, (err, usuariosEncontrados)=>{
+    var nombreProfesional = req.params.nombreProfesional;
+    usuarioModel.find({rol: rolProfesional,  nombre: { $regex: nombreProfesional, $options: 'i' } }).populate('profesion').exec( (err, usuariosEncontrados)=>{
         if(err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
         if(!usuariosEncontrados || usuariosEncontrados.length == 0) return res.status(500).send({mensaje: 'No se han encontrado profesionales'})
         return res.status(200).send({usuariosEncontrados})
