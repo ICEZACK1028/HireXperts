@@ -12,6 +12,11 @@ api.put('/solicitudRespuesta/:contrato', md_authentication.ensureAuth, contratoC
 api.put('/trabajoProceso/:contrato', md_authentication.ensureAuth, contratoController.trabajoProceso);
 api.put('/trabajoCancelado/:contrato', md_authentication.ensureAuth, contratoController.trabajoCancelado);
 api.put('/trabajoFinalizado/:contrato', md_authentication.ensureAuth, contratoController.trabajoFinalizado);
+api.get('/obtenerNoContratosEnviados', contratoController.obtenerNoContratosEnviados);
+api.get('/obtenerNoContratosRecibidos', contratoController.obtenerNoContratosRecibidos);
+api.get('/obtenerContratanteSolicitudInicio', contratoController.obtenerContratanteSolicitudInicio);
+api.get('/obtenerContratanteSolicitudCancelada', contratoController.obtenerContratanteSolicitudCancelada);
+api.get('/obtenerContratanteSolicitudRespuesta', contratoController.obtenerContratanteSolicitudRespuesta);
 
 //Exportación
 module.exports= api;

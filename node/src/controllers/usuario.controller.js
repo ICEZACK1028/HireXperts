@@ -211,6 +211,8 @@ function obtenerProfesionalesEstadoTrue(req, res){
     })
 }
 
+
+
 module.exports = {
     registrarUsuario,
     login,
