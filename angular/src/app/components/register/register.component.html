@@ -1,0 +1,100 @@
+<!-- <div class="container" id="inputs">
+    <div class="row justify-content-md-center row-cols-2 row-cols-lg-3">
+        <div class="col col-lg-5 form">
+            <h4>Crear cuenta</h4>
+            <p class="category">Llena el formulario</p>
+            <div class="col-4 col-lg-2">
+                <div class="input-group mb-3">
+                    <input type="text" value="" placeholder="Nombre" class="form-control divition" />
+                </div>
+            </div>
+            <div class="col-4 col-lg-2">
+                <div class="form-group">
+                    <input type="text" value="" placeholder="Regular" class="form-control" />
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="input-group mb-3">
+                    <input type="text" value="" placeholder="Correo" class="form-control divition" />
+                    <input type="text" value="" placeholder="Teléfono" class="form-control" />
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="datepicker-container">
+                    <div class="form-group">
+                        <input class="form-control datetimepicker" placeholder="Fecha de nacimiento" name="dp"
+                            ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" data-color="orange">
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary">Registrarse</button>
+        </div>
+    </div>
+</div> -->
+
+<div class="container">
+    
+    <div class="form">
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-9">
+                <h4>Crear cuenta</h4>
+                <p class="category">Llena el formulario</p>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-4 col-lg-3">
+                <div class="input-group">
+                    <input type="text" value="" placeholder="Nombre"  class="form-control divition" name="nombre" #nombre="ngModel" [(ngModel)]="usuarioModel.nombre"/>
+                </div>
+                <div class="input-group">
+                    <input type="text" value="" placeholder="País" class="form-control divition" name="pais" #pais="ngModel" [(ngModel)]="usuarioModel.pais"/>
+                </div>
+                <div class="input-group">
+                    <input type="text" value="" placeholder="DPI" class="form-control divition" name="dpi" #dpi="ngModel" [(ngModel)]="usuarioModel.dpi" />
+                </div>
+                <div class="input-group">
+                    <input type="text" value="" placeholder="Usuario" class="form-control divition" name="usuario" #usuario="ngModel" [(ngModel)]="usuarioModel.usuario"/>
+                </div>
+                <div class="input-group">
+                    <input type="text" value="" placeholder="Correo" class="form-control divition" name="correo" #correo="ngModel" [(ngModel)]="usuarioModel.correo"/>
+                </div>
+                <div class="input-group">
+                    <input type="text" value="" placeholder="Dirección" class="form-control divition" name="direccion" #direccion="ngModel" [(ngModel)]="usuarioModel.direccion"/>
+                </div>
+            </div>
+            <div class="col-4 col-lg-3">
+                <div class="form-group">
+                    <input type="text" value="" placeholder="Apellido" class="form-control" name="apellido" #apellido="ngModel" [(ngModel)]="usuarioModel.apellido"/>
+                </div>
+                <div class="input-group">
+                    <input type="text" value="" placeholder="Ciudad" class="form-control divition" name="ciudad" #ciudad="ngModel" [(ngModel)]="usuarioModel.ciudad" />
+                </div>
+                <div class="input-group">
+                    <input type="text" value="" placeholder="Teléfono" class="form-control divition" name="telefono" #telefono="ngModel" [(ngModel)]="usuarioModel.telefono"/>
+                </div>
+                <div class="input-group">
+                    <input type="password" value="" placeholder="Contraseña" class="form-control divition" name="password" #password="ngModel" [(ngModel)]="usuarioModel.password" />
+                </div>
+                <div class="input-group">
+                    <input type="date" class="form-control datetimepicker" placeholder="Fecha de nacimiento" name="nacimiento"
+                     #nacimiento="ngModel" [(ngModel)]="usuarioModel.nacimiento">
+                </div>
+                <!-- <div class="input-group">
+                    <div class="datepicker-container">
+                        <div class="form-group">
+                            <input class="form-control datetimepicker" placeholder="Fecha de nacimiento" name="nacimiento"
+                                ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" data-color="orange" #nacimiento="ngModel" [(ngModel)]="usuarioModel.nacimiento">
+                        </div>
+                    </div>
+                </div> -->
+                <div class="input-group">
+                    <textarea class="form-control" placeholder="Imagen" id="floatingTextarea" name="imagen" #imagen="ngModel" [(ngModel)]="usuarioModel.imagen"></textarea>
+                </div>
+                <button class="btn btn-primary" routerLink="/login" (click)='registrarUsuario()'>Registrarse</button>
+            </div>
+            <div class="col-4 col-lg-3" >
+                <img src="https://image.freepik.com/vector-gratis/ilustracion-concepto-inicio-sesion_114360-739.jpg " style="margin-left: 60px">
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,9 +2,9 @@
 
 //Importaciones
 const usuarioModel = require('../models/usuario.model');
+const profesionModel = require('../models/profesion.model');
 const bcrypt = require('bcrypt-nodejs');
 const jwt = require('../services/jwt');
-const { model } = require('mongoose');
 
 //Funciones
 
@@ -20,7 +20,7 @@ function registrarUsuario (req,res){
     usuarioConstructor.telefono = params.telefono;
     usuarioConstructor.correo = params.correo;
     usuarioConstructor.nacimiento = params.nacimiento;
-    usuarioConstructor.DPI = params.DPI;
+    usuarioConstructor.dpi = params.dpi;
     usuarioConstructor.direccion = params.direccion;
     usuarioConstructor.pais = params.pais;
     usuarioConstructor.ciudad = params.ciudad;
@@ -42,6 +42,7 @@ function registrarUsuario (req,res){
                     if(usuarioGuardado){
                         return res.status(200).send({ usuarioGuardado });
                     }else{
+                        console.log(err)
                         return res.status(500).send({ 
                             mensaje: 'No se ha podido registrar el usuario, inténtalo de nuevo' 
                         });
@@ -76,7 +77,183 @@ function login(req, res) {
     
 }
 
+function obtenerUsuarios (req, res){
+    usuarioModel.find((err, usuariosEncontrados)=>{
+        if(err) return res.status(404).send({ mensaje: 'Error en la peticion para obtener todos los usuarios existentes'});
+        if(!usuariosEncontrados) return res.status(404).send({mensaje:'No hay usuarios existentes'});
+        return res.status(200).send({usuariosEncontrados});
+    })
+}
+
+function editarMiPerfil (req, res){
+    var usuarioId = req.params.usuarioID;
+    var params = req.body
+    delete params.password
+    delete params.rol
+    delete params.estrellas
+
+    if(usuarioId = req.user.sub){
+        return res.status(500).send({mensaje: 'No tienes permisos para editar mi perfil'})
+    }
+    usuarioModel.findByIdAndUpdate(usuarioId, params, { new: true}, (err, perfilActualizado)=>{
+        if (err) return res.status(500).send({mensaje: 'Error al editar mi perfil'});
+        if(!perfilActualizado) return res.status(500).send({mensaje: 'No se ha podido actualizar mi perfil'});
+        return res.status(200).send({perfilActualizado});
+    })
+}
+
+function editarUsuarios (req, res){
+    var params = req.body
+    var usuarioId = req.params.usuarioId
+
+    usuarioModel.findOneAndUpdate({_id: usuarioId}, {usuario: params.usuario, nombre: params.nombre, apellido: params.apellido, telefono: params.telefono, correo: params.correo, nacimiento: params.nacimiento, DPI: params.DPI , direccion: params.direccion, ciudad: params.ciudad, imagen: params.imagen}, {new: true, useFindAndModify:false}, (err, usuarioActualizado)=>{
+        if(err) return res.status(500).send({mensaje: 'Error al actualizar el usuario'})
+        return res.status(200).send({usuarioActualizado})
+    })
+
+}
+
+function registrarProfesional (req, res){
+    var params = req.body
+    var usuarioId =  req.user.sub
+
+    if (req.user.rol != 'ROL_USUARIO') return res.status(500).send({mensaje: 'No tienes permisos para ser profesional'})
+    usuarioModel.findByIdAndUpdate(usuarioId, {rol:'ROL_PROFESIONAL',profesion: params.profesion, 
+
+    descripcionP: params.descripcionP, direccionP: params.direccionP, verificado: false, 
+
+    estrellasP: 0, disponible:  true}, {new: true, useFindAndModify:false},
+
+    (err, profesionalRegistrado)=>{
+        if(err) return res.status(500).send({mensaje: 'Error al registrar un profesional'});
+        if(!profesionalRegistrado) return res.status(500).send({mensaje:'Error en la peticion'});
+        return res.status(200).send({profesionalRegistrado});
+    })
+}
+
+
+
+function eliminarMiPerfil (req, res){
+    var usuarioId = req.params.usuarioId
+    if (usuarioId != req.user.sub){
+        return res.status(500).send({mensaje: 'No tienes permisos para eliminar mi perfil'})
+    }
+    usuarioModel.findByIdAndDelete(usuarioId, (err, perfilEliminado)=>{
+        if(err) return res.status(500).send({mensaje: 'Error al eliminar mi perfil'});
+        if(!perfilEliminado) return res.status(500).send({mensaje: 'No se ha podido eliminar el perfil'});
+        return res.status(200).send({mensaje:'Perfil eliminado'})
+    })
+}
+
+function eliminarUsuarios (req, res){
+    var usuarioId = req.params.usuarioId
+    usuarioModel.findOneAndDelete({_id: usuarioId}, (err, usuarioEliminado)=>{
+        if(err) return res.status(500).send({mensaje:'El usuario no ha podido eliminarse'})
+        return res.status(200).send({mensaje: 'Usuario eliminado con exito'})
+    })
+
+}
+
+function obtenerUsuarioId(req,res){
+    var idUsuario = req.params.idUsuario
+
+    usuarioModel.findOne({_id: idUsuario}).populate("profesion").exec((err, usuarioEncontrado) => {
+        if (err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
+        if(!usuarioEncontrado) return res.status(500).send({mensaje:'EL usuario no existe'})
+
+        return res.status(200).send({usuarioEncontrado})
+    })
+}
+
+function obtenerUsuarioLogueado(req,res){
+    var idUsuario = req.user.sub
+
+    usuarioModel.findById(idUsuario,(err,usuarioEncontrado)=> {
+        if (err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
+        if(!usuarioEncontrado) return res.status(500).send({mensaje:'EL usuario no existe'})
+
+        return res.status(200).send({usuarioEncontrado})
+    })
+}
+
+function obtenerProfesionales (req, res){
+    var rolUsuario = 'ROL_PROFESIONAL'
+    usuarioModel.find({rol:rolUsuario}).populate('profesion').exec( (err, usuariosEncontrados)=>{
+        if (err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
+        if(!usuariosEncontrados) return res.status(500).send({mensaje:'No existen usuarios profesionales'})
+        return res.status(200).send({usuariosEncontrados})
+    })
+}
+
+function obtenerProfesionalesPorProfesion(req, res){
+    var profesionId = req.params.profesionId;
+    usuarioModel.find({profesion: profesionId}).populate('profesion').exec( (err, usuariosEncontrados)=>{
+        if(err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
+        if(!usuariosEncontrados) return res.status(500).send({mensaje: 'No existen usuarios con esta profesion'})
+        return res.status(200).send({usuariosEncontrados})
+    })
+}
+
+function obtenerProfesionalesPorEstrellasDescendente (req, res){
+    var rolUsuario = 'ROL_PROFESIONAL'
+    usuarioModel.find({rol: rolUsuario}, (err, usuariosOrdenados)=>{
+        if(err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
+        if(!usuariosOrdenados) return res.status(500).send({mensaje: 'No existen usuarios como para poder ordenar'})
+        return res.status(200).send({usuariosOrdenados})
+    }).sort({"estrellasP":-1})
+
+}
+
+function obtenerProfesionalesEstadoTrue(req, res){
+    usuarioModel.find({disponible: true}, (err, usuariosEncontrados)=>{
+        if(err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
+        if(!usuariosEncontrados) return res.status(500).send({mensaje: 'No existen usuarios Disponibles'})
+        return res.status(200).send({usuariosEncontrados})
+    })
+}
+
+function obtenerProfesionalesNombre(req, res){
+    var rolProfesional = 'ROL_PROFESIONAL';
+    var nombreProfesional = req.params.nombreProfesional;
+    usuarioModel.find({rol: rolProfesional,  nombre: { $regex: nombreProfesional, $options: 'i' } }).populate('profesion').exec( (err, usuariosEncontrados)=>{
+        if(err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
+        if(!usuariosEncontrados || usuariosEncontrados.length == 0) return res.status(500).send({mensaje: 'No se han encontrado profesionales'})
+        return res.status(200).send({usuariosEncontrados})
+    })
+}
+
+function obtenerProfesionalesNombreProfesion(req, res){
+    var rolProfesional = 'ROL_PROFESIONAL';
+    var nombreProfesion = req.params.nombreProfesion;
+    profesionModel.findOne({nombreProfesion: nombreProfesion}).exec( (err, profesionEncontrada)=>{
+        if(err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
+        if(!profesionEncontrada || profesionEncontrada.length == 0) return res.status(500).send({mensaje: 'No se han encontrado profesiones'})
+        usuarioModel.find({profesion: profesionEncontrada._id, rol: rolProfesional}, (err, usuariosEncontrados) => {
+            if(err) return res.status(500).send({mensaje: "Error al hacer la busqueda"});
+            if(!usuariosEncontrados || usuariosEncontrados.length == 0) return res.status(500).send({mensaje: "No se han encontrado profesionales"});
+            return res.status(200).send({usuariosEncontrados});
+        })
+    })
+}
+
+
+
 module.exports = {
     registrarUsuario,
-    login
+    login,
+    obtenerUsuarioId,
+    obtenerUsuarioLogueado,
+    eliminarUsuarios,
+    eliminarMiPerfil,
+    editarUsuarios,
+    editarMiPerfil,
+    obtenerUsuarios,
+    obtenerUsuarioLogueado,
+    registrarProfesional,
+    obtenerProfesionales,
+    obtenerProfesionalesPorProfesion,
+    obtenerProfesionalesPorEstrellasDescendente,
+    obtenerProfesionalesEstadoTrue,
+    obtenerProfesionalesNombre,
+    obtenerProfesionalesNombreProfesion,
 }

@@ -15,6 +15,10 @@ import { NotificationComponent } from './notification/notification.component';
 import { NgbdModalBasic } from './modal/modal.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { RegisterComponent } from './register/register.component';
+import { ProfessionalRegisterComponent } from './professional-register/professional-register.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
     imports: [
@@ -34,7 +38,11 @@ import { HomeComponent } from './home/home.component';
         NotificationComponent,
         NgbdModalBasic,
         LoginComponent,
-        HomeComponent
+        HomeComponent,
+        PerfilComponent,
+        RegisterComponent,
+        ProfessionalRegisterComponent,
+        CategoriesComponent
     ],
     exports:[ ComponentsComponent ]
 })

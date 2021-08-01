@@ -10,15 +10,13 @@ var UsuarioSchema = Schema({
     telefono: String,
     correo: String,
     nacimiento: Date,
-    DIP: String,
+    dpi: String,
     direccion: String,
     pais: String,
     ciudad: String,
     estrellas: Number,
     imagen: String,
-    profesion:{
-        nombreProfesion:String
-    },
+    profesion: {type: Schema.Types.ObjectId, ref:'profesion'},
     descripcionP: String,
     direccionP: String,
     verificado: Boolean,

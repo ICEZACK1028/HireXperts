@@ -1,6 +1,6 @@
 'use strict'
 
-const profesionModel = require('../models/profesion.model')
+const profesionModel = require('../models/profesion.model');
 
 //FUNCION PARA CREAR UNA PROFESION
 
@@ -21,6 +21,44 @@ function crearProfesion (req, res){
     }
 )}
 
+//FUNCION PARA EDITAR UNA PROFESION
+
+function editarProfesion (req, res){
+    var params = req.body
+    var idProfesion = req.params.idProfesion
+
+    profesionModel.findOneAndUpdate({_id: idProfesion}, 
+        {nombreProfesion: params.nombreProfesion, imagen: params.imagen}, 
+        {new: true, useFindAndModify:false},
+         (err, profesionActualizada)=>{
+        if(err) return res.status(500).send({mensaje: 'Error al actualizar la profesion'})
+        return res.status(200).send({profesionActualizada})
+    })
+
+}
+//FUNCION PARA ELIMINAR UNA PROFESION
+
+function eliminarProfesion (req, res){
+    var idProfesion = req.params.idProfesion
+
+    profesionModel.findOneAndDelete({_id: idProfesion}, (err, profesionEliminada)=>{
+        if(err) return res.status(500).send({mensaje: 'La profesion no ha podido eliminarse'})
+        return res.status(200).send({mensaje: 'Profesion eliminada con Éxito'})
+    })
+
+}
+//FUNCION PARA OBTENER TODAS LAS PROFESIONES
+
+function obtenerProfesiones (req, res){
+    profesionModel.find().populate('profesion').exec((err, profesionesEcontradas)=>{
+        if(err) return res.status(500).send({mensaje: 'Error al obtener las profesiones'})
+        return res.status(200).send({profesionesEcontradas})
+    })
+}
+
 module.exports = {
-    crearProfesion
+    crearProfesion,
+    editarProfesion,
+    eliminarProfesion,
+    obtenerProfesiones
 }
