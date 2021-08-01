@@ -248,7 +248,7 @@
                                             <button type="button" class="btn btn-danger btn-round btn-sm"
                                                 (click)="trabajoCancelado(solp._id)">Cancelar</button>
                                             <button class="btn btn-info btn-round btn-sm"
-                                                (click)="trabajoFinalizado(solp._id)">Finalizar</button>
+                                                (click)="trabajoFinalizado(solp._id)" (click)="open(factura)">Finalizar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -420,7 +420,8 @@
         </div>
     </div>
 
-    <footer class="footer footer-default">
+<!--Footer-->
+<footer class="footer footer-default">
         <div class="container">
             <nav>
                 <ul>
@@ -453,9 +454,10 @@
                 <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
             </div>
         </div>
-    </footer>
+</footer>
 
 </div>
+<!-- Modal de Contratar -->
 <ng-template #classic let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h5 class="modal-title text-center">Contrata a {{usuarioIdModel.nombre}}</h5>
@@ -507,6 +509,8 @@
         </div>
     </div>
 </ng-template>
+
+<!-- Modal de Respuesta del Contratante -->
 <ng-template #prueba let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h5 class="modal-title text-center">Responder</h5>
@@ -548,7 +552,6 @@
 </ng-template>
 
 <!-- Modal de Factura/Reseña -->
-
 <ng-template #factura let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h5 class="modal-title text-center">Factura</h5>
@@ -634,7 +637,7 @@
         <div class="col-12">
             <p>Descripcion:</p>
             <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
-                <textarea class="form-control textAreaInput" rows="4" cols="80" id="descripcionR"
+                <textarea class="form-control textAreaInput" rows="4" cols="80" id="descripcion"
                     placeholder="¿Que opina del trabajo del profesional?" name='descripcion' #descripcion='ngModel'
                     [(ngModel)]='resenaModel.descripcion'></textarea>
             </div>
