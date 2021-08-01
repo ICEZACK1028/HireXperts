@@ -1,24 +1,26 @@
 <div class="wrapper">
     <div class="page-header page-header-small" filter-color="orange">
-        <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url(assets/img/bg11.jpg) ;">
+        <div class="page-header-image rellax-header" data-rellax-speed="-8"
+            style="background-image: url(assets/img/bg11.jpg) ;">
         </div>
-        <div class="container" >
-            <div class="content-center" >
+        <div class="container">
+            <div class="content-center">
                 <div class="photo-container" style="margin-top: 100px;">
-                    <img src="{{usuarioIdModel.imagen}}" >
+                    <img src="{{usuarioIdModel.imagen}}">
                 </div>
                 <h3 class="title">{{usuarioIdModel.nombre}}</h3>
-                <p class="category" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">{{usuarioIdModel.profesion.nombreProfesion}}</p>
+                <p class="category" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
+                    {{usuarioIdModel.profesion.nombreProfesion}}</p>
                 <p class="category" *ngIf="usuarioIdModel.rol == 'ROL_ADMIN'">Administrador</p>
 
-                <div class="content"  style="margin-bottom: 70px; z-index: 999;">
+                <div class="content" style="margin-bottom: 70px; z-index: 999;">
                     <div class="social-description">
                         <h2>26</h2>
                         <p>Puntuación</p>
                     </div>
                     <div class="social-description">
                         <h2>26</h2>
-                        <p>Reseñas</p>
+                        <p>Resenas</p>
                     </div>
                     <div class="social-description">
                         <h2>48</h2>
@@ -28,23 +30,26 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
 
     <div class="section adelante">
         <div class="container ">
-          <div class="button-container"  >
-              
-                <button  class="btn btn-primary btn-round btn-lg" style="cursor: pointer;" *ngIf="identidad._id == usuarioIdModel._id">Editar</button>
-                <button  class="btn btn-info btn-round btn-lg" style="cursor: pointer;" *ngIf="identidad._id != idUsuario && 'ROL_PROFESIONAL' == usuarioIdModel.rol"  (click)="open(classic)">Contratar</button>
-          </div>
+            <div class="button-container">
 
-          <div *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
-              <h3 class="title">Descripción Profesional</h3>
-              <h5 class="description info-contacto" >{{usuarioIdModel.descripcionP}}</h5>
-          </div>
+                <button class="btn btn-primary btn-round btn-lg" style="cursor: pointer;"
+                    *ngIf="identidad._id == usuarioIdModel._id">Editar</button>
+                <button class="btn btn-info btn-round btn-lg" style="cursor: pointer;"
+                    *ngIf="identidad._id != idUsuario && 'ROL_PROFESIONAL' == usuarioIdModel.rol"
+                    (click)="open(classic)">Contratar</button>
+            </div>
+
+            <div *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
+                <h3 class="title">Descripción Profesional</h3>
+                <h5 class="description info-contacto">{{usuarioIdModel.descripcionP}}</h5>
+            </div>
 
             <!-- SECCION PAGINAS PROFESIONAL -->
-            <div class="container info-contacto" >
+            <div class="container info-contacto">
 
                 <div *ngIf="identidad._id == idUsuario && usuarioIdModel.rol == 'ROL_USUARIO'">
                     <br><br>
@@ -55,37 +60,45 @@
                     <div class="col-6">
                         <p>Nombre:</p>
                         <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.nombre}}" placeholder="Nombre" class="form-control divition" disabled/>
+                            <input type="text" value="{{usuarioIdModel.nombre}}" placeholder="Nombre"
+                                class="form-control divition" disabled />
                         </div>
                         <p>Apellido:</p>
                         <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.apellido}}" placeholder="País" class="form-control divition" disabled/>
+                            <input type="text" value="{{usuarioIdModel.apellido}}" placeholder="País"
+                                class="form-control divition" disabled />
                         </div>
                         <p>Telefono:</p>
                         <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.telefono}}" placeholder="DPI" class="form-control divition" disabled/>
+                            <input type="text" value="{{usuarioIdModel.telefono}}" placeholder="DPI"
+                                class="form-control divition" disabled />
                         </div>
                         <p>Correo:</p>
                         <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.correo}}" placeholder="Correo" class="form-control divition" disabled/>
+                            <input type="text" value="{{usuarioIdModel.correo}}" placeholder="Correo"
+                                class="form-control divition" disabled />
                         </div>
                     </div>
                     <div class="col-6">
                         <p>DPI:</p>
                         <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.dpi}}" placeholder="Dirección" class="form-control divition" disabled/>
+                            <input type="text" value="{{usuarioIdModel.dpi}}" placeholder="Dirección"
+                                class="form-control divition" disabled />
                         </div>
                         <p>Direccion:</p>
                         <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.direccion}}" placeholder="Dirección" class="form-control divition" disabled/>
+                            <input type="text" value="{{usuarioIdModel.direccion}}" placeholder="Dirección"
+                                class="form-control divition" disabled />
                         </div>
                         <p>País:</p>
                         <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.pais}}" placeholder="Dirección" class="form-control divition" disabled/>
+                            <input type="text" value="{{usuarioIdModel.pais}}" placeholder="Dirección"
+                                class="form-control divition" disabled />
                         </div>
                         <p>Ciudad:</p>
                         <div class="input-group">
-                            <input type="text" value="{{usuarioIdModel.ciudad}}" placeholder="Dirección" class="form-control divition" disabled/>
+                            <input type="text" value="{{usuarioIdModel.ciudad}}" placeholder="Dirección"
+                                class="form-control divition" disabled />
                         </div>
                     </div>
                 </div>
@@ -95,15 +108,18 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="input-group">
-                                <input type="text" value="{{usuarioIdModel.profesion.nombreProfesion}}" placeholder="Nombre" class="form-control divition" disabled/>
+                                <input type="text" value="{{usuarioIdModel.profesion.nombreProfesion}}"
+                                    placeholder="Nombre" class="form-control divition" disabled />
                             </div>
                             <div class="input-group">
-                                <input type="text" value="{{usuarioIdModel.direccionP}}" placeholder="País" class="form-control divition" disabled/>
+                                <input type="text" value="{{usuarioIdModel.direccionP}}" placeholder="País"
+                                    class="form-control divition" disabled />
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="input-group">
-                                <input type="text" value="{{usuarioIdModel.estrellasP}}" placeholder="DPI" class="form-control divition" disabled/>
+                                <input type="text" value="{{usuarioIdModel.estrellasP}}" placeholder="DPI"
+                                    class="form-control divition" disabled />
                             </div>
                         </div>
                     </div>
@@ -160,7 +176,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                           
@@ -278,7 +294,6 @@
                                         <button type="button" class="btn btn-info" (click)='statusTrabajoProgreso()'>Trabajos en Proceso</button>
                                         <button type="button" class="btn btn-danger" (click)='statusTrabajoCancelado()'>Trabajos Cancelados</button>
                                     </div>
-    
                                 </div>
                                 <div class="col-9">
                                     <div *ngIf="statusTrabajo == 'trabajoFinalizado'">
@@ -316,30 +331,43 @@
                                 </div>
                                     
                                 </div>
-                            </div>
-                              
-                          </ng-template>
-                      </ngb-tab>
+                                <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"
+                                    *ngIf="statusTrabajo == 'trabajoCancelado'">
+                                    <div class="card-header">Canceladas</div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Primary card title</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make
+                                            up the bulk of the card's content.</p>
+                                    </div>
+                                </div>
 
-                    <ngb-tab title="Reseñas" >
-                      <ng-template ngbTabContent>
+                            </div>
+                        </div>
+
+                    </ng-template>
+                </ngb-tab>
+
+                <ngb-tab title="Reseñas">
+                    <ng-template ngbTabContent>
                         <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;">
                             <div class="card-header">Header</div>
                             <div class="card-body">
-                              <h5 class="card-title">Primary card title</h5>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <h5 class="card-title">Primary card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
                             </div>
-                          </div>
-                      </ng-template>
-                    </ngb-tab>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
 
-                    <ngb-tab title="Ultimos Contratos" >
-                      <ng-template ngbTabContent>
+                <ngb-tab title="Ultimos Contratos">
+                    <ng-template ngbTabContent>
                         <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;">
                             <div class="card-header">Header</div>
                             <div class="card-body">
-                              <h5 class="card-title">Primary card title</h5>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <h5 class="card-title">Primary card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
                             </div>
                           </div>
                       </ng-template>
@@ -348,6 +376,7 @@
                 </ngb-tabset>
             </div>
         </div>
+    </div>
 
     <footer class="footer footer-default">
         <div class="container">
@@ -382,7 +411,8 @@
                 <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 
 </div>
 <ng-template #classic let-c="close" let-d="dismiss">
@@ -398,13 +428,16 @@
             <div class="col-7">
                 <p>Titulo:</p>
                 <div class="form-group">
-                    <input type="text" value="" placeholder="Titulo de Solicitud..." class="form-control" id='titulo' name='titulo' #titulo='ngModel' [(ngModel)]='contratoModelAdd.titulo'/>
+                    <input type="text" value="" placeholder="Titulo de Solicitud..." class="form-control" id='titulo'
+                        name='titulo' #titulo='ngModel' [(ngModel)]='contratoModelAdd.titulo' />
                 </div>
             </div>
             <div class="col-5">
                 <p>Fecha de Inicio:</p>
                 <div class="input-group">
-                    <input type="date" class="form-control datetimepicker" placeholder="Fecha de inicio"  id='fechaInicio' name="fechaInicio" #fechaInicio='ngModel' [(ngModel)]='contratoModelAdd.fechaInicio'>
+                    <input type="date" class="form-control datetimepicker" placeholder="Fecha de inicio"
+                        id='fechaInicio' name="fechaInicio" #fechaInicio='ngModel'
+                        [(ngModel)]='contratoModelAdd.fechaInicio'>
                 </div>
             </div>
         </div>
@@ -413,8 +446,10 @@
             <p>Descripcion de la Solicitud:</p>
             <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
 
-                
-                <textarea class="form-control textAreaInput" rows="4" cols="80" placeholder="Describa lo que necesita de manera clara y concisa..." name='descripcion' #descripcion='ngModel' [(ngModel)]='contratoModelAdd.descripcion'></textarea>
+
+                <textarea class="form-control textAreaInput" rows="4" cols="80"
+                    placeholder="Describa lo que necesita de manera clara y concisa..." name='descripcion'
+                    #descripcion='ngModel' [(ngModel)]='contratoModelAdd.descripcion'></textarea>
             </div>
         </div>
 
@@ -426,7 +461,8 @@
         </div>
         <div class="divider"></div>
         <div class="right-side">
-            <button type="button" class="btn btn-primary btn-link"  (click)="solicitudInicio()" (click)="c('Close click')">Enviar</button>
+            <button type="button" class="btn btn-primary btn-link" (click)="solicitudInicio()"
+                (click)="c('Close click')">Enviar</button>
         </div>
     </div>
    </ng-template>
