@@ -31,6 +31,8 @@ export class PerfilComponent implements OnInit {
   public identidad
   public token
   public contratoModelAdd
+  public statusSolicitud = 'solicitudProgreso'
+  public statusTrabajo = 'trabajoProgreso'
   
 
   constructor(private _usuarioService: UsuarioService, private _activatedRoute: ActivatedRoute, private modalService: NgbModal,
@@ -115,4 +117,28 @@ private getDismissReason(reason: any): string {
       }
     )
   }
+
+  statusSolicitudInicio(){
+    this.statusSolicitud = 'solicitudInicio'
+  }
+  statusSolicitudProgreso(){
+    this.statusSolicitud = 'solicitudProgreso'
+  }
+  statusSolicitudCancelada(){
+    this.statusSolicitud = 'solicitudCancelada'
+  }
+  
+
+  statusTrabajoProgreso(){
+    this.statusTrabajo = 'trabajoProgreso'
+  }
+  statusTrabajoCancelado(){
+    this.statusTrabajo = 'trabajoCancelado'
+  }
+  statusTrabajoFinalizado(){
+    this.statusTrabajo = 'trabajoFinalizado'
+  }
+
+
+  
 }
