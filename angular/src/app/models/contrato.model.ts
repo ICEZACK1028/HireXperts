@@ -1,7 +1,7 @@
 export class contrato{
     constructor(
         public _id: String,
-        public trabajo: String,
+        public titulo: String,
         public fechaInicio: Date,
         public descripcion: String,
         public trabajador: String,
