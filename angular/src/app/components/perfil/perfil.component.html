@@ -131,20 +131,22 @@
 
                             </div>
                             <div class="col-9">
-                                <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;" *ngIf="statusSolicitud == 'solicitudProgreso'">
-                                    <div class="card-header">Header</div>
-                                    <div class="card-body">
-                                      <h5 class="card-title">Primary card title</h5>
-                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <div *ngFor='let sol of contratoSolicitud'>
+                                    <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;" *ngIf="statusSolicitud == 'solicitudProgreso'">
+                                        <div class="card-header">{{sol.trabajador.nombre}}</div>
+                                        <div class="card-body">
+                                          <h5 class="card-title">{{sol.titulo}}</h5>
+                                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        </div>
                                     </div>
-                                  </div>
+                                </div>
                                 <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;" *ngIf="statusSolicitud == 'solicitudCancelada'">
                                     <div class="card-header">Canceladas</div>
                                     <div class="card-body">
                                       <h5 class="card-title">Primary card title</h5>
                                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                     </div>
-                                  </div>
+                                </div>
                                 
                             </div>
                         </div>
@@ -281,7 +283,7 @@
             <div class="col-7">
                 <p>Titulo:</p>
                 <div class="form-group">
-                    <input type="text" value="" placeholder="Titulo de Solicitud..." class="form-control" id='titulo' name='titulo' #titulo='ngModel' [(ngModel)]='contratoModelAdd.trabajo'/>
+                    <input type="text" value="" placeholder="Titulo de Solicitud..." class="form-control" id='titulo' name='titulo' #titulo='ngModel' [(ngModel)]='contratoModelAdd.titulo'/>
                 </div>
             </div>
             <div class="col-5">

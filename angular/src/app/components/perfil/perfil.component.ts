@@ -13,7 +13,7 @@ import Swal from 'sweetalert2'
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.scss'],
-  providers: [UsuarioService]
+  providers: [UsuarioService, ContratoService]
 })
 export class PerfilComponent implements OnInit {
   zoom: number = 14;
@@ -30,9 +30,11 @@ export class PerfilComponent implements OnInit {
   public usuarioIdModel
   public identidad
   public token
-  public contratoModelAdd
   public statusSolicitud = 'solicitudProgreso'
   public statusTrabajo = 'trabajoProgreso'
+  
+  public contratoModelAdd
+  public contratoSolicitud: contrato
   
 
   constructor(private _usuarioService: UsuarioService, private _activatedRoute: ActivatedRoute, private modalService: NgbModal,
@@ -58,7 +60,7 @@ export class PerfilComponent implements OnInit {
         console.log(this.idUsuario);
       })
       this.obtenerUsuarioId()
-
+      this.obtenerContratanteSolicitudInicio()
   }
   ngOnDestroy(){
       var body = document.getElementsByTagName('body')[0];
@@ -114,6 +116,15 @@ private getDismissReason(reason: any): string {
           'Se envió la solicitud con exito',
           'success'
         )
+      }
+    )
+  }
+
+  obtenerContratanteSolicitudInicio(){
+    this._contratoService.obtenerContratanteSolicitudInicio(this.token).subscribe(
+      (response:any) => {
+        console.log(response);
+        this.contratoSolicitud = response.contratosEncontrados
       }
     )
   }

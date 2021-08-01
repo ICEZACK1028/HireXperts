@@ -25,7 +25,7 @@ function solicitudInicio(req, res) {
     contratoModel.find({trabajo: contratoConstructor.trabajo, fechaInicio: contratoConstructor.fechaInicio, trabajador: contratoConstructor.trabajador})
     .exec((err, contratoEncontrada) => {
         if(err) return res.status(500).send({mensaje: "Error al buscar contrato"});
-        if(contratoEncontrada && contratoEncontrada.length >= 1 ) return res.status(500).send({mensaje: "Contrato ya existente"});
+        // if(contratoEncontrada && contratoEncontrada.length >= 1 ) return res.status(500).send({mensaje: "Contrato ya existente"});
         contratoConstructor.save((err, contratoGuardado) => {
             if(err) return res.status(500).send({mensaje: "Error al guardar contrato"});
             return res.status(200).send({contratoGuardado})
@@ -106,11 +106,11 @@ function obtenerNoContratosEnviados(req, res){
 
 function obtenerContratanteSolicitudInicio(req, res) {
     var idContratante = req.user.sub;
-    contratoModel.find({contratante: idContratante, status: "solicitudInicio"}, (err, contratosEncontrados) => {
+    contratoModel.find({contratante: idContratante, status: "solicitudInicio"}).populate('trabajador').exec((err, contratosEncontrados) => {
         if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
         if(!contratosEncontrados) return res.status(500).send({mensaje: "Error en la petición"});
         return res.status(200).send({contratosEncontrados});
-    }).sort({"fechaInicial": -1})
+    })
 }
 
 function obtenerContratanteSolicitudRespuesta(req, res) {
