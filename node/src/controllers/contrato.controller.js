@@ -129,170 +129,100 @@ function obtenerContratanteSolicitudRespuesta(req, res) {
 
 function obtenerContratanteSolicitudCancelada(req, res) {
     var idContratante = req.user.sub;
-<<<<<<< HEAD
-    contratoModel.find({contratante: idContratante, status: "solicitudCancelada"}).populate('trabajador').exec((err, contratosEncontrados) => {
-        if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
-        if(!contratosEncontrados) return res.status(500).send({mensaje: "Error en la petición"});
-        return res.status(200).send({contratosEncontrados});
-=======
     contratoModel.find({ contratante: idContratante, status: "solicitudCancelada" }).populate('trabajador').sort({ fechaInicial: -1 }).exec((err, contratosEncontrados) => {
         if (err) return res.status(500).send({ mensaje: "Error al buscar contratos" });
         if (!contratosEncontrados) return res.status(500).send({ mensaje: "Error en la petición" });
         return res.status(200).send({ contratosEncontrados });
->>>>>>> Develop
     })
 }
 
 function obtenerContratanteTrabajoProceso(req, res) {
     var idContratante = req.user.sub;
 
-<<<<<<< HEAD
-    contratoModel.find({contratante: idContratante, status: "trabajoProceso"}).populate('trabajador').exec((err, contratosEncontrados) => {
-        if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
-        if(!contratosEncontrados) return res.status(500).send({mensaje: "Error en la petición"});
-        return res.status(200).send({contratosEncontrados});
-=======
     contratoModel.find({ contratante: idContratante, status: "trabajoProceso" }).populate('trabajador').sort({ fechaInicial: -1 }).exec((err, contratosEncontrados) => {
         if (err) return res.status(500).send({ mensaje: "Error al buscar contratos" });
         if (!contratosEncontrados) return res.status(500).send({ mensaje: "Error en la petición" });
         return res.status(200).send({ contratosEncontrados });
->>>>>>> Develop
     })
 }
 
 function obtenerContratanteTrabajoCancelado(req, res) {
     var idContratante = req.user.sub;
 
-<<<<<<< HEAD
-    contratoModel.find({contratante: idContratante, status: "trabajoCancelado"}).populate('trabajador').exec((err, contratosEncontrados) => {
-        if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
-        if(!contratosEncontrados) return res.status(500).send({mensaje: "Error en la petición"});
-        return res.status(200).send({contratosEncontrados});
-=======
     contratoModel.find({ contratante: idContratante, status: "trabajoCancelado" }).populate('trabajador').sort({ fechaInicial: -1 }).exec((err, contratosEncontrados) => {
         if (err) return res.status(500).send({ mensaje: "Error al buscar contratos" });
         if (!contratosEncontrados) return res.status(500).send({ mensaje: "Error en la petición" });
         return res.status(200).send({ contratosEncontrados });
->>>>>>> Develop
     })
 }
 
 function obtenerContratanteTrabajoFinalizado(req, res) {
     var idContratante = req.user.sub;
 
-<<<<<<< HEAD
-    contratoModel.find({contratante: idContratante, status: "trabajoFinalizado"}).populate('trabajador').exec((err, contratosEncontrados) => {
-        if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
-        if(!contratosEncontrados) return res.status(500).send({mensaje: "Error en la petición"});
-        return res.status(200).send({contratosEncontrados});
-=======
     contratoModel.find({ contratante: idContratante, status: "trabajoFinalizado" }).populate('trabajador').sort({ fechaInicial: -1 }).exec((err, contratosEncontrados) => {
         if (err) return res.status(500).send({ mensaje: "Error al buscar contratos" });
         if (!contratosEncontrados) return res.status(500).send({ mensaje: "Error en la petición" });
         return res.status(200).send({ contratosEncontrados });
->>>>>>> Develop
     })
 }
 
 function obtenerTrabajadorSolicitudInicio(req, res) {
     var idTrabajador = req.user.sub;
 
-<<<<<<< HEAD
-    contratoModel.find({trabajador: idTrabajador, status: "solicitudInicio"}).populate('contratante').exec((err, contratosEncontrados) => {
-        if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
-        if(!contratosEncontrados) return res.status(500).send({mensaje: "Error en la petición"});
-        return res.status(200).send({contratosEncontrados});
-=======
     contratoModel.find({ trabajador: idTrabajador, status: "solicitudInicio" }).populate('contratante').sort({ fechaInicial: -1 }).exec((err, contratosEncontrados) => {
         if (err) return res.status(500).send({ mensaje: "Error al buscar contratos" });
         if (!contratosEncontrados) return res.status(500).send({ mensaje: "Error en la petición" });
         return res.status(200).send({ contratosEncontrados });
->>>>>>> Develop
     })
 }
 
 function obtenerTrabajadorSolicitudInicio(req, res) {
     var idTrabajador = req.user.sub;
 
-<<<<<<< HEAD
-    contratoModel.find({trabajador: idTrabajador, status: "solicitudInicio"}).populate('contratante').exec((err, contratosEncontrados) => {
-        if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
-        if(!contratosEncontrados) return res.status(500).send({mensaje: "Error en la petición"});
-        return res.status(200).send({contratosEncontrados});
-=======
     contratoModel.find({ trabajador: idTrabajador, status: "solicitudInicio" }).populate('contratante').sort({ fechaInicial: -1 }).exec((err, contratosEncontrados) => {
         if (err) return res.status(500).send({ mensaje: "Error al buscar contratos" });
         if (!contratosEncontrados) return res.status(500).send({ mensaje: "Error en la petición" });
         return res.status(200).send({ contratosEncontrados });
->>>>>>> Develop
     })
 }
 
 function obtenerTrabajadorSolicitudRespuesta(req, res) {
     var idTrabajador = req.user.sub;
 
-<<<<<<< HEAD
-    contratoModel.find({trabajador: idTrabajador, status: "solicitudRespuesta"}).populate('contratante').exec((err, contratosEncontrados) => {
-        if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
-        if(!contratosEncontrados) return res.status(500).send({mensaje: "Error en la petición"});
-        return res.status(200).send({contratosEncontrados});
-=======
     contratoModel.find({ trabajador: idTrabajador, status: "solicitudRespuesta" }).populate('contratante').sort({ fechaInicial: -1 }).exec((err, contratosEncontrados) => {
         if (err) return res.status(500).send({ mensaje: "Error al buscar contratos" });
         if (!contratosEncontrados) return res.status(500).send({ mensaje: "Error en la petición" });
         return res.status(200).send({ contratosEncontrados });
->>>>>>> Develop
     })
 }
 
 function obtenerTrabajadorSolicitudCancelada(req, res) {
     var idTrabajador = req.user.sub;
 
-<<<<<<< HEAD
-    contratoModel.find({trabajador: idTrabajador, status: "solicitudCancelada"}).populate('contratante').exec((err, contratosEncontrados) => {
-        if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
-        if(!contratosEncontrados) return res.status(500).send({mensaje: "Error en la petición"});
-        return res.status(200).send({contratosEncontrados});
-=======
     contratoModel.find({ trabajador: idTrabajador, status: "solicitudCancelada" }).populate('contratante').sort({ fechaInicial: -1 }).exec((err, contratosEncontrados) => {
         if (err) return res.status(500).send({ mensaje: "Error al buscar contratos" });
         if (!contratosEncontrados) return res.status(500).send({ mensaje: "Error en la petición" });
         return res.status(200).send({ contratosEncontrados });
->>>>>>> Develop
     })
 }
 
 function obtenerTrabajadorTrabajoProceso(req, res) {
     var idTrabajador = req.user.sub;
 
-<<<<<<< HEAD
-    contratoModel.find({trabajador: idTrabajador, status: "trabajoProceso"}).populate('contratante').exec((err, contratosEncontrados) => {
-        if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
-        if(!contratosEncontrados) return res.status(500).send({mensaje: "Error en la petición"});
-        return res.status(200).send({contratosEncontrados});
-=======
     contratoModel.find({ trabajador: idTrabajador, status: "trabajoProceso" }).populate('contratante').sort({ fechaInicial: -1 }).exec((err, contratosEncontrados) => {
         if (err) return res.status(500).send({ mensaje: "Error al buscar contratos" });
         if (!contratosEncontrados) return res.status(500).send({ mensaje: "Error en la petición" });
         return res.status(200).send({ contratosEncontrados });
->>>>>>> Develop
     })
 }
 
 function obtenerTrabajadorTrabajoCancelado(req, res) {
     var idTrabajador = req.user.sub;
 
-<<<<<<< HEAD
-    contratoModel.find({trabajador: idTrabajador, status: "trabajoCancelado"}).populate('contratante').exec((err, contratosEncontrados) => {
-        if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
-        if(!contratosEncontrados) return res.status(500).send({mensaje: "Error en la petición"});
-        return res.status(200).send({contratosEncontrados});
-=======
     contratoModel.find({ trabajador: idTrabajador, status: "trabajoCancelado" }).populate('contratante').sort({ fechaInicial: -1 }).exec((err, contratosEncontrados) => {
         if (err) return res.status(500).send({ mensaje: "Error al buscar contratos" });
         if (!contratosEncontrados) return res.status(500).send({ mensaje: "Error en la petición" });
         return res.status(200).send({ contratosEncontrados });
->>>>>>> Develop
     })
 }
 
