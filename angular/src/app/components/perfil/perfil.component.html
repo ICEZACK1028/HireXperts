@@ -148,7 +148,7 @@
 
                                 <div class="btn-group-vertical">
                                     <button type="button" class="btn btn-info btn-round" (click)='statusSolicitudProgreso()'>Solicitudes en Proceso</button>
-                                    <!-- <button type="button" class="btn btn-success">Respondidas</button> -->
+                                    <button type="button" class="btn btn-success btn-round" (click)='statusSolicitudResponder()'>En espera</button>
                                     <button type="button" class="btn btn-danger btn-round" (click)='statusSolicitudCancelada()'>Solicitudes Canceladas</button>
                                 </div>
 
@@ -161,6 +161,20 @@
                                               <h5 class="card-title">{{sol.titulo}}</h5>
                                               <p class="card-text">{{sol.descripcion}}</p>
                                               <p class="text-muted"> Enviado</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="statusSolicitud == 'solicitudResponder'">
+                                        <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"  *ngFor='let sol of contratoSolicitudRespuesta'>
+                                            <div class="card-header">Trabajador: <b>{{sol.trabajador.nombre}}</b></div>
+                                            <div class="card-body">
+                                              <h5 class="card-title">{{sol.titulo}}</h5>
+                                              <p><b>Respuesta del trabajador:</b></p>
+                                              <p class="card-text">{{sol.descripcionR}}</p>
+                                              <p class="card-text"><b>Precio:</b> {{sol.precio}}</p>
+                                              <button type="button" class="btn btn-danger btn-round btn-sm">Rechazar</button>
+                                              <button  class="btn btn-info btn-round btn-sm" >Aceptar</button>
 
                                             </div>
                                         </div>
@@ -495,7 +509,7 @@
         </div>
         <div class="divider"></div>
         <div class="right-side">
-            <button class="btn btn-primary btn-link"  (click)="solicitudRespuesta()" >Enviar</button>
+            <button class="btn btn-primary btn-link"  (click)="solicitudRespuesta()" >Confirmar</button>
         </div>
     </div>
    </ng-template>

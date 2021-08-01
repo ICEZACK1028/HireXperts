@@ -42,6 +42,7 @@ export class PerfilComponent implements OnInit {
   //SOLICITUDES
   public contratoSolicitud: contrato
   public contratoSolicitudCancelada: contrato
+  public contratoSolicitudRespuesta: contrato
   
   //TRABAJOS
   public contratoTrabajoProceso: contrato
@@ -85,10 +86,12 @@ export class PerfilComponent implements OnInit {
       this.obtenerUsuarioId()
       this.obtenerContratanteSolicitudInicio()
       this.obtenerContratanteSolicitudCancelada()
+      this.obtenerContratanteSolicitudRespuesta()
       this.obtenerContratanteTrabajoProceso()
       this.obtenerContratanteTrabajoFinalizado()
       this.obtenerContratanteTrabajoCancelado()
 
+      this.obtenerTrabajadorSolicitudRespuesta()
       this.obtenerTrabajadorSolicitudInicio()
   }
   ngOnDestroy(){
@@ -189,6 +192,15 @@ private getDismissReason(reason: any): string {
       }
     )
   }
+  obtenerContratanteSolicitudRespuesta(){
+    this._contratoService.obtenerContratanteSolicitudRespuesta(this.token).subscribe(
+      (response:any) => {
+        console.log(response);
+        this.contratoSolicitudRespuesta = response.contratosEncontrados
+      }
+    )
+  }
+  
 
 
   trabajoCancelado(){
@@ -219,6 +231,15 @@ private getDismissReason(reason: any): string {
     )
   }
 
+  obtenerTrabajadorSolicitudRespuesta(){
+    this._contratoService.obtenerTrabajadorSolicitudRespuesta(this.token).subscribe(
+      (response:any) => {
+        console.log(response);
+        // this.contratoSolicitudRespuesta = response.contratosEncontrados
+      }
+    )
+  }
+
   obtenerIdContrato(id){
     this.idContrato = id
     console.log(this.idContrato);
@@ -232,6 +253,9 @@ private getDismissReason(reason: any): string {
   }
   statusSolicitudCancelada(){
     this.statusSolicitud = 'solicitudCancelada'
+  }
+  statusSolicitudResponder(){
+    this.statusSolicitud = 'solicitudResponder'
   }
   
 
