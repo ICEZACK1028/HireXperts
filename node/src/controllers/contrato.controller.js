@@ -37,6 +37,9 @@ function solicitudRespuesta(req, res) {
     var idContrato = req.params.contrato;
     var params = req.body;
 
+    console.log(params.descripcionR);
+    console.log(params.precio);
+
     if(params.precio == null || params.descripcionR == null ) return res.status(500).send({mensaje: "Por favor, ingrese la información deseada"});
 
     contratoModel.findByIdAndUpdate(idContrato, {descripcionR: params.descripcionR, precio: params.precio, status: "solicitudRespuesta"}, {new: true, useFindAndModify:false}, (err, contratoActualizado) => {
@@ -128,7 +131,7 @@ function obtenerContratanteSolicitudCancelada(req, res) {
         if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
         if(!contratosEncontrados) return res.status(500).send({mensaje: "Error en la petición"});
         return res.status(200).send({contratosEncontrados});
-    }).sort({"fechaInicial": -1})
+    })
 }
 
 function obtenerContratanteTrabajoProceso(req, res) {
@@ -138,7 +141,7 @@ function obtenerContratanteTrabajoProceso(req, res) {
         if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
         if(!contratosEncontrados) return res.status(500).send({mensaje: "Error en la petición"});
         return res.status(200).send({contratosEncontrados});
-    }).sort({"fechaInicial": -1})
+    })
 }
 
 function obtenerContratanteTrabajoCancelado(req, res) {
@@ -148,7 +151,7 @@ function obtenerContratanteTrabajoCancelado(req, res) {
         if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
         if(!contratosEncontrados) return res.status(500).send({mensaje: "Error en la petición"});
         return res.status(200).send({contratosEncontrados});
-    }).sort({"fechaInicial": -1})
+    })
 }
 
 function obtenerContratanteTrabajoFinalizado(req, res) {
@@ -158,7 +161,7 @@ function obtenerContratanteTrabajoFinalizado(req, res) {
         if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
         if(!contratosEncontrados) return res.status(500).send({mensaje: "Error en la petición"});
         return res.status(200).send({contratosEncontrados});
-    }).sort({"fechaInicial": -1})
+    })
 }
 
 function obtenerTrabajadorSolicitudInicio(req, res) {
@@ -168,7 +171,7 @@ function obtenerTrabajadorSolicitudInicio(req, res) {
         if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
         if(!contratosEncontrados) return res.status(500).send({mensaje: "Error en la petición"});
         return res.status(200).send({contratosEncontrados});
-    }).sort({"fechaInicial": -1})
+    })
 }
 
 function obtenerTrabajadorSolicitudInicio(req, res) {
@@ -178,7 +181,7 @@ function obtenerTrabajadorSolicitudInicio(req, res) {
         if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
         if(!contratosEncontrados) return res.status(500).send({mensaje: "Error en la petición"});
         return res.status(200).send({contratosEncontrados});
-    }).sort({"fechaInicial": -1})
+    })
 }
 
 function obtenerTrabajadorSolicitudRespuesta(req, res) {
@@ -188,7 +191,7 @@ function obtenerTrabajadorSolicitudRespuesta(req, res) {
         if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
         if(!contratosEncontrados) return res.status(500).send({mensaje: "Error en la petición"});
         return res.status(200).send({contratosEncontrados});
-    }).sort({"fechaInicial": -1})
+    })
 }
 
 function obtenerTrabajadorSolicitudCancelada(req, res) {
@@ -198,7 +201,7 @@ function obtenerTrabajadorSolicitudCancelada(req, res) {
         if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
         if(!contratosEncontrados) return res.status(500).send({mensaje: "Error en la petición"});
         return res.status(200).send({contratosEncontrados});
-    }).sort({"fechaInicial": -1})
+    })
 }
 
 function obtenerTrabajadorTrabajoProceso(req, res) {
@@ -208,7 +211,7 @@ function obtenerTrabajadorTrabajoProceso(req, res) {
         if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
         if(!contratosEncontrados) return res.status(500).send({mensaje: "Error en la petición"});
         return res.status(200).send({contratosEncontrados});
-    }).sort({"fechaInicial": -1})
+    })
 }
 
 function obtenerTrabajadorTrabajoCancelado(req, res) {
@@ -218,7 +221,7 @@ function obtenerTrabajadorTrabajoCancelado(req, res) {
         if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
         if(!contratosEncontrados) return res.status(500).send({mensaje: "Error en la petición"});
         return res.status(200).send({contratosEncontrados});
-    }).sort({"fechaInicial": -1})
+    })
 }
 
 function obtenerTrabajadorTrabajoFinalizado(req, res) {

@@ -31,10 +31,30 @@ export class PerfilComponent implements OnInit {
   public identidad
   public token
   public statusSolicitud = 'solicitudProgreso'
-  public statusTrabajo = 'trabajoProgreso'
-  
+  public statusTrabajo = 'trabajoFinalizado'
+  public statusEnvio = 'enviado'
+  public idContrato
+
+  //CRUD
   public contratoModelAdd
+  public contratoPut
+
+  //SOLICITUDES
   public contratoSolicitud: contrato
+  public contratoSolicitudCancelada: contrato
+  
+  //TRABAJOS
+  public contratoTrabajoProceso: contrato
+  public contratoTrabajoFinalizado: contrato
+  public contratoTrabajoCancelado: contrato
+  public contratoTrabajoUltimos: contrato
+
+  //SOLICITUDES TRABAJADOR
+  public contratoTabajadorSolicitud: contrato
+
+  //RESPUESTA TRABAJADOR A USUARIO
+  public contratoRespuesta: contrato
+
   
 
   constructor(private _usuarioService: UsuarioService, private _activatedRoute: ActivatedRoute, private modalService: NgbModal,
@@ -45,6 +65,7 @@ export class PerfilComponent implements OnInit {
 
     this.usuarioIdModel = new Usuario("","","","","","","","",Date(),"","","","",0,"","","","",false,0,false)
     this.contratoModelAdd = new contrato("","",new Date(),"","","","","",new Date(),0)
+    this.contratoPut = new contrato("","",new Date(),"","","","","",new Date(),0)
   }
 
   ngOnInit() {
@@ -61,6 +82,12 @@ export class PerfilComponent implements OnInit {
       })
       this.obtenerUsuarioId()
       this.obtenerContratanteSolicitudInicio()
+      this.obtenerContratanteSolicitudCancelada()
+      this.obtenerContratanteTrabajoProceso()
+      this.obtenerContratanteTrabajoFinalizado()
+      this.obtenerContratanteTrabajoCancelado()
+
+      this.obtenerTrabajadorSolicitudInicio()
   }
   ngOnDestroy(){
       var body = document.getElementsByTagName('body')[0];
@@ -128,8 +155,70 @@ private getDismissReason(reason: any): string {
       }
     )
   }
+  obtenerContratanteSolicitudCancelada(){
+    this._contratoService.obtenerContratanteSolicitudCancelada(this.token).subscribe(
+      (response:any) => {
+        console.log(response);
+        this.contratoSolicitudCancelada = response.contratosEncontrados
+      }
+    )
+  }
+  obtenerContratanteTrabajoProceso(){
+    this._contratoService.obtenerContratanteTrabajoProceso(this.token).subscribe(
+      (response:any) => {
+        console.log(response);
+        this.contratoTrabajoProceso = response.contratosEncontrados
+      }
+    )
+  }
+  obtenerContratanteTrabajoFinalizado(){
+    this._contratoService.obtenerContratanteTrabajoFinalizado(this.token).subscribe(
+      (response:any) => {
+        console.log(response);
+        this.contratoTrabajoFinalizado = response.contratosEncontrados
+      }
+    )
+  }
+  obtenerContratanteTrabajoCancelado(){
+    this._contratoService.obtenerContratanteTrabajoCancelado(this.token).subscribe(
+      (response:any) => {
+        console.log(response);
+        this.contratoTrabajoCancelado = response.contratosEncontrados
+      }
+    )
+  }
 
-  
+
+  trabajoCancelado(){
+    this._contratoService.trabajoCancelado(this.token,this.contratoPut).subscribe(
+      response => {
+        console.log(response);
+      }
+    )
+  }
+
+  //FUNCIONES TRABAJADOR
+  obtenerTrabajadorSolicitudInicio(){
+    this._contratoService.obtenerTrabajadorSolicitudInicio(this.token).subscribe(
+      (response:any) => {
+        console.log(response);
+        this.contratoTabajadorSolicitud = response.contratosEncontrados
+      }
+    )
+  }
+
+  solicitudRespuesta(){
+    this._contratoService.solicitudRespuesta(this.token,this.contratoRespuesta,this.idContrato).subscribe(
+      response => {
+        console.log(response);
+      }
+    )
+  }
+
+  obtenerIdContrato(id){
+    this.idContrato = id
+    console.log(this.idContrato);
+  }
 
   statusSolicitudInicio(){
     this.statusSolicitud = 'solicitudInicio'
@@ -142,14 +231,21 @@ private getDismissReason(reason: any): string {
   }
   
 
+  statusTrabajoFinalizado(){
+    this.statusTrabajo = 'trabajoFinalizado'
+  }
   statusTrabajoProgreso(){
     this.statusTrabajo = 'trabajoProgreso'
   }
   statusTrabajoCancelado(){
     this.statusTrabajo = 'trabajoCancelado'
   }
-  statusTrabajoFinalizado(){
-    this.statusTrabajo = 'trabajoFinalizado'
+  
+  statusEnviado(){
+    this.statusEnvio = 'enviado'
+  }
+  statusRecibido(){
+    this.statusEnvio = 'recibido'
   }
 
 
