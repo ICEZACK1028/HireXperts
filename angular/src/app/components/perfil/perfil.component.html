@@ -129,13 +129,13 @@
 
     </div>
 
-        <div class="container bg-blanco" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL' && identidad._id == usuarioIdModel._id">
+    <div class="container bg-blanco" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL' && identidad._id == usuarioIdModel._id">
             <button type="button" class="btn btn-warning btn-round" (click)='statusEnviado()'>Enviado</button>
             <button type="button" class="btn btn-info btn-round" (click)='statusRecibido()'>Recibido</button>
-        </div>
+    </div>
 
         <!-- TABS USUARIO data-tabs-color="orange" -->   
-        <div class="nav-tabs-navigation bg-blanco"  *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL' && identidad._id == usuarioIdModel._id && statusEnvio =='enviado'">
+    <div class="nav-tabs-navigation bg-blanco"  *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL' && identidad._id == usuarioIdModel._id && statusEnvio =='enviado'">
             <div class="nav-tabs-wrapper">
                 <h2 style="text-align: center;">Enviado</h2>
 
@@ -173,8 +173,8 @@
                                               <p><b>Respuesta del trabajador:</b></p>
                                               <p class="card-text">{{sol.descripcionR}}</p>
                                               <p class="card-text"><b>Precio:</b> {{sol.precio}}</p>
-                                              <button type="button" class="btn btn-danger btn-round btn-sm">Rechazar</button>
-                                              <button  class="btn btn-info btn-round btn-sm" >Aceptar</button>
+                                              <button type="button" class="btn btn-danger btn-round btn-sm" (click)="solicitudCancelada(sol._id)">Rechazar</button>
+                                              <button  class="btn btn-info btn-round btn-sm" (click)="trabajoProceso(sol._id)">Aceptar</button>
 
                                             </div>
                                         </div>
@@ -227,9 +227,11 @@
                                     <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;" *ngFor='let solp of contratoTrabajoProceso'>
                                         <div class="card-header">Trabajador: <b>{{solp.trabajador.nombre}}</b></div>
                                         <div class="card-body">
-                                          <h5 class="card-title">{{solp.titulo}}</h5>
-                                          <p class="card-text">{{solp.descripcion}}</p>
-                                          <p class="text-muted"> En Proceso</p>
+                                            <h5 class="card-title">{{solp.titulo}}</h5>
+                                            <p class="card-text">{{solp.descripcion}}</p>
+                                            <p class="text-muted"> Estado: En Proceso</p>
+                                            <button type="button" class="btn btn-danger btn-round btn-sm" (click)="trabajoCancelado(solp._id)">Cancelar</button>
+                                            <button  class="btn btn-info btn-round btn-sm" (click)="trabajoFinalizado(solp._id)">Finalizar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -253,28 +255,33 @@
 
                     <ngb-tab title="Ultimos Contratos" >
                       <ng-template ngbTabContent>
-                        <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;">
-                            <div class="card-header">Header</div>
-                            <div class="card-body">
-                              <h5 class="card-title">Primary card title</h5>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                          </div>
+                        <div class="row">
+                            <div class="container">
+                                <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"  *ngFor='let sol of ulitmosContratosContratante'>
+                                    <div class="card-header">Contratante: <b>{{sol.contratante.nombre}}</b></div>
+                                    <div class="card-body">
+                                      <h5 class="card-title">{{sol.titulo}}</h5>
+                                      <p class="card-text">{{sol.descripcion}}</p>
+                                      <p class="text-muted"> Finalizado</p>
+                                    </div>
+                                </div>
+                            </div>                              
+                        </div>
                       </ng-template>
                     </ngb-tab>
                     
                 </ngb-tabset>
             </div>
-        </div>
+    </div>
         
         
         <!-- TABS profesional data-tabs-color="orange" -->   
-        <div class="nav-tabs-navigation bg-blanco"  *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL' && identidad._id == usuarioIdModel._id && statusEnvio =='recibido'">
+    <div class="nav-tabs-navigation bg-blanco"  *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL' && identidad._id == usuarioIdModel._id && statusEnvio =='recibido'">
             <div class="nav-tabs-wrapper">
                 <h2 style="text-align: center;">Recibido</h2>
-
                 <ngb-tabset [justify]="'center'" class="text-center bg-blanco" >
-                    <ngb-tab title="Solicitudes" (click)='statusSolicitudProgreso()'>
+
+                <ngb-tab title="Solicitudes" (click)='statusSolicitudProgreso()'>
                       <ng-template ngbTabContent >
                           
                         <div class="row">
@@ -285,7 +292,7 @@
                                               <h5 class="card-title">{{sol.titulo}}</h5>
                                               <p class="card-text">{{sol.descripcion}}</p>
                                               <p class="text-muted"> Recibido</p>
-                                              <button type="button" class="btn btn-danger btn-round btn-sm">Rechazar</button>
+                                              <button type="button" class="btn btn-danger btn-round btn-sm" (click)=solicitudCancelada(sol._id)>Rechazar</button>
                                               <!-- <button type="button" class="btn btn-info btn-sm">Responder</button> -->
                                               <button  class="btn btn-info btn-round btn-sm" (click)="open(prueba)" (click)='obtenerIdContrato(sol._id)'>Responder</button>
 
@@ -295,9 +302,9 @@
                         </div>
                           
                       </ng-template>
-                    </ngb-tab>
+                </ngb-tab>
 
-                    <ngb-tab title="Trabajos" >
+                <ngb-tab title="Trabajos" >
                         <ng-template ngbTabContent >
                           
                             <div class="row">
@@ -311,7 +318,7 @@
                                 </div>
                                 <div class="col-9">
                                     <div *ngIf="statusTrabajo == 'trabajoFinalizado'">
-                                        <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"  *ngFor='let solf of contratoTrabajoFinalizado'>
+                                        <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"  *ngFor='let solf of contratoTrabajadorFinalizado'>
                                             <div class="card-header">Trabajador: {{solf.trabajador.nombre}}</div>
                                             <div class="card-body">
                                               <h5 class="card-title">{{solf.titulo}}</h5>
@@ -323,7 +330,7 @@
                                     </div>
 
                                 <div *ngIf="statusTrabajo == 'trabajoProgreso'">
-                                    <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;" *ngFor='let solp of contratoTrabajoProceso'>
+                                    <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;" *ngFor='let solp of contratoTrabajadorProceso'>
                                         <div class="card-header">Trabajador: {{solp.trabajador.nombre}}</div>
                                         <div class="card-body">
                                           <h5 class="card-title">{{solp.titulo}}</h5>
@@ -334,7 +341,7 @@
                                 </div>
 
                                 <div *ngIf="statusTrabajo == 'trabajoCancelado'">
-                                    <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;" *ngFor='let solc of contratoTrabajoCancelado'>
+                                    <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;" *ngFor='let solc of contratoTrabajadorCancelado'>
                                         <div class="card-header">Trabajador: {{solc.trabajador.nombre}}</div>
                                         <div class="card-body">
                                           <h5 class="card-title">{{solc.titulo}}</h5>
@@ -343,18 +350,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                    
                                 </div>
-                                <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"
-                                    *ngIf="statusTrabajo == 'trabajoCancelado'">
-                                    <div class="card-header">Canceladas</div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">Primary card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make
-                                            up the bulk of the card's content.</p>
-                                    </div>
-                                </div>
-
                             </div>
 
                     </ng-template>
@@ -375,22 +371,26 @@
 
                 <ngb-tab title="Ultimos Contratos">
                     <ng-template ngbTabContent>
-                        <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;">
-                            <div class="card-header">Header</div>
-                            <div class="card-body">
-                                <h5 class="card-title">Primary card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
-                            </div>
+                        <div class="row">
+                            <div class="container">
+                                <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"  *ngFor='let sol of ulitmosContratosTrabajador'>
+                                    <div class="card-header">Contratante: <b>{{sol.contratante.nombre}}</b></div>
+                                    <div class="card-body">
+                                      <h5 class="card-title">{{sol.titulo}}</h5>
+                                      <p class="card-text">{{sol.descripcion}}</p>
+                                      <p class="text-muted"> Finalizado</p>
+                                    </div>
+                                </div>
+                            </div>                              
                         </div>
                       </ng-template>
-                    </ngb-tab>
+                </ngb-tab>
                     
                 </ngb-tabset>
             </div>
-        </div>
+    </div>
 
-    <footer class="footer footer-default">
+<footer class="footer footer-default">
         <div class="container">
             <nav>
                 <ul>

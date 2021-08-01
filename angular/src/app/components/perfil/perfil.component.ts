@@ -44,6 +44,7 @@ export class PerfilComponent implements OnInit {
   public contratoSolicitudCancelada: contrato
   public contratoSolicitudRespuesta: contrato
   
+  public contratoSolicitudAdd: contrato
   //TRABAJOS
   public contratoTrabajoProceso: contrato
   public contratoTrabajoFinalizado: contrato
@@ -52,11 +53,16 @@ export class PerfilComponent implements OnInit {
 
   //SOLICITUDES TRABAJADOR
   public contratoTabajadorSolicitud: contrato
+  public contratoTrabajadorProceso: contrato
+  public contratoTrabajadorFinalizado: contrato
+  public contratoTrabajadorCancelado: contrato
 
   //RESPUESTA TRABAJADOR A USUARIO
   public contratoRespuesta: contrato
 
-  
+  //ULTIMOS TRABAJOS
+  public ulitmosContratosContratante: contrato
+  public ulitmosContratosTrabajador: contrato
 
   constructor(private _usuarioService: UsuarioService, private _activatedRoute: ActivatedRoute, private modalService: NgbModal,
     private _contratoService: ContratoService) { 
@@ -68,6 +74,7 @@ export class PerfilComponent implements OnInit {
     this.contratoModelAdd = new contrato("","",new Date(),"","","","","",new Date(),0)
     this.contratoPut = new contrato("","",new Date(),"","","","","",new Date(),0)
     this.contratoRespuesta = new contrato("","",new Date(),"","","","","",new Date(),0)
+    this.contratoSolicitudAdd = new contrato("","",new Date(),"","","","","",new Date(),0)
     
   }
 
@@ -93,6 +100,13 @@ export class PerfilComponent implements OnInit {
 
       this.obtenerTrabajadorSolicitudRespuesta()
       this.obtenerTrabajadorSolicitudInicio()
+      this.obtenerTrabajadorTrabajoProceso()
+      this.obtenerTrabajadorTrabajoFinalizado()
+      this.obtenerTrabajadorTrabajoCancelado()
+
+      this.obtenerContratosContratanteTrabajoFinalizado()
+      this.obtenerContratosTrabajadorTrabajoFinalizado()
+
   }
   ngOnDestroy(){
       var body = document.getElementsByTagName('body')[0];
@@ -152,28 +166,31 @@ private getDismissReason(reason: any): string {
     )
   }
 
+
+  //SOLICITUD
+  // CONTRATANTE
   obtenerContratanteSolicitudInicio(){
     this._contratoService.obtenerContratanteSolicitudInicio(this.token).subscribe(
       (response:any) => {
         console.log(response);
         this.contratoSolicitud = response.contratosEncontrados
       }
-    )
-  }
-  obtenerContratanteSolicitudCancelada(){
-    this._contratoService.obtenerContratanteSolicitudCancelada(this.token).subscribe(
-      (response:any) => {
-        console.log(response);
-        this.contratoSolicitudCancelada = response.contratosEncontrados
+      )
+    }
+    obtenerContratanteSolicitudCancelada(){
+      this._contratoService.obtenerContratanteSolicitudCancelada(this.token).subscribe(
+        (response:any) => {
+          console.log(response);
+          this.contratoSolicitudCancelada = response.contratosEncontrados
+        }
+        )
       }
-    )
-  }
-  obtenerContratanteTrabajoProceso(){
-    this._contratoService.obtenerContratanteTrabajoProceso(this.token).subscribe(
-      (response:any) => {
-        console.log(response);
-        this.contratoTrabajoProceso = response.contratosEncontrados
-      }
+      obtenerContratanteTrabajoProceso(){
+        this._contratoService.obtenerContratanteTrabajoProceso(this.token).subscribe(
+          (response:any) => {
+            console.log(response);
+            this.contratoTrabajoProceso = response.contratosEncontrados
+          }
     )
   }
   obtenerContratanteTrabajoFinalizado(){
@@ -203,10 +220,40 @@ private getDismissReason(reason: any): string {
   
 
 
-  trabajoCancelado(){
-    this._contratoService.trabajoCancelado(this.token,this.contratoPut).subscribe(
+  solicitudCancelada(id){
+    this.obtenerIdContrato(id)
+    this._contratoService.solicitudCancelada(this.token,this.idContrato,this.contratoSolicitudAdd).subscribe(
       response => {
         console.log(response);
+        this.actualizar()
+      }
+    )
+  }
+  trabajoProceso(id){
+    this.obtenerIdContrato(id)
+    this._contratoService.trabajoProceso(this.token,this.idContrato,this.contratoSolicitudAdd).subscribe(
+      response => {
+        console.log(response);
+        this.actualizar()
+      }
+    )
+  }
+  trabajoFinalizado(id){
+    this.obtenerIdContrato(id)
+    this._contratoService.trabajoFinalizado(this.token,this.idContrato,this.contratoSolicitudAdd).subscribe(
+      response => {
+        console.log(response);
+        this.actualizar()
+      }
+    )
+  }
+  trabajoCancelado(id){
+    this.obtenerIdContrato(id)
+    this._contratoService.trabajoCancelado(this.token,this.idContrato,this.contratoPut).subscribe(
+      response => {
+        console.log(response);
+        this.actualizar()
+
       }
     )
   }
@@ -220,7 +267,6 @@ private getDismissReason(reason: any): string {
       }
     )
   }
-
   solicitudRespuesta(){
     this._contratoService.solicitudRespuesta(this.token,this.contratoRespuesta,this.idContrato).subscribe(
       response => {
@@ -230,7 +276,6 @@ private getDismissReason(reason: any): string {
       }
     )
   }
-
   obtenerTrabajadorSolicitudRespuesta(){
     this._contratoService.obtenerTrabajadorSolicitudRespuesta(this.token).subscribe(
       (response:any) => {
@@ -238,6 +283,68 @@ private getDismissReason(reason: any): string {
         // this.contratoSolicitudRespuesta = response.contratosEncontrados
       }
     )
+  }
+  obtenerTrabajadorTrabajoProceso(){
+    this._contratoService.obtenerTrabajadorTrabajoProceso(this.token).subscribe(
+      (response:any) => {
+        console.log(response);
+        this.contratoTrabajadorProceso = response.contratosEncontrados
+      }
+    )
+  }
+  obtenerTrabajadorTrabajoFinalizado(){
+    this._contratoService.obtenerTrabajadorTrabajoFinalizado(this.token).subscribe(
+      (response:any) => {
+        console.log(response);
+        this.contratoTrabajadorFinalizado = response.contratosEncontrados
+      }
+    )
+  }
+  obtenerTrabajadorTrabajoCancelado(){
+    this._contratoService.obtenerTrabajadorTrabajoCancelado(this.token).subscribe(
+      (response:any) => {
+        console.log(response);
+        this.contratoTrabajadorCancelado = response.contratosEncontrados
+      }
+    )
+  }
+  
+  //ULTIMOS TRABAJOS
+  obtenerContratosContratanteTrabajoFinalizado(){
+    this._contratoService.obtenerContratosContratanteTrabajoFinalizado(this.token).subscribe(
+      (response:any) => {
+        console.log(response);
+        this.ulitmosContratosContratante = response.contratosEncontrados
+      }
+    )
+  }
+  obtenerContratosTrabajadorTrabajoFinalizado(){
+    this._contratoService.obtenerContratosTrabajadorTrabajoFinalizado(this.token).subscribe(
+      (response:any) => {
+        console.log(response);
+        this.ulitmosContratosTrabajador = response.contratosEncontrados
+      }
+    )
+  }
+  
+
+
+  actualizar(){
+      this.obtenerContratanteSolicitudInicio()
+      this.obtenerContratanteSolicitudCancelada()
+      this.obtenerContratanteSolicitudRespuesta()
+      this.obtenerContratanteTrabajoProceso()
+      this.obtenerContratanteTrabajoFinalizado()
+      this.obtenerContratanteTrabajoCancelado()
+
+      this.obtenerTrabajadorSolicitudRespuesta()
+      this.obtenerTrabajadorSolicitudInicio()
+      this.obtenerTrabajadorTrabajoProceso()
+      this.obtenerTrabajadorTrabajoFinalizado()
+      this.obtenerTrabajadorTrabajoCancelado()
+
+      this.obtenerContratosContratanteTrabajoFinalizado()
+      this.obtenerContratosTrabajadorTrabajoFinalizado()
   }
 
   obtenerIdContrato(id){
