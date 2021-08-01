@@ -342,7 +342,6 @@
                                 </div>
 
                             </div>
-                        </div>
 
                     </ng-template>
                 </ngb-tab>
@@ -369,14 +368,13 @@
                                 <p class="card-text">Some quick example text to build on the card title and make up the
                                     bulk of the card's content.</p>
                             </div>
-                          </div>
+                        </div>
                       </ng-template>
                     </ngb-tab>
                     
                 </ngb-tabset>
             </div>
         </div>
-    </div>
 
     <footer class="footer footer-default">
         <div class="container">
@@ -411,7 +409,6 @@
                 <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
             </div>
         </div>
-    </div>
 </footer>
 
 </div>
@@ -479,7 +476,7 @@
             <div class="col-7">
                 <p>Precio:</p>
                 <div class="form-group">
-                    <input type="text"  placeholder="Precio..." class="form-control" id='precio' name='precio' #precio='ngModel' [(ngModel)]='contratoTabajadorSolicitud.precio'/>
+                    <input type="text"  placeholder="Precio..." class="form-control" id='precio' name='precio' #precio='ngModel' [(ngModel)]='contratoRespuesta.precio'/>
                 </div>
             </div>
         </div>
@@ -487,7 +484,7 @@
         <div class="col-12">
             <p>Respuesta a la Solicitud:</p>
             <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
-                <textarea class="form-control textAreaInput" rows="4" cols="80" placeholder="Describa lo que necesita de manera clara y concisa..." id="descripcionR" name='descripcionR' #descripcionR='ngModel' [(ngModel)]='contratoTabajadorSolicitud.descripcionR'></textarea>
+                <textarea class="form-control textAreaInput" rows="4" cols="80" placeholder="Describa lo que necesita de manera clara y concisa..." id="descripcionR" name='descripcionR' #descripcionR='ngModel' [(ngModel)]='contratoRespuesta.descripcionR'></textarea>
             </div>
         </div>
 
@@ -498,7 +495,7 @@
         </div>
         <div class="divider"></div>
         <div class="right-side">
-            <button type="button" class="btn btn-primary btn-link"  (click)="solicitudRespuesta()" >Enviar</button>
+            <button class="btn btn-primary btn-link"  (click)="solicitudRespuesta()" >Enviar</button>
         </div>
     </div>
    </ng-template>
