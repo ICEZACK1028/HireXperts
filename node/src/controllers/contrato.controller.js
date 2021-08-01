@@ -98,7 +98,7 @@ function obtenerContratoId(req, res) {
         if (err) return res.status(500).send({ mensaje: "Error al buscar contrato" });
         if (!contratoEncontrado) return res.status(500).send({ mensaje: "Error en la petición" });
         return res.status(200).send({ contratoEncontrado });
-    })
+    }).populate('trabajador').populate('contratante')
 }
 
 function obtenerNoContratosRecibidos(req, res) {
@@ -241,7 +241,7 @@ function obtenerContratosContratanteTrabajoFinalizado(req, res) {
 
     contratoModel.find({ contratante: idContratante, status: "trabajoFinalizado" }).populate('contratante').sort({ fechaInicial: -1 }).limit(5).exec((err, contratosEncontrados) => {
         if (err) return res.status(500).send({ mensaje: "Error al buscar contratos" });
-        if (!contratosEncontrados || contratosEncontrados.length == 0) return res.status(500).send({ mensaje: "No se han encontrado contratos" });
+        if (!contratosEncontrados) return res.status(500).send({ mensaje: "Error en la peticion" });
         return res.status(200).send({ contratosEncontrados });
     });
 }
@@ -251,7 +251,7 @@ function obtenerContratosTrabajadorTrabajoFinalizado(req, res) {
 
     contratoModel.find({ trabajador: idTrabajador, status: "trabajoFinalizado" }).populate('contratante').sort({ fechaInicial: -1 }).limit(5).exec((err, contratosEncontrados) => {
         if (err) return res.status(500).send({ mensaje: "Error al buscar contratos" });
-        if (!contratosEncontrados || contratosEncontrados.length == 0) return res.status(500).send({ mensaje: "No se han encontrado contratos" });
+        if (!contratosEncontrados) return res.status(500).send({ mensaje: "Error en la peticion" });
         return res.status(200).send({ contratosEncontrados });
     });
 }
