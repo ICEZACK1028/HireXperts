@@ -37,12 +37,12 @@ function solicitudRespuesta(req, res) {
     var idContrato = req.params.contrato;
     var params = req.body;
 
-    console.log(params.descripcionR);
-    console.log(params.precio);
+    console.log(params.des);
+    console.log(params.pre);
 
-    if(params.precio == null || params.descripcionR == null ) return res.status(500).send({mensaje: "Por favor, ingrese la información deseada"});
+    if(params.pre == null || params.des == null ) return res.status(500).send({mensaje: "Por favor, ingrese la información deseada"});
 
-    contratoModel.findByIdAndUpdate(idContrato, {descripcionR: params.descripcionR, precio: params.precio, status: "solicitudRespuesta"}, {new: true, useFindAndModify:false}, (err, contratoActualizado) => {
+    contratoModel.findByIdAndUpdate(idContrato, {descripcionR: params.des, precio: params.pre, status: "solicitudRespuesta"}, {new: true, useFindAndModify:false}, (err, contratoActualizado) => {
         if(err) return res.status(500).send({mensaje: "Error al buscar contrato"});
         return res.status(200).send({contratoActualizado})
     }

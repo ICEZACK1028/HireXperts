@@ -443,7 +443,7 @@
             <div class="col-7">
                 <p>Precio:</p>
                 <div class="form-group">
-                    <input type="text"  placeholder="Precio..." class="form-control" id='precio' name='precio' #precio='ngModel' [(ngModel)]='contratoTabajadorSolicitud.precio'/>
+                    <input type="text"  placeholder="Precio..." class="form-control" id='pre' name='pre' #pre='ngModel' [(ngModel)]='contratoTabajadorSolicitud.precio'/>
                 </div>
             </div>
         </div>
@@ -451,7 +451,7 @@
         <div class="col-12">
             <p>Respuesta a la Solicitud:</p>
             <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
-                <textarea class="form-control textAreaInput" rows="4" cols="80" placeholder="Describa lo que necesita de manera clara y concisa..." name='descripcionR' #descripcionR='ngModel' [(ngModel)]='contratoTabajadorSolicitud.descripcionR'></textarea>
+                <textarea class="form-control textAreaInput" rows="4" cols="80" placeholder="Describa lo que necesita de manera clara y concisa..." id="des" name='des' #des='ngModel' [(ngModel)]='contratoTabajadorSolicitud.descripcionR'></textarea>
             </div>
         </div>
 

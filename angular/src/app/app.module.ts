@@ -20,7 +20,8 @@ import { BrowserModule } from '@angular/platform-browser';
 @NgModule({
     declarations: [
         AppComponent,
-        NavbarComponent,
+        NavbarComponent
+        // FormsModule
         // LoginComponent
     ],
     imports: [
