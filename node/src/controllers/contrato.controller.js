@@ -52,22 +52,22 @@ function solicitudRespuesta(req, res) {
 
 function trabajoProceso(req, res) {
     var idContrato = req.params.contrato;
-    var params = req.body;
 
-    if (params.respuesta == "aceptada") {
-        contratoModel.findByIdAndUpdate(idContrato, { status: "trabajoProceso" }, { new: true, useFindAndModify: false }, (err, contratoActualizado) => {
-            if (err) return res.status(500).send({ mensaje: "Error al buscar contrato" });
-            return res.status(200).send({ contratoActualizado })
-        }
-        )
-    } else {
-        contratoModel.findByIdAndUpdate(idContrato, { status: "solicitudCancelada" }, { new: true, useFindAndModify: false }, (err, contratoActualizado) => {
-            if (err) return res.status(500).send({ mensaje: "Error al buscar contrato" });
-            return res.status(200).send({ contratoActualizado })
-        }
-        )
+    contratoModel.findByIdAndUpdate(idContrato, { status: "trabajoProceso" }, { new: true, useFindAndModify: false }, (err, contratoActualizado) => {
+        if (err) return res.status(500).send({ mensaje: "Error al cancelar contrato" });
+        return res.status(200).send({ contratoActualizado })
     }
+    )
+}
 
+function solicitudCancelada(req, res) {
+    var idContrato = req.params.contrato;
+
+    contratoModel.findByIdAndUpdate(idContrato, { status: "solicitudCancelada" }, { new: true, useFindAndModify: false }, (err, contratoActualizado) => {
+        if (err) return res.status(500).send({ mensaje: "Error al cancelar contrato" });
+        return res.status(200).send({ contratoActualizado })
+    }
+    )
 }
 
 function trabajoCancelado(req, res) {
@@ -250,6 +250,7 @@ module.exports = {
     solicitudInicio,
     solicitudRespuesta,
     trabajoProceso,
+    solicitudCancelada,
     trabajoCancelado,
     trabajoFinalizado,
     obtenerNoContratosRecibidos,
