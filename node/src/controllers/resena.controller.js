@@ -56,10 +56,10 @@ function obtenerResenaContratante(req, res){
 }
 
 function obtenerResenaTrabajador(req, res){
-    var idTrabajador  = req.user.sub
-    resenaModel.find({trabajador:idTrabajador},(err, reseñasEncontradas)=>{
+    var idTrabajador  = req.params.idTrabajador
+    resenaModel.find({trabajador:idTrabajador}).populate('contratante').populate('trabajador').exec((err, reseñasEncontradas)=>{
         if (err) return res.status(500).send({mensaje:'Error al hacer la busqueda'})
-        if(!reseñasEncontradas || reseñasEncontradas.length == 0) return res.status(500).send({mensaje:'No existen reseñas'})
+        // if(!reseñasEncontradas || reseñasEncontradas.length == 0) return res.status(500).send({mensaje:'No existen reseñas'})
         return res.status(200).send({reseñasEncontradas})
     })
 }
