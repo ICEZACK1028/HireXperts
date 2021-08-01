@@ -13,6 +13,7 @@ api.put('/trabajoProceso/:contrato', md_authentication.ensureAuth, contratoContr
 api.put('/solicitudCancelada/:contrato', md_authentication.ensureAuth, contratoController.solicitudCancelada);
 api.put('/trabajoCancelado/:contrato', md_authentication.ensureAuth, contratoController.trabajoCancelado);
 api.put('/trabajoFinalizado/:contrato', md_authentication.ensureAuth, contratoController.trabajoFinalizado);
+api.get('/obtenerContratoId/:contrato', contratoController.obtenerContratoId);
 api.get('/obtenerNoContratosEnviados', md_authentication.ensureAuth, contratoController.obtenerNoContratosEnviados);
 api.get('/obtenerNoContratosRecibidos', md_authentication.ensureAuth, contratoController.obtenerNoContratosRecibidos);
 api.get('/obtenerContratanteSolicitudInicio', md_authentication.ensureAuth, contratoController.obtenerContratanteSolicitudInicio);
