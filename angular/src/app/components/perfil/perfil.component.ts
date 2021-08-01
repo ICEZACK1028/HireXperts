@@ -3,9 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Usuario } from 'app/models/usuario.model';
 import { UsuarioService } from 'app/services/usuario.service';
 import * as Rellax from 'rellax';
-import {NgbModal, ModalDismissReasons }from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { contrato } from 'app/models/contrato.model';
 import { ContratoService } from 'app/services/contrato.service';
+import { resena } from 'app/models/resena.model';
+import { ResenaService } from 'app/services/resena.service';
 import Swal from 'sweetalert2'
 
 
@@ -13,14 +15,14 @@ import Swal from 'sweetalert2'
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.scss'],
-  providers: [UsuarioService, ContratoService]
+  providers: [UsuarioService, ContratoService, ResenaService]
 })
 export class PerfilComponent implements OnInit {
   zoom: number = 14;
   lat: number = 44.445248;
   lng: number = 26.099672;
-  styles: any[] = [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#e9e9e9"},{"lightness":17}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#ffffff"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":16}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":21}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#dedede"},{"lightness":21}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"lightness":16}]},{"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#333333"},{"lightness":40}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#f2f2f2"},{"lightness":19}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#fefefe"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#fefefe"},{"lightness":17},{"weight":1.2}]}];
-  data : Date = new Date();
+  styles: any[] = [{ "featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#e9e9e9" }, { "lightness": 17 }] }, { "featureType": "landscape", "elementType": "geometry", "stylers": [{ "color": "#f5f5f5" }, { "lightness": 20 }] }, { "featureType": "road.highway", "elementType": "geometry.fill", "stylers": [{ "color": "#ffffff" }, { "lightness": 17 }] }, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "color": "#ffffff" }, { "lightness": 29 }, { "weight": 0.2 }] }, { "featureType": "road.arterial", "elementType": "geometry", "stylers": [{ "color": "#ffffff" }, { "lightness": 18 }] }, { "featureType": "road.local", "elementType": "geometry", "stylers": [{ "color": "#ffffff" }, { "lightness": 16 }] }, { "featureType": "poi", "elementType": "geometry", "stylers": [{ "color": "#f5f5f5" }, { "lightness": 21 }] }, { "featureType": "poi.park", "elementType": "geometry", "stylers": [{ "color": "#dedede" }, { "lightness": 21 }] }, { "elementType": "labels.text.stroke", "stylers": [{ "visibility": "on" }, { "color": "#ffffff" }, { "lightness": 16 }] }, { "elementType": "labels.text.fill", "stylers": [{ "saturation": 36 }, { "color": "#333333" }, { "lightness": 40 }] }, { "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] }, { "featureType": "transit", "elementType": "geometry", "stylers": [{ "color": "#f2f2f2" }, { "lightness": 19 }] }, { "featureType": "administrative", "elementType": "geometry.fill", "stylers": [{ "color": "#fefefe" }, { "lightness": 20 }] }, { "featureType": "administrative", "elementType": "geometry.stroke", "stylers": [{ "color": "#fefefe" }, { "lightness": 17 }, { "weight": 1.2 }] }];
+  data: Date = new Date();
   focus;
   focus1;
   closeResult: string;
@@ -43,7 +45,7 @@ export class PerfilComponent implements OnInit {
   public contratoSolicitud: contrato
   public contratoSolicitudCancelada: contrato
   public contratoSolicitudRespuesta: contrato
-  
+
   public contratoSolicitudAdd: contrato
   //TRABAJOS
   public contratoTrabajoProceso: contrato
@@ -64,97 +66,101 @@ export class PerfilComponent implements OnInit {
   public ulitmosContratosContratante: contrato
   public ulitmosContratosTrabajador: contrato
 
-  constructor(private _usuarioService: UsuarioService, private _activatedRoute: ActivatedRoute, private modalService: NgbModal,
-    private _contratoService: ContratoService) { 
+  //RESEÑA
+  public resenaModel: resena
+
+  constructor(private _usuarioService: UsuarioService, private _resenaService: ResenaService, private _activatedRoute: ActivatedRoute, private modalService: NgbModal,
+    private _contratoService: ContratoService) {
     this.identidad = this._usuarioService.getIdentidad();
     this.token = this._usuarioService.getToken()
     console.log(this.token);
 
-    this.usuarioIdModel = new Usuario("","","","","","","","",Date(),"","","","",0,"","","","",false,0,false)
-    this.contratoModelAdd = new contrato("","",new Date(),"","","","","",new Date(),0)
-    this.contratoPut = new contrato("","",new Date(),"","","","","",new Date(),0)
-    this.contratoRespuesta = new contrato("","",new Date(),"","","","","",new Date(),0)
-    this.contratoSolicitudAdd = new contrato("","",new Date(),"","","","","",new Date(),0)
-    
+    this.usuarioIdModel = new Usuario("", "", "", "", "", "", "", "", Date(), "", "", "", "", 0, "", "", "", "", false, 0, false)
+    this.contratoModelAdd = new contrato("", "", new Date(), "", "", "", "", "", new Date(), 0)
+    this.contratoPut = new contrato("", "", new Date(), "", "", "", "", "", new Date(), 0)
+    this.contratoRespuesta = new contrato("", "", new Date(), "", "", "", "", "", new Date(), 0)
+    this.contratoSolicitudAdd = new contrato("", "", new Date(), "", "", "", "", "", new Date(), 0)
+    this.resenaModel = new resena("", "", "", "", "", 0)
+
   }
 
   ngOnInit() {
     var rellaxHeader = new Rellax('.rellax-header');
 
-      var body = document.getElementsByTagName('body')[0];
-      body.classList.add('profile-page');
-      var navbar = document.getElementsByTagName('nav')[0];
-      navbar.classList.add('navbar-transparent');
-      
-      this._activatedRoute.paramMap.subscribe(dataRuta =>{
-        this.idUsuario = dataRuta.get('idUsuario');
-        console.log(this.idUsuario);
-      })
-      this.obtenerUsuarioId()
-      this.obtenerContratanteSolicitudInicio()
-      this.obtenerContratanteSolicitudCancelada()
-      this.obtenerContratanteSolicitudRespuesta()
-      this.obtenerContratanteTrabajoProceso()
-      this.obtenerContratanteTrabajoFinalizado()
-      this.obtenerContratanteTrabajoCancelado()
+    var body = document.getElementsByTagName('body')[0];
+    body.classList.add('profile-page');
+    var navbar = document.getElementsByTagName('nav')[0];
+    navbar.classList.add('navbar-transparent');
 
-      this.obtenerTrabajadorSolicitudRespuesta()
-      this.obtenerTrabajadorSolicitudInicio()
-      this.obtenerTrabajadorTrabajoProceso()
-      this.obtenerTrabajadorTrabajoFinalizado()
-      this.obtenerTrabajadorTrabajoCancelado()
+    this._activatedRoute.paramMap.subscribe(dataRuta => {
+      this.idUsuario = dataRuta.get('idUsuario');
+      console.log(this.idUsuario);
+    })
+    this.obtenerUsuarioId()
+    this.obtenerContratanteSolicitudInicio()
+    this.obtenerContratanteSolicitudCancelada()
+    this.obtenerContratanteSolicitudRespuesta()
+    this.obtenerContratanteTrabajoProceso()
+    this.obtenerContratanteTrabajoFinalizado()
+    this.obtenerContratanteTrabajoCancelado()
 
-      this.obtenerContratosContratanteTrabajoFinalizado()
-      this.obtenerContratosTrabajadorTrabajoFinalizado()
+    this.obtenerTrabajadorSolicitudRespuesta()
+    this.obtenerTrabajadorSolicitudInicio()
+    this.obtenerTrabajadorTrabajoProceso()
+    this.obtenerTrabajadorTrabajoFinalizado()
+    this.obtenerTrabajadorTrabajoCancelado()
+
+    this.obtenerContratosContratanteTrabajoFinalizado()
+    this.obtenerContratosTrabajadorTrabajoFinalizado()
 
   }
-  ngOnDestroy(){
-      var body = document.getElementsByTagName('body')[0];
-      body.classList.remove('profile-page');
-      var navbar = document.getElementsByTagName('nav')[0];
-      navbar.classList.remove('navbar-transparent');
+  ngOnDestroy() {
+    var body = document.getElementsByTagName('body')[0];
+    body.classList.remove('profile-page');
+    var navbar = document.getElementsByTagName('nav')[0];
+    navbar.classList.remove('navbar-transparent');
   }
 
   open(content, type) {
     if (type === 'sm') {
-        console.log('aici');
-        this.modalService.open(content, { size: 'sm' }).result.then((result) => {
-            this.closeResult = `Closed with: ${result}`;
-        }, (reason) => {
-            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        });
+      console.log('aici');
+      this.modalService.open(content, { size: 'sm' }).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
     } else {
-        this.modalService.open(content).result.then((result) => {
-            this.closeResult = `Closed with: ${result}`;
-        }, (reason) => {
-            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        });
+      this.modalService.open(content).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
     }
-}
+  }
 
-private getDismissReason(reason: any): string {
+  private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
-        return 'by pressing ESC';
+      return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-        return 'by clicking on a backdrop';
+      return 'by clicking on a backdrop';
     } else {
-        return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
-}
+  }
 
   // INICIO DE FUNCIONES
 
-  obtenerUsuarioId(){
-    this._usuarioService.obtenerUsuarioId(this.idUsuario,this.token).subscribe(
-      (response:any) => {
+  obtenerUsuarioId() {
+    this._usuarioService.obtenerUsuarioId(this.idUsuario, this.token).subscribe(
+      (response: any) => {
         console.log(response);
         this.usuarioIdModel = response.usuarioEncontrado
       }
     )
   }
 
-  solicitudInicio(){
-    this._contratoService.solicitudInicio(this.contratoModelAdd,this.idUsuario,this.token).subscribe(
+  solicitudInicio() {
+    this._contratoService.solicitudInicio(this.contratoModelAdd, this.idUsuario, this.token).subscribe(
       response => {
         console.log(response.contratoGuardado);
         Swal.fire(
@@ -166,90 +172,98 @@ private getDismissReason(reason: any): string {
     )
   }
 
+  crearResena(resenaModel, idContrato) {
+    this._resenaService.crearResena(resenaModel, idContrato).subscribe(
+      response => {
+        console.log(response);
+      }
+    )
+  }
+
 
   //SOLICITUD
   // CONTRATANTE
-  obtenerContratanteSolicitudInicio(){
+  obtenerContratanteSolicitudInicio() {
     this._contratoService.obtenerContratanteSolicitudInicio(this.token).subscribe(
-      (response:any) => {
+      (response: any) => {
         console.log(response);
         this.contratoSolicitud = response.contratosEncontrados
       }
-      )
-    }
-    obtenerContratanteSolicitudCancelada(){
-      this._contratoService.obtenerContratanteSolicitudCancelada(this.token).subscribe(
-        (response:any) => {
-          console.log(response);
-          this.contratoSolicitudCancelada = response.contratosEncontrados
-        }
-        )
-      }
-      obtenerContratanteTrabajoProceso(){
-        this._contratoService.obtenerContratanteTrabajoProceso(this.token).subscribe(
-          (response:any) => {
-            console.log(response);
-            this.contratoTrabajoProceso = response.contratosEncontrados
-          }
     )
   }
-  obtenerContratanteTrabajoFinalizado(){
+  obtenerContratanteSolicitudCancelada() {
+    this._contratoService.obtenerContratanteSolicitudCancelada(this.token).subscribe(
+      (response: any) => {
+        console.log(response);
+        this.contratoSolicitudCancelada = response.contratosEncontrados
+      }
+    )
+  }
+  obtenerContratanteTrabajoProceso() {
+    this._contratoService.obtenerContratanteTrabajoProceso(this.token).subscribe(
+      (response: any) => {
+        console.log(response);
+        this.contratoTrabajoProceso = response.contratosEncontrados
+      }
+    )
+  }
+  obtenerContratanteTrabajoFinalizado() {
     this._contratoService.obtenerContratanteTrabajoFinalizado(this.token).subscribe(
-      (response:any) => {
+      (response: any) => {
         console.log(response);
         this.contratoTrabajoFinalizado = response.contratosEncontrados
       }
     )
   }
-  obtenerContratanteTrabajoCancelado(){
+  obtenerContratanteTrabajoCancelado() {
     this._contratoService.obtenerContratanteTrabajoCancelado(this.token).subscribe(
-      (response:any) => {
+      (response: any) => {
         console.log(response);
         this.contratoTrabajoCancelado = response.contratosEncontrados
       }
     )
   }
-  obtenerContratanteSolicitudRespuesta(){
+  obtenerContratanteSolicitudRespuesta() {
     this._contratoService.obtenerContratanteSolicitudRespuesta(this.token).subscribe(
-      (response:any) => {
+      (response: any) => {
         console.log(response);
         this.contratoSolicitudRespuesta = response.contratosEncontrados
       }
     )
   }
-  
 
 
-  solicitudCancelada(id){
+
+  solicitudCancelada(id) {
     this.obtenerIdContrato(id)
-    this._contratoService.solicitudCancelada(this.token,this.idContrato,this.contratoSolicitudAdd).subscribe(
+    this._contratoService.solicitudCancelada(this.token, this.idContrato, this.contratoSolicitudAdd).subscribe(
       response => {
         console.log(response);
         this.actualizar()
       }
     )
   }
-  trabajoProceso(id){
+  trabajoProceso(id) {
     this.obtenerIdContrato(id)
-    this._contratoService.trabajoProceso(this.token,this.idContrato,this.contratoSolicitudAdd).subscribe(
+    this._contratoService.trabajoProceso(this.token, this.idContrato, this.contratoSolicitudAdd).subscribe(
       response => {
         console.log(response);
         this.actualizar()
       }
     )
   }
-  trabajoFinalizado(id){
+  trabajoFinalizado(id) {
     this.obtenerIdContrato(id)
-    this._contratoService.trabajoFinalizado(this.token,this.idContrato,this.contratoSolicitudAdd).subscribe(
+    this._contratoService.trabajoFinalizado(this.token, this.idContrato, this.contratoSolicitudAdd).subscribe(
       response => {
         console.log(response);
         this.actualizar()
       }
     )
   }
-  trabajoCancelado(id){
+  trabajoCancelado(id) {
     this.obtenerIdContrato(id)
-    this._contratoService.trabajoCancelado(this.token,this.idContrato,this.contratoPut).subscribe(
+    this._contratoService.trabajoCancelado(this.token, this.idContrato, this.contratoPut).subscribe(
       response => {
         console.log(response);
         this.actualizar()
@@ -259,16 +273,16 @@ private getDismissReason(reason: any): string {
   }
 
   //FUNCIONES TRABAJADOR
-  obtenerTrabajadorSolicitudInicio(){
+  obtenerTrabajadorSolicitudInicio() {
     this._contratoService.obtenerTrabajadorSolicitudInicio(this.token).subscribe(
-      (response:any) => {
+      (response: any) => {
         console.log(response);
         this.contratoTabajadorSolicitud = response.contratosEncontrados
       }
     )
   }
-  solicitudRespuesta(){
-    this._contratoService.solicitudRespuesta(this.token,this.contratoRespuesta,this.idContrato).subscribe(
+  solicitudRespuesta() {
+    this._contratoService.solicitudRespuesta(this.token, this.contratoRespuesta, this.idContrato).subscribe(
       response => {
         console.log(response);
         this.obtenerTrabajadorSolicitudInicio()
@@ -276,113 +290,113 @@ private getDismissReason(reason: any): string {
       }
     )
   }
-  obtenerTrabajadorSolicitudRespuesta(){
+  obtenerTrabajadorSolicitudRespuesta() {
     this._contratoService.obtenerTrabajadorSolicitudRespuesta(this.token).subscribe(
-      (response:any) => {
+      (response: any) => {
         console.log(response);
         // this.contratoSolicitudRespuesta = response.contratosEncontrados
       }
     )
   }
-  obtenerTrabajadorTrabajoProceso(){
+  obtenerTrabajadorTrabajoProceso() {
     this._contratoService.obtenerTrabajadorTrabajoProceso(this.token).subscribe(
-      (response:any) => {
+      (response: any) => {
         console.log(response);
         this.contratoTrabajadorProceso = response.contratosEncontrados
       }
     )
   }
-  obtenerTrabajadorTrabajoFinalizado(){
+  obtenerTrabajadorTrabajoFinalizado() {
     this._contratoService.obtenerTrabajadorTrabajoFinalizado(this.token).subscribe(
-      (response:any) => {
+      (response: any) => {
         console.log(response);
         this.contratoTrabajadorFinalizado = response.contratosEncontrados
       }
     )
   }
-  obtenerTrabajadorTrabajoCancelado(){
+  obtenerTrabajadorTrabajoCancelado() {
     this._contratoService.obtenerTrabajadorTrabajoCancelado(this.token).subscribe(
-      (response:any) => {
+      (response: any) => {
         console.log(response);
         this.contratoTrabajadorCancelado = response.contratosEncontrados
       }
     )
   }
-  
+
   //ULTIMOS TRABAJOS
-  obtenerContratosContratanteTrabajoFinalizado(){
+  obtenerContratosContratanteTrabajoFinalizado() {
     this._contratoService.obtenerContratosContratanteTrabajoFinalizado(this.token).subscribe(
-      (response:any) => {
+      (response: any) => {
         console.log(response);
         this.ulitmosContratosContratante = response.contratosEncontrados
       }
     )
   }
-  obtenerContratosTrabajadorTrabajoFinalizado(){
+  obtenerContratosTrabajadorTrabajoFinalizado() {
     this._contratoService.obtenerContratosTrabajadorTrabajoFinalizado(this.token).subscribe(
-      (response:any) => {
+      (response: any) => {
         console.log(response);
         this.ulitmosContratosTrabajador = response.contratosEncontrados
       }
     )
   }
-  
 
 
-  actualizar(){
-      this.obtenerContratanteSolicitudInicio()
-      this.obtenerContratanteSolicitudCancelada()
-      this.obtenerContratanteSolicitudRespuesta()
-      this.obtenerContratanteTrabajoProceso()
-      this.obtenerContratanteTrabajoFinalizado()
-      this.obtenerContratanteTrabajoCancelado()
 
-      this.obtenerTrabajadorSolicitudRespuesta()
-      this.obtenerTrabajadorSolicitudInicio()
-      this.obtenerTrabajadorTrabajoProceso()
-      this.obtenerTrabajadorTrabajoFinalizado()
-      this.obtenerTrabajadorTrabajoCancelado()
+  actualizar() {
+    this.obtenerContratanteSolicitudInicio()
+    this.obtenerContratanteSolicitudCancelada()
+    this.obtenerContratanteSolicitudRespuesta()
+    this.obtenerContratanteTrabajoProceso()
+    this.obtenerContratanteTrabajoFinalizado()
+    this.obtenerContratanteTrabajoCancelado()
 
-      this.obtenerContratosContratanteTrabajoFinalizado()
-      this.obtenerContratosTrabajadorTrabajoFinalizado()
+    this.obtenerTrabajadorSolicitudRespuesta()
+    this.obtenerTrabajadorSolicitudInicio()
+    this.obtenerTrabajadorTrabajoProceso()
+    this.obtenerTrabajadorTrabajoFinalizado()
+    this.obtenerTrabajadorTrabajoCancelado()
+
+    this.obtenerContratosContratanteTrabajoFinalizado()
+    this.obtenerContratosTrabajadorTrabajoFinalizado()
   }
 
-  obtenerIdContrato(id){
+  obtenerIdContrato(id) {
     this.idContrato = id
     console.log(this.idContrato);
   }
 
-  statusSolicitudInicio(){
+  statusSolicitudInicio() {
     this.statusSolicitud = 'solicitudInicio'
   }
-  statusSolicitudProgreso(){
+  statusSolicitudProgreso() {
     this.statusSolicitud = 'solicitudProgreso'
   }
-  statusSolicitudCancelada(){
+  statusSolicitudCancelada() {
     this.statusSolicitud = 'solicitudCancelada'
   }
-  statusSolicitudResponder(){
+  statusSolicitudResponder() {
     this.statusSolicitud = 'solicitudResponder'
   }
-  
 
-  statusTrabajoFinalizado(){
+
+  statusTrabajoFinalizado() {
     this.statusTrabajo = 'trabajoFinalizado'
   }
-  statusTrabajoProgreso(){
+  statusTrabajoProgreso() {
     this.statusTrabajo = 'trabajoProgreso'
   }
-  statusTrabajoCancelado(){
+  statusTrabajoCancelado() {
     this.statusTrabajo = 'trabajoCancelado'
   }
-  
-  statusEnviado(){
+
+  statusEnviado() {
     this.statusEnvio = 'enviado'
   }
-  statusRecibido(){
+  statusRecibido() {
     this.statusEnvio = 'recibido'
   }
 
 
-  
+
 }
