@@ -25,10 +25,13 @@ export class ContratoService {
     let headersToken = this.headers.set('Authorization', token)
     return this._http.put(this.url + '/trabajoCancelado/' + idContrato, { headers: headersToken })
   }
-  trabajoProceso(token, contrato, idContrato): Observable<any> {
-    let params = JSON.stringify(contrato)
+  trabajoProceso(token, idContrato): Observable<any> {
     let headersToken = this.headers.set('Authorization', token)
-    return this._http.put(this.url + '/trabajoProceso/' + idContrato, params, { headers: headersToken })
+    return this._http.put(this.url + '/trabajoProceso/' + idContrato, { headers: headersToken })
+  }
+  solicitudCancelada(token, idContrato): Observable<any> {
+    let headersToken = this.headers.set('Authorization', token)
+    return this._http.put(this.url + '/solicitudCancelada/' + idContrato, { headers: headersToken })
   }
   trabajoFinalizado(token, idContrato): Observable<any> {
     let headersToken = this.headers.set('Authorization', token)

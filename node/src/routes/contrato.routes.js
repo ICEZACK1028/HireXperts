@@ -10,6 +10,7 @@ var api = express.Router();
 api.post('/solicitudInicio/:trabajador', md_authentication.ensureAuth, contratoController.solicitudInicio);
 api.put('/solicitudRespuesta/:contrato', md_authentication.ensureAuth, contratoController.solicitudRespuesta);
 api.put('/trabajoProceso/:contrato', md_authentication.ensureAuth, contratoController.trabajoProceso);
+api.put('/solicitudCancelada/:contrato', md_authentication.ensureAuth, contratoController.solicitudCancelada);
 api.put('/trabajoCancelado/:contrato', md_authentication.ensureAuth, contratoController.trabajoCancelado);
 api.put('/trabajoFinalizado/:contrato', md_authentication.ensureAuth, contratoController.trabajoFinalizado);
 api.get('/obtenerNoContratosEnviados', md_authentication.ensureAuth, contratoController.obtenerNoContratosEnviados);
@@ -30,4 +31,4 @@ api.get('/obtenerContratosContratanteTrabajoFinalizado', md_authentication.ensur
 api.get('/obtenerContratosTrabajadorTrabajoFinalizado', md_authentication.ensureAuth, contratoController.obtenerContratosTrabajadorTrabajoFinalizado);
 
 //Exportación
-module.exports= api;
+module.exports = api;
