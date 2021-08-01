@@ -176,16 +176,6 @@ function obtenerTrabajadorSolicitudInicio(req, res) {
     })
 }
 
-function obtenerTrabajadorSolicitudInicio(req, res) {
-    var idTrabajador = req.user.sub;
-
-    contratoModel.find({ trabajador: idTrabajador, status: "solicitudInicio" }).populate('contratante').sort({ fechaInicial: -1 }).exec((err, contratosEncontrados) => {
-        if (err) return res.status(500).send({ mensaje: "Error al buscar contratos" });
-        if (!contratosEncontrados) return res.status(500).send({ mensaje: "Error en la petición" });
-        return res.status(200).send({ contratosEncontrados });
-    })
-}
-
 function obtenerTrabajadorSolicitudRespuesta(req, res) {
     var idTrabajador = req.user.sub;
 
