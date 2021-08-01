@@ -317,7 +317,7 @@
                                             (click)=solicitudCancelada(sol._id)>Rechazar</button>
                                         <!-- <button type="button" class="btn btn-info btn-sm">Responder</button> -->
                                         <button class="btn btn-info btn-round btn-sm" (click)="open(prueba)"
-                                            (click)='obtenerIdContrato(sol._id)'>Responder</button>
+                                            (click)='obtenerIdContrato(sol._id)' (click)="c('Close click')">Responder</button>
 
                                     </div>
                                 </div>
@@ -479,8 +479,8 @@
                 <p>Fecha de Inicio:</p>
                 <div class="input-group">
                     <input type="date" class="form-control datetimepicker" placeholder="Fecha de inicio"
-                        id='fechaInicio' name="fechaInicio" #fechaInicio='ngModel'
-                        [(ngModel)]='contratoModelAdd.fechaInicio'>
+                        id='fechaInicial' name="fechaInicial" #fechaInicio='ngModel'
+                        [(ngModel)]='contratoModelAdd.fechaInicial'>
                 </div>
             </div>
         </div>
@@ -546,7 +546,7 @@
         </div>
         <div class="divider"></div>
         <div class="right-side">
-            <button class="btn btn-primary btn-link" (click)="solicitudRespuesta()">Confirmar</button>
+            <button class="btn btn-primary btn-link" (click)="solicitudRespuesta()" (click)="c('Close click')">Confirmar</button>
         </div>
     </div>
 </ng-template>
@@ -584,7 +584,7 @@
                         Fecha Inicial:
                     </th>
                     <th scope="col">
-                        {{contratoModelGet.fechaInicio}}
+                        {{contratoModelGet.fechaIncial | date:'short'}}
                     </th>
                 </tr>
                 <tr>
@@ -592,7 +592,7 @@
                         Fecha Final:
                     </th>
                     <th scope="col">
-                        {{contratoModelGet.fechaInicio}}
+                        {{contratoModelGet.fechaFinal | date:'short'}}
                     </th>
                 </tr>
                 <tr>
@@ -608,7 +608,7 @@
                         Trabajador:
                     </th>
                     <th scope="col">
-                        {{contratoModelGet.trabajador}}
+                        {{contratoModelGet.trabajador.nombre}}
                     </th>
                 </tr>
                 <tr>
@@ -616,7 +616,7 @@
                         Contratante:
                     </th>
                     <th scope="col">
-                        {{contratoModelGet.contratante}}
+                        {{contratoModelGet.contratante.nombre}}
                     </th>
                 </tr>
             </table>
@@ -649,7 +649,7 @@
         </div>
         <div class="divider"></div>
         <div class="right-side">
-            <button class="btn btn-primary btn-link" (click)="crearResena()">Enviar</button>
+            <button class="btn btn-primary btn-link" (click)="crearResena()" (click)="c('Close click')">Enviar</button>
         </div>
     </div>
 </ng-template>
