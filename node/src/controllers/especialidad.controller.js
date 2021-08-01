@@ -50,11 +50,9 @@ function eliminarEspecialidad(req, res){
     })
 }
 
-
-
 module.exports = {
     crearEspecialidad,
     obtenerEspecialidades,
     editarEspecialidad,
-    eliminarEspecialidad
+    eliminarEspecialidad,
 }
