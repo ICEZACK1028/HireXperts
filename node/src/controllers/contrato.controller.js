@@ -91,6 +91,16 @@ function trabajoFinalizado(req, res) {
     )
 }
 
+function obtenerContratoId(req, res) {
+    var idContrato = req.params.contrato;
+
+    contratoModel.findById(idContrato, (err, contratoEncontrado) => {
+        if (err) return res.status(500).send({ mensaje: "Error al buscar contrato" });
+        if (!contratoEncontrado) return res.status(500).send({ mensaje: "Error en la petición" });
+        return res.status(200).send({ contratoEncontrado });
+    })
+}
+
 function obtenerNoContratosRecibidos(req, res) {
     var usuarioId = req.user.sub;
     contratoModel.find({ trabajador: usuarioId }, (err, contratosEncontrados) => {
@@ -253,6 +263,7 @@ module.exports = {
     solicitudCancelada,
     trabajoCancelado,
     trabajoFinalizado,
+    obtenerContratoId,
     obtenerNoContratosRecibidos,
     obtenerNoContratosEnviados,
     obtenerContratanteSolicitudInicio,

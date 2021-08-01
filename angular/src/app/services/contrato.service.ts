@@ -24,19 +24,19 @@ export class ContratoService {
   trabajoCancelado(token, idContrato, contrato): Observable<any> {
     let params = JSON.stringify(contrato)
     let headersToken = this.headers.set('Authorization', token)
-    return this._http.put(this.url + '/trabajoCancelado/' + idContrato,params, { headers: headersToken })
+    return this._http.put(this.url + '/trabajoCancelado/' + idContrato, params, { headers: headersToken })
   }
   trabajoProceso(token, idContrato, contrato): Observable<any> {
     let params = JSON.stringify(contrato)
     let headersToken = this.headers.set('Authorization', token)
-    return this._http.put(this.url + '/trabajoProceso/' + idContrato,params, { headers: headersToken })
+    return this._http.put(this.url + '/trabajoProceso/' + idContrato, params, { headers: headersToken })
   }
   solicitudCancelada(token, idContrato, contrato): Observable<any> {
     let params = JSON.stringify(contrato)
     let headersToken = this.headers.set('Authorization', token)
-    return this._http.put(this.url + '/solicitudCancelada/' + idContrato,params, { headers: headersToken })
+    return this._http.put(this.url + '/solicitudCancelada/' + idContrato, params, { headers: headersToken })
   }
-  trabajoFinalizado(token, idContrato,contrato): Observable<any> {
+  trabajoFinalizado(token, idContrato, contrato): Observable<any> {
     let params = JSON.stringify(contrato)
     let headersToken = this.headers.set('Authorization', token)
     return this._http.put(this.url + '/trabajoFinalizado/' + idContrato, params, { headers: headersToken })
@@ -45,6 +45,9 @@ export class ContratoService {
     let params = JSON.stringify(contrato)
     let headersToken = this.headers.set('Authorization', token)
     return this._http.put(this.url + '/solicitudRespuesta/' + idContrato, params, { headers: headersToken })
+  }
+  obtenerContratoId(idContrato) {
+    return this._http.get(this.url + '/obtenerContratoId/' + idContrato, { headers: this.headers })
   }
   obtenerContratanteSolicitudInicio(token): Observable<any> {
     let headersToken = this.headers.set('Authorization', token)
