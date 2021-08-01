@@ -238,7 +238,7 @@ function obtenerContratosContratanteTrabajoFinalizado(req, res) {
         if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
         if(!contratosEncontrados || contratosEncontrados.length == 0) return res.status(500).send({mensaje: "No se han encontrado contratos"});
         return res.status(200).send({contratosEncontrados});
-    })
+    }).limit(5);
 }
 
 function obtenerContratosTrabajadorTrabajoFinalizado(req, res) {
@@ -248,7 +248,7 @@ function obtenerContratosTrabajadorTrabajoFinalizado(req, res) {
         if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
         if(!contratosEncontrados || contratosEncontrados.length == 0) return res.status(500).send({mensaje: "No se han encontrado contratos"});
         return res.status(200).send({contratosEncontrados});
-    })
+    }).limit(5);
 }
 
 module.exports = {
