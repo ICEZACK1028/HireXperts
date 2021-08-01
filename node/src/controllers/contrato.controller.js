@@ -230,6 +230,27 @@ function obtenerTrabajadorTrabajoFinalizado(req, res) {
         return res.status(200).send({contratosEncontrados});
     }).sort({"fechaInicial": -1})
 }
+
+function obtenerContratosContratanteTrabajoFinalizado(req, res) {
+    var idContratante = req.user.sub;
+
+    contratoModel.find({contratante: idContratante, status: "trabajoFinalizado"}, (err, contratosEncontrados) => {
+        if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
+        if(!contratosEncontrados || contratosEncontrados.length == 0) return res.status(500).send({mensaje: "No se han encontrado contratos"});
+        return res.status(200).send({contratosEncontrados});
+    }).sort({"fechaInicial": -1}).limit(5)
+}
+
+function obtenerContratosTrabajadorTrabajoFinalizado(req, res) {
+    var idTrabajador = req.user.sub;
+
+    contratoModel.find({trabajador: idTrabajador, status: "trabajoFinalizado"}, (err, contratosEncontrados) => {
+        if(err) return res.status(500).send({mensaje: "Error al buscar contratos"});
+        if(!contratosEncontrados || contratosEncontrados.length == 0) return res.status(500).send({mensaje: "No se han encontrado contratos"});
+        return res.status(200).send({contratosEncontrados});
+    }).sort({"fechaInicial": -1}).limit(5)
+}
+
 module.exports = {
     solicitudInicio,
     solicitudRespuesta,
@@ -250,4 +271,6 @@ module.exports = {
     obtenerTrabajadorTrabajoCancelado,
     obtenerTrabajadorTrabajoFinalizado,
     obtenerTrabajadorTrabajoProceso,
+    obtenerContratosContratanteTrabajoFinalizado,
+    obtenerContratosTrabajadorTrabajoFinalizado,
 }
