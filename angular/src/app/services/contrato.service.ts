@@ -21,23 +21,33 @@ export class ContratoService {
     let headersToken = this.headers.set('Authorization', token)
     return this._http.post(this.url + '/solicitudInicio/' + trabajador, params, { headers: headersToken })
   }
-  trabajoCancelado(token, idContrato): Observable<any> {
+  trabajoCancelado(token, idContrato, contrato): Observable<any> {
+    let params = JSON.stringify(contrato)
     let headersToken = this.headers.set('Authorization', token)
-    return this._http.put(this.url + '/trabajoCancelado/' + idContrato, { headers: headersToken })
+    return this._http.put(this.url + '/trabajoCancelado/' + idContrato, params, { headers: headersToken })
   }
-  trabajoProceso(token, contrato, idContrato): Observable<any> {
+  trabajoProceso(token, idContrato, contrato): Observable<any> {
     let params = JSON.stringify(contrato)
     let headersToken = this.headers.set('Authorization', token)
     return this._http.put(this.url + '/trabajoProceso/' + idContrato, params, { headers: headersToken })
   }
-  trabajoFinalizado(token, idContrato): Observable<any> {
+  solicitudCancelada(token, idContrato, contrato): Observable<any> {
+    let params = JSON.stringify(contrato)
     let headersToken = this.headers.set('Authorization', token)
-    return this._http.put(this.url + '/trabajoFinalizado/' + idContrato, { headers: headersToken })
+    return this._http.put(this.url + '/solicitudCancelada/' + idContrato, params, { headers: headersToken })
+  }
+  trabajoFinalizado(token, idContrato, contrato): Observable<any> {
+    let params = JSON.stringify(contrato)
+    let headersToken = this.headers.set('Authorization', token)
+    return this._http.put(this.url + '/trabajoFinalizado/' + idContrato, params, { headers: headersToken })
   }
   solicitudRespuesta(token, contrato, idContrato): Observable<any> {
     let params = JSON.stringify(contrato)
     let headersToken = this.headers.set('Authorization', token)
     return this._http.put(this.url + '/solicitudRespuesta/' + idContrato, params, { headers: headersToken })
+  }
+  obtenerContratoId(idContrato) {
+    return this._http.get(this.url + '/obtenerContratoId/' + idContrato, { headers: this.headers })
   }
   obtenerContratanteSolicitudInicio(token): Observable<any> {
     let headersToken = this.headers.set('Authorization', token)

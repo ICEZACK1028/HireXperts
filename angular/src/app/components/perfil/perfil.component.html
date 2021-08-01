@@ -129,219 +129,258 @@
 
     </div>
 
-        <div class="container bg-blanco" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL' && identidad._id == usuarioIdModel._id">
-            <button type="button" class="btn btn-warning btn-round" (click)='statusEnviado()'>Enviado</button>
-            <button type="button" class="btn btn-info btn-round" (click)='statusRecibido()'>Recibido</button>
-        </div>
+    <div class="container bg-blanco"
+        *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL' && identidad._id == usuarioIdModel._id">
+        <button type="button" class="btn btn-warning btn-round" (click)='statusEnviado()'>Enviado</button>
+        <button type="button" class="btn btn-info btn-round" (click)='statusRecibido()'>Recibido</button>
+    </div>
 
-        <!-- TABS USUARIO data-tabs-color="orange" -->   
-        <div class="nav-tabs-navigation bg-blanco"  *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL' && identidad._id == usuarioIdModel._id && statusEnvio =='enviado'">
-            <div class="nav-tabs-wrapper">
-                <h2 style="text-align: center;">Enviado</h2>
+    <!-- TABS USUARIO data-tabs-color="orange" -->
+    <div class="nav-tabs-navigation bg-blanco"
+        *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL' && identidad._id == usuarioIdModel._id && statusEnvio =='enviado'">
+        <div class="nav-tabs-wrapper">
+            <h2 style="text-align: center;">Enviado</h2>
 
-                <ngb-tabset [justify]="'center'" class="text-center bg-blanco" >
-                    <ngb-tab title="Solicitudes" (click)='statusSolicitudProgreso()'>
-                      <ng-template ngbTabContent >
-                          
+            <ngb-tabset [justify]="'center'" class="text-center bg-blanco">
+                <ngb-tab title="Solicitudes" (click)='statusSolicitudProgreso()'>
+                    <ng-template ngbTabContent>
+
                         <div class="row">
                             <div class="col-3 ">
 
                                 <div class="btn-group-vertical">
-                                    <button type="button" class="btn btn-info btn-round" (click)='statusSolicitudProgreso()'>Solicitudes en Proceso</button>
-                                    <!-- <button type="button" class="btn btn-success">Respondidas</button> -->
-                                    <button type="button" class="btn btn-danger btn-round" (click)='statusSolicitudCancelada()'>Solicitudes Canceladas</button>
+                                    <button type="button" class="btn btn-info btn-round"
+                                        (click)='statusSolicitudProgreso()'>Solicitudes en Proceso</button>
+                                    <button type="button" class="btn btn-success btn-round"
+                                        (click)='statusSolicitudResponder()'>En espera</button>
+                                    <button type="button" class="btn btn-danger btn-round"
+                                        (click)='statusSolicitudCancelada()'>Solicitudes Canceladas</button>
                                 </div>
 
                             </div>
-                            <div class="col-9" >
-                                    <div *ngIf="statusSolicitud == 'solicitudProgreso'">
-                                        <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"  *ngFor='let sol of contratoSolicitud'>
-                                            <div class="card-header">Trabajador: <b>{{sol.trabajador.nombre}}</b></div>
-                                            <div class="card-body">
-                                              <h5 class="card-title">{{sol.titulo}}</h5>
-                                              <p class="card-text">{{sol.descripcion}}</p>
-                                              <p class="text-muted"> Enviado</p>
+                            <div class="col-9">
+                                <div *ngIf="statusSolicitud == 'solicitudProgreso'">
+                                    <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"
+                                        *ngFor='let sol of contratoSolicitud'>
+                                        <div class="card-header">Trabajador: <b>{{sol.trabajador.nombre}}</b></div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{sol.titulo}}</h5>
+                                            <p class="card-text">{{sol.descripcion}}</p>
+                                            <p class="text-muted"> Enviado</p>
 
-                                            </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div *ngIf="statusSolicitud == 'solicitudResponder'">
+                                    <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"
+                                        *ngFor='let sol of contratoSolicitudRespuesta'>
+                                        <div class="card-header">Trabajador: <b>{{sol.trabajador.nombre}}</b></div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{sol.titulo}}</h5>
+                                            <p><b>Respuesta del trabajador:</b></p>
+                                            <p class="card-text">{{sol.descripcionR}}</p>
+                                            <p class="card-text"><b>Precio:</b> {{sol.precio}}</p>
+                                            <button type="button" class="btn btn-danger btn-round btn-sm"
+                                                (click)="solicitudCancelada(sol._id)">Rechazar</button>
+                                            <button class="btn btn-info btn-round btn-sm"
+                                                (click)="trabajoProceso(sol._id)">Aceptar</button>
+
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div *ngIf="statusSolicitud == 'solicitudCancelada'">
-                                    <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;" *ngFor='let solc of contratoSolicitudCancelada'>
+                                    <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"
+                                        *ngFor='let solc of contratoSolicitudCancelada'>
                                         <div class="card-header">Trabajador: <b>{{solc.trabajador.nombre}}</b></div>
                                         <div class="card-body">
-                                          <h5 class="card-title">{{solc.titulo}}</h5>
-                                          <p class="card-text">{{solc.descripcion}}</p>
-                                          <p class="text-muted"> Cancelado</p>
+                                            <h5 class="card-title">{{solc.titulo}}</h5>
+                                            <p class="card-text">{{solc.descripcion}}</p>
+                                            <p class="text-muted"> Cancelado</p>
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
-                          
-                      </ng-template>
-                    </ngb-tab>
 
-                    <ngb-tab title="Trabajos" >
-                        <ng-template ngbTabContent >
-                          
-                            <div class="row">
-                                <div class="col-3 ">
-    
-                                    <div class="btn-group-vertical">
-                                        <button type="button" class="btn btn-success btn-round" (click)='statusTrabajoFinalizado()'>Trabajos Finalizados</button>
-                                        <button type="button" class="btn btn-info btn-round" (click)='statusTrabajoProgreso()'>Trabajos en Proceso</button>
-                                        <button type="button" class="btn btn-danger btn-round" (click)='statusTrabajoCancelado()'>Trabajos Cancelados</button>
-                                    </div>
-    
+                    </ng-template>
+                </ngb-tab>
+
+                <ngb-tab title="Trabajos">
+                    <ng-template ngbTabContent>
+
+                        <div class="row">
+                            <div class="col-3 ">
+
+                                <div class="btn-group-vertical">
+                                    <button type="button" class="btn btn-success btn-round"
+                                        (click)='statusTrabajoFinalizado()'>Trabajos Finalizados</button>
+                                    <button type="button" class="btn btn-info btn-round"
+                                        (click)='statusTrabajoProgreso()'>Trabajos en Proceso</button>
+                                    <button type="button" class="btn btn-danger btn-round"
+                                        (click)='statusTrabajoCancelado()'>Trabajos Cancelados</button>
                                 </div>
-                                <div class="col-9">
-                                    <div *ngIf="statusTrabajo == 'trabajoFinalizado'">
-                                        <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"  *ngFor='let solf of contratoTrabajoFinalizado'>
-                                            <div class="card-header">Trabajador: <b>{{solf.trabajador.nombre}}</b></div>
-                                            <div class="card-body">
-                                              <h5 class="card-title">{{solf.titulo}}</h5>
-                                              <p class="card-text">{{solf.descripcion}}</p>
-                                              <p class="text-muted"> Finalizado</p>
 
-                                            </div>
+                            </div>
+                            <div class="col-9">
+                                <div *ngIf="statusTrabajo == 'trabajoFinalizado'">
+                                    <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"
+                                        *ngFor='let solf of contratoTrabajoFinalizado'>
+                                        <div class="card-header">Trabajador: <b>{{solf.trabajador.nombre}}</b></div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{solf.titulo}}</h5>
+                                            <p class="card-text">{{solf.descripcion}}</p>
+                                            <p class="text-muted"> Finalizado</p>
+
                                         </div>
                                     </div>
+                                </div>
 
                                 <div *ngIf="statusTrabajo == 'trabajoProgreso'">
-                                    <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;" *ngFor='let solp of contratoTrabajoProceso'>
+                                    <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"
+                                        *ngFor='let solp of contratoTrabajoProceso'>
                                         <div class="card-header">Trabajador: <b>{{solp.trabajador.nombre}}</b></div>
                                         <div class="card-body">
-                                          <h5 class="card-title">{{solp.titulo}}</h5>
-                                          <p class="card-text">{{solp.descripcion}}</p>
-                                          <p class="text-muted"> En Proceso</p>
+                                            <h5 class="card-title">{{solp.titulo}}</h5>
+                                            <p class="card-text">{{solp.descripcion}}</p>
+                                            <p class="text-muted"> Estado: En Proceso</p>
+                                            <button type="button" class="btn btn-danger btn-round btn-sm"
+                                                (click)="trabajoCancelado(solp._id)">Cancelar</button>
+                                            <button class="btn btn-info btn-round btn-sm"
+                                                (click)="trabajoFinalizado(solp._id)" (click)="open(factura)">Finalizar</button>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div *ngIf="statusTrabajo == 'trabajoCancelado'">
-                                    <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;" *ngFor='let solc of contratoTrabajoCancelado'>
+                                    <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"
+                                        *ngFor='let solc of contratoTrabajoCancelado'>
                                         <div class="card-header">Trabajador: <b>{{solc.trabajador.nombre}}</b></div>
                                         <div class="card-body">
-                                          <h5 class="card-title">{{solc.titulo}}</h5>
-                                          <p class="card-text">{{solc.descripcion}}</p>
-                                          <p class="text-muted"> Cancelado</p>
+                                            <h5 class="card-title">{{solc.titulo}}</h5>
+                                            <p class="card-text">{{solc.descripcion}}</p>
+                                            <p class="text-muted"> Cancelado</p>
                                         </div>
                                     </div>
                                 </div>
-                                    
-                                </div>
+
                             </div>
-                              
-                          </ng-template>
-                      </ngb-tab>
-
-                    <ngb-tab title="Ultimos Contratos" >
-                      <ng-template ngbTabContent>
-                        <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;">
-                            <div class="card-header">Header</div>
-                            <div class="card-body">
-                              <h5 class="card-title">Primary card title</h5>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                          </div>
-                      </ng-template>
-                    </ngb-tab>
-                    
-                </ngb-tabset>
-            </div>
-        </div>
-        
-        
-        <!-- TABS profesional data-tabs-color="orange" -->   
-        <div class="nav-tabs-navigation bg-blanco"  *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL' && identidad._id == usuarioIdModel._id && statusEnvio =='recibido'">
-            <div class="nav-tabs-wrapper">
-                <h2 style="text-align: center;">Recibido</h2>
-
-                <ngb-tabset [justify]="'center'" class="text-center bg-blanco" >
-                    <ngb-tab title="Solicitudes" (click)='statusSolicitudProgreso()'>
-                      <ng-template ngbTabContent >
-                          
-                        <div class="row">
-                                    <div class="container">
-                                        <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"  *ngFor='let sol of contratoTabajadorSolicitud'>
-                                            <div class="card-header">Contratante: <b>{{sol.contratante.nombre}}</b></div>
-                                            <div class="card-body">
-                                              <h5 class="card-title">{{sol.titulo}}</h5>
-                                              <p class="card-text">{{sol.descripcion}}</p>
-                                              <p class="text-muted"> Recibido</p>
-                                              <button type="button" class="btn btn-danger btn-round btn-sm">Rechazar</button>
-                                              <!-- <button type="button" class="btn btn-info btn-sm">Responder</button> -->
-                                              <button  class="btn btn-info btn-round btn-sm" (click)="open(prueba)" (click)='obtenerIdContrato(sol._id)'>Responder</button>
-
-                                            </div>
-                                        </div>
-                                    </div>                              
                         </div>
-                          
-                      </ng-template>
-                    </ngb-tab>
 
-                    <ngb-tab title="Trabajos" >
-                        <ng-template ngbTabContent >
-                          
-                            <div class="row">
-                                <div class="col-3 ">
-    
-                                    <div class="btn-group-vertical">
-                                        <button type="button" class="btn btn-success" (click)='statusTrabajoFinalizado()'>Trabajos Finalizados</button>
-                                        <button type="button" class="btn btn-info" (click)='statusTrabajoProgreso()'>Trabajos en Proceso</button>
-                                        <button type="button" class="btn btn-danger" (click)='statusTrabajoCancelado()'>Trabajos Cancelados</button>
+                    </ng-template>
+                </ngb-tab>
+
+                <ngb-tab title="Ultimos Contratos">
+                    <ng-template ngbTabContent>
+                        <div class="row">
+                            <div class="container">
+                                <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"
+                                    *ngFor='let sol of ulitmosContratosContratante'>
+                                    <div class="card-header">Contratante: <b>{{sol.contratante.nombre}}</b></div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{sol.titulo}}</h5>
+                                        <p class="card-text">{{sol.descripcion}}</p>
+                                        <p class="text-muted"> Finalizado</p>
                                     </div>
                                 </div>
-                                <div class="col-9">
-                                    <div *ngIf="statusTrabajo == 'trabajoFinalizado'">
-                                        <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"  *ngFor='let solf of contratoTrabajoFinalizado'>
-                                            <div class="card-header">Trabajador: {{solf.trabajador.nombre}}</div>
-                                            <div class="card-body">
-                                              <h5 class="card-title">{{solf.titulo}}</h5>
-                                              <p class="card-text">{{solf.descripcion}}</p>
-                                              <p class="text-muted"> Finalizado</p>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
 
-                                            </div>
+            </ngb-tabset>
+        </div>
+    </div>
+
+
+    <!-- TABS profesional data-tabs-color="orange" -->
+    <div class="nav-tabs-navigation bg-blanco"
+        *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL' && identidad._id == usuarioIdModel._id && statusEnvio =='recibido'">
+        <div class="nav-tabs-wrapper">
+            <h2 style="text-align: center;">Recibido</h2>
+            <ngb-tabset [justify]="'center'" class="text-center bg-blanco">
+
+                <ngb-tab title="Solicitudes" (click)='statusSolicitudProgreso()'>
+                    <ng-template ngbTabContent>
+
+                        <div class="row">
+                            <div class="container">
+                                <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"
+                                    *ngFor='let sol of contratoTabajadorSolicitud'>
+                                    <div class="card-header">Contratante: <b>{{sol.contratante.nombre}}</b></div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{sol.titulo}}</h5>
+                                        <p class="card-text">{{sol.descripcion}}</p>
+                                        <p class="text-muted"> Recibido</p>
+                                        <button type="button" class="btn btn-danger btn-round btn-sm"
+                                            (click)=solicitudCancelada(sol._id)>Rechazar</button>
+                                        <!-- <button type="button" class="btn btn-info btn-sm">Responder</button> -->
+                                        <button class="btn btn-info btn-round btn-sm" (click)="open(prueba)"
+                                            (click)='obtenerIdContrato(sol._id)' (click)="c('Close click')">Responder</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </ng-template>
+                </ngb-tab>
+
+                <ngb-tab title="Trabajos">
+                    <ng-template ngbTabContent>
+
+                        <div class="row">
+                            <div class="col-3 ">
+
+                                <div class="btn-group-vertical">
+                                    <button type="button" class="btn btn-success"
+                                        (click)='statusTrabajoFinalizado()'>Trabajos Finalizados</button>
+                                    <button type="button" class="btn btn-info"
+                                        (click)='statusTrabajoProgreso()'>Trabajos en Proceso</button>
+                                    <button type="button" class="btn btn-danger"
+                                        (click)='statusTrabajoCancelado()'>Trabajos Cancelados</button>
+                                </div>
+                            </div>
+                            <div class="col-9">
+                                <div *ngIf="statusTrabajo == 'trabajoFinalizado'">
+                                    <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"
+                                        *ngFor='let solf of contratoTrabajadorFinalizado'>
+                                        <div class="card-header">Trabajador: {{solf.trabajador.nombre}}</div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{solf.titulo}}</h5>
+                                            <p class="card-text">{{solf.descripcion}}</p>
+                                            <p class="text-muted"> Finalizado</p>
+
                                         </div>
                                     </div>
+                                </div>
 
                                 <div *ngIf="statusTrabajo == 'trabajoProgreso'">
-                                    <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;" *ngFor='let solp of contratoTrabajoProceso'>
+                                    <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"
+                                        *ngFor='let solp of contratoTrabajadorProceso'>
                                         <div class="card-header">Trabajador: {{solp.trabajador.nombre}}</div>
                                         <div class="card-body">
-                                          <h5 class="card-title">{{solp.titulo}}</h5>
-                                          <p class="card-text">{{solp.descripcion}}</p>
-                                          <p class="text-muted"> En Proceso</p>
+                                            <h5 class="card-title">{{solp.titulo}}</h5>
+                                            <p class="card-text">{{solp.descripcion}}</p>
+                                            <p class="text-muted"> En Proceso</p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div *ngIf="statusTrabajo == 'trabajoCancelado'">
-                                    <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;" *ngFor='let solc of contratoTrabajoCancelado'>
+                                    <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"
+                                        *ngFor='let solc of contratoTrabajadorCancelado'>
                                         <div class="card-header">Trabajador: {{solc.trabajador.nombre}}</div>
                                         <div class="card-body">
-                                          <h5 class="card-title">{{solc.titulo}}</h5>
-                                          <p class="card-text">{{solc.descripcion}}</p>
-                                          <p class="text-muted"> Cancelado</p>
+                                            <h5 class="card-title">{{solc.titulo}}</h5>
+                                            <p class="card-text">{{solc.descripcion}}</p>
+                                            <p class="text-muted"> Cancelado</p>
                                         </div>
                                     </div>
                                 </div>
-                                    
-                                </div>
-                                <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"
-                                    *ngIf="statusTrabajo == 'trabajoCancelado'">
-                                    <div class="card-header">Canceladas</div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">Primary card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make
-                                            up the bulk of the card's content.</p>
-                                    </div>
-                                </div>
-
                             </div>
+                        </div>
 
                     </ng-template>
                 </ngb-tab>
@@ -361,22 +400,28 @@
 
                 <ngb-tab title="Ultimos Contratos">
                     <ng-template ngbTabContent>
-                        <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;">
-                            <div class="card-header">Header</div>
-                            <div class="card-body">
-                                <h5 class="card-title">Primary card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
+                        <div class="row">
+                            <div class="container">
+                                <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;"
+                                    *ngFor='let sol of ulitmosContratosTrabajador'>
+                                    <div class="card-header">Contratante: <b>{{sol.contratante.nombre}}</b></div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{sol.titulo}}</h5>
+                                        <p class="card-text">{{sol.descripcion}}</p>
+                                        <p class="text-muted"> Finalizado</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                      </ng-template>
-                    </ngb-tab>
-                    
-                </ngb-tabset>
-            </div>
-        </div>
+                    </ng-template>
+                </ngb-tab>
 
-    <footer class="footer footer-default">
+            </ngb-tabset>
+        </div>
+    </div>
+
+<!--Footer-->
+<footer class="footer footer-default">
         <div class="container">
             <nav>
                 <ul>
@@ -412,6 +457,7 @@
 </footer>
 
 </div>
+<!-- Modal de Contratar -->
 <ng-template #classic let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h5 class="modal-title text-center">Contrata a {{usuarioIdModel.nombre}}</h5>
@@ -433,8 +479,8 @@
                 <p>Fecha de Inicio:</p>
                 <div class="input-group">
                     <input type="date" class="form-control datetimepicker" placeholder="Fecha de inicio"
-                        id='fechaInicio' name="fechaInicio" #fechaInicio='ngModel'
-                        [(ngModel)]='contratoModelAdd.fechaInicio'>
+                        id='fechaInicial' name="fechaInicial" #fechaInicio='ngModel'
+                        [(ngModel)]='contratoModelAdd.fechaInicial'>
                 </div>
             </div>
         </div>
@@ -462,7 +508,9 @@
                 (click)="c('Close click')">Enviar</button>
         </div>
     </div>
-   </ng-template>
+</ng-template>
+
+<!-- Modal de Respuesta del Contratante -->
 <ng-template #prueba let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h5 class="modal-title text-center">Responder</h5>
@@ -476,7 +524,8 @@
             <div class="col-7">
                 <p>Precio:</p>
                 <div class="form-group">
-                    <input type="text"  placeholder="Precio..." class="form-control" id='precio' name='precio' #precio='ngModel' [(ngModel)]='contratoRespuesta.precio'/>
+                    <input type="text" placeholder="Precio..." class="form-control" id='precio' name='precio'
+                        #precio='ngModel' [(ngModel)]='contratoRespuesta.precio' />
                 </div>
             </div>
         </div>
@@ -484,7 +533,9 @@
         <div class="col-12">
             <p>Respuesta a la Solicitud:</p>
             <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
-                <textarea class="form-control textAreaInput" rows="4" cols="80" placeholder="Describa lo que necesita de manera clara y concisa..." id="descripcionR" name='descripcionR' #descripcionR='ngModel' [(ngModel)]='contratoRespuesta.descripcionR'></textarea>
+                <textarea class="form-control textAreaInput" rows="4" cols="80"
+                    placeholder="Describa lo que necesita de manera clara y concisa..." id="descripcionR"
+                    name='descripcionR' #descripcionR='ngModel' [(ngModel)]='contratoRespuesta.descripcionR'></textarea>
             </div>
         </div>
 
@@ -495,8 +546,110 @@
         </div>
         <div class="divider"></div>
         <div class="right-side">
-            <button class="btn btn-primary btn-link"  (click)="solicitudRespuesta()" >Enviar</button>
+            <button class="btn btn-primary btn-link" (click)="solicitudRespuesta()" (click)="c('Close click')">Confirmar</button>
         </div>
     </div>
-   </ng-template>
+</ng-template>
 
+<!-- Modal de Factura/Reseña -->
+<ng-template #factura let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h5 class="modal-title text-center">Factura</h5>
+        <button type="button" class="close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <div>
+            <table class="table text-center">
+                <tr>
+                    <th scope="col">
+                        Titulo:
+                    </th>
+                    <th scope="col">
+                        {{contratoModelGet.titulo}}
+                    </th>
+                </tr>
+                <tr>
+                    <th scope="col">
+                        Descripcion:
+                    </th>
+                    <th scope="col">
+                        {{contratoModelGet.descripcion}}
+                    </th>
+                </tr>
+                <tr>
+                    <th scope="col">
+                        Fecha Inicial:
+                    </th>
+                    <th scope="col">
+                        {{contratoModelGet.fechaIncial | date:'short'}}
+                    </th>
+                </tr>
+                <tr>
+                    <th scope="col">
+                        Fecha Final:
+                    </th>
+                    <th scope="col">
+                        {{contratoModelGet.fechaFinal | date:'short'}}
+                    </th>
+                </tr>
+                <tr>
+                    <th scope="col">
+                        Precio:
+                    </th>
+                    <th scope="col">
+                        Q. {{contratoModelGet.precio}}
+                    </th>
+                </tr>
+                <tr>
+                    <th scope="col">
+                        Trabajador:
+                    </th>
+                    <th scope="col">
+                        {{contratoModelGet.trabajador.nombre}}
+                    </th>
+                </tr>
+                <tr>
+                    <th scope="col">
+                        Contratante:
+                    </th>
+                    <th scope="col">
+                        {{contratoModelGet.contratante.nombre}}
+                    </th>
+                </tr>
+            </table>
+        </div>
+
+        <h5 class="modal-title text-center">Reseña</h5>
+
+        <div class="row">
+            <div class="col-7">
+                <p>Titulo:</p>
+                <div class="form-group">
+                    <input type="text" placeholder="Titulo de la reseña" class="form-control" id='titulo' name='titulo'
+                        #titulo='ngModel' [(ngModel)]='resenaModel.titulo' />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <p>Descripcion:</p>
+            <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                <textarea class="form-control textAreaInput" rows="4" cols="80" id="descripcion"
+                    placeholder="¿Que opina del trabajo del profesional?" name='descripcion' #descripcion='ngModel'
+                    [(ngModel)]='resenaModel.descripcion'></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="left-side">
+            <button type="button" class="btn btn-default btn-link" (click)="c('Close click')">Cerrar</button>
+        </div>
+        <div class="divider"></div>
+        <div class="right-side">
+            <button class="btn btn-primary btn-link" (click)="crearResena()" (click)="c('Close click')">Enviar</button>
+        </div>
+    </div>
+</ng-template>
