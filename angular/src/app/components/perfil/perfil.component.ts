@@ -129,6 +129,8 @@ private getDismissReason(reason: any): string {
     )
   }
 
+  
+
   statusSolicitudInicio(){
     this.statusSolicitud = 'solicitudInicio'
   }
