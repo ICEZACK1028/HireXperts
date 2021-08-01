@@ -561,14 +561,14 @@
     </div>
     <div class="modal-body">
 
-        <div *ngFor='let contrato of contratoRespuesta let i = index'>
+        <div>
             <table class="table text-center">
                 <tr>
                     <th scope="col">
                         Titulo:
                     </th>
                     <th scope="col">
-                        {{contrato.titulo}}
+                        {{contratoModelGet.titulo}}
                     </th>
                 </tr>
                 <tr>
@@ -576,7 +576,7 @@
                         Descripcion:
                     </th>
                     <th scope="col">
-                        {{contrato.descripcion}}
+                        {{contratoModelGet.descripcion}}
                     </th>
                 </tr>
                 <tr>
@@ -584,7 +584,7 @@
                         Fecha Inicial:
                     </th>
                     <th scope="col">
-                        {{contrato.fechaInicio}}
+                        {{contratoModelGet.fechaInicio}}
                     </th>
                 </tr>
                 <tr>
@@ -592,7 +592,7 @@
                         Fecha Final:
                     </th>
                     <th scope="col">
-                        {{contrato.fechaInicio}}
+                        {{contratoModelGet.fechaInicio}}
                     </th>
                 </tr>
                 <tr>
@@ -600,7 +600,7 @@
                         Precio:
                     </th>
                     <th scope="col">
-                        {{contrato.precio}}
+                        Q. {{contratoModelGet.precio}}
                     </th>
                 </tr>
                 <tr>
@@ -608,7 +608,7 @@
                         Trabajador:
                     </th>
                     <th scope="col">
-                        {{contrato.trabajador}}
+                        {{contratoModelGet.trabajador}}
                     </th>
                 </tr>
                 <tr>
@@ -616,7 +616,7 @@
                         Contratante:
                     </th>
                     <th scope="col">
-                        {{contrato.contratante}}
+                        {{contratoModelGet.contratante}}
                     </th>
                 </tr>
             </table>

@@ -256,6 +256,7 @@ export class PerfilComponent implements OnInit {
   }
   trabajoFinalizado(id) {
     this.obtenerIdContrato(id)
+    this.obtenerContratoId(id)
     this._contratoService.trabajoFinalizado(this.token, this.idContrato, this.contratoSolicitudAdd).subscribe(
       response => {
         console.log(response);
@@ -343,8 +344,8 @@ export class PerfilComponent implements OnInit {
     )
   }
 
-  obtenerContratoId(){
-    this._contratoService.obtenerContratoId(this.idContrato).subscribe(
+  obtenerContratoId(id){
+    this._contratoService.obtenerContratoId(id).subscribe(
       (response:any)=> {
         console.log(response);
         this.contratoModelGet = response.contratoEncontrado
