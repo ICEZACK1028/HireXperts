@@ -69,6 +69,7 @@ export class PerfilComponent implements OnInit {
 
   //RESEÑA
   public resenaModel: resena
+  public resenaModelGet: resena
 
   constructor(private _usuarioService: UsuarioService, private _resenaService: ResenaService, private _activatedRoute: ActivatedRoute, private modalService: NgbModal,
     private _contratoService: ContratoService) {
@@ -113,6 +114,7 @@ export class PerfilComponent implements OnInit {
 
     this.obtenerContratosContratanteTrabajoFinalizado()
     this.obtenerContratosTrabajadorTrabajoFinalizado()
+    this.obtenerResenaTrabajador()
 
   }
   ngOnDestroy() {
@@ -369,6 +371,7 @@ export class PerfilComponent implements OnInit {
 
     this.obtenerContratosContratanteTrabajoFinalizado()
     this.obtenerContratosTrabajadorTrabajoFinalizado()
+    this.obtenerResenaTrabajador()
   }
 
   obtenerIdContrato(id) {
@@ -407,6 +410,14 @@ export class PerfilComponent implements OnInit {
     this.statusEnvio = 'recibido'
   }
 
-
+  //RESEÑASSSS
+  obtenerResenaTrabajador(){
+    this._resenaService.obtenerResenaTrabajador(this.identidad._id).subscribe(
+      (response:any) => {
+        console.log(response);
+        this.resenaModelGet = response.reseñasEncontradas
+      }
+    )
+  }
 
 }

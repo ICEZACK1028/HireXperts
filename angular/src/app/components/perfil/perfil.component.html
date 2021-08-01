@@ -387,14 +387,37 @@
 
                 <ngb-tab title="Reseñas">
                     <ng-template ngbTabContent>
-                        <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;">
-                            <div class="card-header">Header</div>
-                            <div class="card-body">
-                                <h5 class="card-title">Primary card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
-                            </div>
-                        </div>
+                        
+                        
+                        <!-- Contenedor Principal -->
+	                    <div class="comments-container contenedor-para-comentario" *ngFor="let res of resenaModelGet">
+		                <ul id="comments-list" class="comments-list">
+			                <li>
+				            <div class="comment-main-level">
+				            	<!-- Avatar -->
+				            	<div class="comment-avatar"><img src="{{res.contratante.imagen}}" alt=""></div>
+				            	<!-- Contenedor del Comentario -->
+				            	<div class="comment-box">
+				            		<div class="comment-head">
+                                        
+				            			<h6 class="comment-name by-author"><a>{{res.contratante.nombre}} {{res.contratante.apellido}}</a></h6>
+				            			<!-- <span>hace 20 minutos</span> -->
+				            			<i class="fa fa-reply"></i>
+				            			<i class="fa fa-heart"></i>
+				            		</div>
+                                    
+				            		<div class="comment-content">
+                        <h5 style="margin-bottom: 5px !important;margin-top: 5px !important;">{{res.titulo}}</h5>
+
+				            			{{res.descripcion}}
+				            		</div>
+				            	</div>
+				            </div>
+				            <!-- Respuestas de los comentarios -->
+
+		            </ul>
+	                    </div>
+
                     </ng-template>
                 </ngb-tab>
 
