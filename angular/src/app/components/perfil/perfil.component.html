@@ -113,13 +113,89 @@
 
     </div>
 
-        <!-- TABS PROFESIONAL -->
-        <div class="nav-tabs-navigation bg-blanco" data-tabs-color="orange" *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
+        <!-- TABS PROFESIONAL data-tabs-color="orange" -->   
+        <div class="nav-tabs-navigation bg-blanco"  *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL' && identidad._id == usuarioIdModel._id">
             <div class="nav-tabs-wrapper">
                 <ngb-tabset [justify]="'center'" class="text-center bg-blanco" >
-                    <ngb-tab title="Ultimos Contratos" >
+                    <ngb-tab title="Solicitudes" (click)='statusSolicitudProgreso()'>
                       <ng-template ngbTabContent >
                           
+                        <div class="row">
+                            <div class="col-3 ">
+
+                                <div class="btn-group-vertical">
+                                    <button type="button" class="btn btn-info" (click)='statusSolicitudProgreso()'>Solicitudes en Proceso</button>
+                                    <!-- <button type="button" class="btn btn-success">Respondidas</button> -->
+                                    <button type="button" class="btn btn-danger" (click)='statusSolicitudCancelada()'>Solicitudes Canceladas</button>
+                                </div>
+
+                            </div>
+                            <div class="col-9">
+                                <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;" *ngIf="statusSolicitud == 'solicitudProgreso'">
+                                    <div class="card-header">Header</div>
+                                    <div class="card-body">
+                                      <h5 class="card-title">Primary card title</h5>
+                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    </div>
+                                  </div>
+                                <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;" *ngIf="statusSolicitud == 'solicitudCancelada'">
+                                    <div class="card-header">Canceladas</div>
+                                    <div class="card-body">
+                                      <h5 class="card-title">Primary card title</h5>
+                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    </div>
+                                  </div>
+                                
+                            </div>
+                        </div>
+                          
+                      </ng-template>
+                    </ngb-tab>
+
+                    <ngb-tab title="Trabajos" >
+                        <ng-template ngbTabContent >
+                          
+                            <div class="row">
+                                <div class="col-3 ">
+    
+                                    <div class="btn-group-vertical">
+                                        <button type="button" class="btn btn-info" (click)='statusTrabajoProgreso()'>Trabajos en Proceso</button>
+                                        <button type="button" class="btn btn-success" (click)='statusTrabajoFinalizado()'>Trabajos Finalizados</button>
+                                        <button type="button" class="btn btn-danger" (click)='statusTrabajoCancelado()'>Trabajos Cancelados</button>
+                                    </div>
+    
+                                </div>
+                                <div class="col-9">
+                                    <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;" *ngIf="statusTrabajo == 'trabajoProgreso'">
+                                        <div class="card-header">Header</div>
+                                        <div class="card-body">
+                                          <h5 class="card-title">Primary card title</h5>
+                                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        </div>
+                                      </div>
+                                    <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;" *ngIf="statusTrabajo == 'trabajoFinalizado'">
+                                        <div class="card-header">Finalizados</div>
+                                        <div class="card-body">
+                                          <h5 class="card-title">Primary card title</h5>
+                                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        </div>
+                                      </div>
+                                    <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;" *ngIf="statusTrabajo == 'trabajoCancelado'">
+                                        <div class="card-header">Canceladas</div>
+                                        <div class="card-body">
+                                          <h5 class="card-title">Primary card title</h5>
+                                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        </div>
+                                      </div>
+                                    
+                                </div>
+                            </div>
+                              
+                          </ng-template>
+                      </ngb-tab>
+
+                    <ngb-tab title="Reseñas" >
+                      <ng-template ngbTabContent>
                         <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;">
                             <div class="card-header">Header</div>
                             <div class="card-body">
@@ -127,20 +203,18 @@
                               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                             </div>
                           </div>
-                          
-                          
+                      </ng-template>
+                    </ngb-tab>
 
-                        <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
-                      </ng-template>
-                    </ngb-tab>
-                    <ngb-tab title="Reseñas" >
+                    <ngb-tab title="Ultimos Contratos" >
                       <ng-template ngbTabContent>
-                          <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
-                      </ng-template>
-                    </ngb-tab>
-                    <ngb-tab title="Reseñas" >
-                      <ng-template ngbTabContent>
-                          <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
+                        <div class="card text-white bg-ligth mb-3 espaciado" style="max-width: 18rem;">
+                            <div class="card-header">Header</div>
+                            <div class="card-body">
+                              <h5 class="card-title">Primary card title</h5>
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                          </div>
                       </ng-template>
                     </ngb-tab>
 
