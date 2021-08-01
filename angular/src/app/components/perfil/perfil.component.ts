@@ -66,6 +66,8 @@ export class PerfilComponent implements OnInit {
     this.usuarioIdModel = new Usuario("","","","","","","","",Date(),"","","","",0,"","","","",false,0,false)
     this.contratoModelAdd = new contrato("","",new Date(),"","","","","",new Date(),0)
     this.contratoPut = new contrato("","",new Date(),"","","","","",new Date(),0)
+    this.contratoRespuesta = new contrato("","",new Date(),"","","","","",new Date(),0)
+    
   }
 
   ngOnInit() {
@@ -211,6 +213,8 @@ private getDismissReason(reason: any): string {
     this._contratoService.solicitudRespuesta(this.token,this.contratoRespuesta,this.idContrato).subscribe(
       response => {
         console.log(response);
+        this.obtenerTrabajadorSolicitudInicio()
+
       }
     )
   }
