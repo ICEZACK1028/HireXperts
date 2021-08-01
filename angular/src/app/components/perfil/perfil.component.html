@@ -248,7 +248,7 @@
                                             <button type="button" class="btn btn-danger btn-round btn-sm"
                                                 (click)="trabajoCancelado(solp._id)">Cancelar</button>
                                             <button class="btn btn-info btn-round btn-sm"
-                                                (click)="trabajoFinalizado(solp._id)">Finalizar</button>
+                                                (click)="trabajoFinalizado(solp._id)" (click)="open(factura)">Finalizar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -317,7 +317,7 @@
                                             (click)=solicitudCancelada(sol._id)>Rechazar</button>
                                         <!-- <button type="button" class="btn btn-info btn-sm">Responder</button> -->
                                         <button class="btn btn-info btn-round btn-sm" (click)="open(prueba)"
-                                            (click)='obtenerIdContrato(sol._id)'>Responder</button>
+                                            (click)='obtenerIdContrato(sol._id)' (click)="c('Close click')">Responder</button>
 
                                     </div>
                                 </div>
@@ -420,7 +420,8 @@
         </div>
     </div>
 
-    <footer class="footer footer-default">
+<!--Footer-->
+<footer class="footer footer-default">
         <div class="container">
             <nav>
                 <ul>
@@ -453,9 +454,10 @@
                 <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
             </div>
         </div>
-    </footer>
+</footer>
 
 </div>
+<!-- Modal de Contratar -->
 <ng-template #classic let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h5 class="modal-title text-center">Contrata a {{usuarioIdModel.nombre}}</h5>
@@ -477,8 +479,8 @@
                 <p>Fecha de Inicio:</p>
                 <div class="input-group">
                     <input type="date" class="form-control datetimepicker" placeholder="Fecha de inicio"
-                        id='fechaInicio' name="fechaInicio" #fechaInicio='ngModel'
-                        [(ngModel)]='contratoModelAdd.fechaInicio'>
+                        id='fechaInicial' name="fechaInicial" #fechaInicio='ngModel'
+                        [(ngModel)]='contratoModelAdd.fechaInicial'>
                 </div>
             </div>
         </div>
@@ -507,6 +509,8 @@
         </div>
     </div>
 </ng-template>
+
+<!-- Modal de Respuesta del Contratante -->
 <ng-template #prueba let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h5 class="modal-title text-center">Responder</h5>
@@ -542,13 +546,12 @@
         </div>
         <div class="divider"></div>
         <div class="right-side">
-            <button class="btn btn-primary btn-link" (click)="solicitudRespuesta()">Confirmar</button>
+            <button class="btn btn-primary btn-link" (click)="solicitudRespuesta()" (click)="c('Close click')">Confirmar</button>
         </div>
     </div>
 </ng-template>
 
 <!-- Modal de Factura/Reseña -->
-
 <ng-template #factura let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h5 class="modal-title text-center">Factura</h5>
@@ -558,14 +561,14 @@
     </div>
     <div class="modal-body">
 
-        <div *ngFor='let contrato of contratoRespuesta let i = index'>
+        <div>
             <table class="table text-center">
                 <tr>
                     <th scope="col">
                         Titulo:
                     </th>
                     <th scope="col">
-                        {{contrato.titulo}}
+                        {{contratoModelGet.titulo}}
                     </th>
                 </tr>
                 <tr>
@@ -573,7 +576,7 @@
                         Descripcion:
                     </th>
                     <th scope="col">
-                        {{contrato.descripcion}}
+                        {{contratoModelGet.descripcion}}
                     </th>
                 </tr>
                 <tr>
@@ -581,7 +584,7 @@
                         Fecha Inicial:
                     </th>
                     <th scope="col">
-                        {{contrato.fechaInicio}}
+                        {{contratoModelGet.fechaIncial | date:'short'}}
                     </th>
                 </tr>
                 <tr>
@@ -589,7 +592,7 @@
                         Fecha Final:
                     </th>
                     <th scope="col">
-                        {{contrato.fechaInicio}}
+                        {{contratoModelGet.fechaFinal | date:'short'}}
                     </th>
                 </tr>
                 <tr>
@@ -597,7 +600,7 @@
                         Precio:
                     </th>
                     <th scope="col">
-                        {{contrato.precio}}
+                        Q. {{contratoModelGet.precio}}
                     </th>
                 </tr>
                 <tr>
@@ -605,7 +608,7 @@
                         Trabajador:
                     </th>
                     <th scope="col">
-                        {{contrato.trabajador}}
+                        {{contratoModelGet.trabajador.nombre}}
                     </th>
                 </tr>
                 <tr>
@@ -613,7 +616,7 @@
                         Contratante:
                     </th>
                     <th scope="col">
-                        {{contrato.contratante}}
+                        {{contratoModelGet.contratante.nombre}}
                     </th>
                 </tr>
             </table>
@@ -634,7 +637,7 @@
         <div class="col-12">
             <p>Descripcion:</p>
             <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
-                <textarea class="form-control textAreaInput" rows="4" cols="80" id="descripcionR"
+                <textarea class="form-control textAreaInput" rows="4" cols="80" id="descripcion"
                     placeholder="¿Que opina del trabajo del profesional?" name='descripcion' #descripcion='ngModel'
                     [(ngModel)]='resenaModel.descripcion'></textarea>
             </div>
@@ -646,7 +649,7 @@
         </div>
         <div class="divider"></div>
         <div class="right-side">
-            <button class="btn btn-primary btn-link" (click)="crearResena()">Enviar</button>
+            <button class="btn btn-primary btn-link" (click)="crearResena()" (click)="c('Close click')">Enviar</button>
         </div>
     </div>
 </ng-template>

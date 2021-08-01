@@ -40,6 +40,7 @@ export class PerfilComponent implements OnInit {
   //CRUD
   public contratoModelAdd
   public contratoPut
+  public contratoModelGet: contrato
 
   //SOLICITUDES
   public contratoSolicitud: contrato
@@ -172,10 +173,11 @@ export class PerfilComponent implements OnInit {
     )
   }
 
-  crearResena(resenaModel, idContrato) {
-    this._resenaService.crearResena(resenaModel, idContrato).subscribe(
-      response => {
+  crearResena() {
+    this._resenaService.crearResena(this.resenaModel, this.idContrato).subscribe(
+      (response:any) => {
         console.log(response);
+        this.resenaModel = response.resenaGuardada
       }
     )
   }
@@ -254,6 +256,7 @@ export class PerfilComponent implements OnInit {
   }
   trabajoFinalizado(id) {
     this.obtenerIdContrato(id)
+    this.obtenerContratoId(id)
     this._contratoService.trabajoFinalizado(this.token, this.idContrato, this.contratoSolicitudAdd).subscribe(
       response => {
         console.log(response);
@@ -341,7 +344,14 @@ export class PerfilComponent implements OnInit {
     )
   }
 
-
+  obtenerContratoId(id){
+    this._contratoService.obtenerContratoId(id).subscribe(
+      (response:any)=> {
+        console.log(response);
+        this.contratoModelGet = response.contratoEncontrado
+      }
+    )
+  }
 
   actualizar() {
     this.obtenerContratanteSolicitudInicio()
