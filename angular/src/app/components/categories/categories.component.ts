@@ -28,7 +28,7 @@ export class CategoriesComponent implements OnInit {
   public nombreProfesion
 
   constructor(private _profesionService: ProfesionService, private _usuarioService: UsuarioService) { 
-    this.profesionalBusqueda = new Usuario("","","","","","","","",Date(),"","","","",0,"","","","",false,0,false)
+    this.profesionalBusqueda = new Usuario("","","","","","","","",new Date(),"","","","",0,"","","","",false,0,false)
 
   }
 

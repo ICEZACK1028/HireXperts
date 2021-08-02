@@ -13,7 +13,6 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ProfessionalRegisterComponent } from './components/professional-register/professional-register.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 
 const routes: Routes =[
@@ -26,12 +25,7 @@ const routes: Routes =[
     { path: 'home',                component: HomeComponent },
     { path: 'perfil/:idUsuario',                component: PerfilComponent },
     { path: 'register',                component: RegisterComponent },
-    { path: 'professional-register',                component: ProfessionalRegisterComponent },
-    {
-        path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full',
-      }, {
+    { path: 'professional-register',                component: ProfessionalRegisterComponent }, {
         path: '',
         component: AdminLayoutComponent,
         children: [
@@ -39,10 +33,6 @@ const routes: Routes =[
           path: '',
           loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
       }]},
-      {
-        path: '**',
-        redirectTo: 'dashboard'
-      },
     { path: 'categories',                component: CategoriesComponent}
 
 ];

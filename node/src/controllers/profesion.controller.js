@@ -47,6 +47,19 @@ function eliminarProfesion (req, res){
     })
 
 }
+
+//FUNCIÓN PARA OBTENER UNA FUNCIÓN POR ID
+
+function verProfesion (req,res){
+    var idProfesion = req.params.idProfesion;
+
+    profesionModel.findById(idProfesion,(err,profesionEncontrada)=>{
+        if(err) return res.status(500).send({mensaje: 'Ha ocurrido un error'})
+        if(!profesionEncontrada) return res.status(500).send({mensaje: 'No se ha encontrado la profesión'})
+        return res.status(200).send({profesionEncontrada});
+    })
+}
+
 //FUNCION PARA OBTENER TODAS LAS PROFESIONES
 
 function obtenerProfesiones (req, res){
@@ -60,5 +73,6 @@ module.exports = {
     crearProfesion,
     editarProfesion,
     eliminarProfesion,
-    obtenerProfesiones
+    obtenerProfesiones,
+    verProfesion
 }

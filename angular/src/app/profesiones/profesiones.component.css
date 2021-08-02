@@ -1,0 +1,38 @@
+th{
+    color: black;
+}
+.btn-agregar{
+    background-color: #0C91EB;
+}
+.btn-agregar:active {
+    background: #34aeff !important;
+}
+img{
+    width: 50px;
+}
+td button.edit {
+    color: #FFC107;
+}
+td button.see {
+    color: #0077BE;
+}
+td button.delete {
+    color: #F44336;
+}
+td button.star {
+    color: #F2C705;
+}
+td .buttonEdit:hover {
+    transform: translateY(-2px);
+}
+td i {
+    font-size: 25px;
+}
+.buttonEdit {
+    border: none;
+    background-color: transparent;
+    padding: 1px;
+}
+button:hover{
+  cursor: pointer;
+}

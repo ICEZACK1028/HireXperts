@@ -26,4 +26,17 @@ export class ProfesionService {
   obtenerProfesiones():Observable<any>{
     return this._http.get(this.url+'/obtenerProfesiones',{headers:this.headers})
   }
+
+  verProfesion(id: string): Observable<any>{
+    return this._http.get(`${this.url}/verProfesion/${id}`, {headers: this.headers})
+  }
+
+  editarProfesion(profesion: Profesion): Observable<any>{
+    let params = JSON.stringify(profesion)
+    return this._http.put(`${this.url}/editarProfesion/${profesion._id}`, params, {headers: this.headers});
+  }
+
+  eliminarProfesion(id: string): Observable<any>{
+    return this._http.delete(`${this.url}/eliminarProfesion/${id}`, {headers: this.headers});
+  }
 }

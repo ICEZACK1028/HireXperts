@@ -81,6 +81,22 @@
               </div>
             </div>
             <div class="row">
+              <div class="col-md-3 pr-1">
+                <div class="form-group">
+                  <label>Nacimiento</label>
+                  <input type="date" id="nacimiento" class="form-control datepicker" placeholder="Ciudad" value="" name="nacimiento"
+                    #nacimiento="ngModel" [(ngModel)]="usuarioModal.nacimiento" disabled>
+                </div>
+              </div>
+              <div class="col-md-9 pl-1">
+                <div class="form-group">
+                  <label>Imagen</label>
+                  <textarea type="text" id="imagen" class="form-control" placeholder="Agrega la url de la imagen" value=""
+                    name="imagen" #imagen="ngModel" [(ngModel)]="usuarioModal.imagen" disabled></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
               <div class="col-md-12 pl-1">
                 <button id="btn-editar" class="btn btn-primary button-registrar" (click)="Habilitar()" (click)="verUsuario(usuarioModal._id)">Editar
                   Perfil</button>
@@ -161,8 +177,24 @@
               </div>
             </div>
             <div class="row">
+              <div class="col-md-3 pr-1">
+                <div class="form-group">
+                  <label>Nacimiento</label>
+                  <input type="date" id="nacimiento" class="form-control datepicker" placeholder="Ciudad" value="" name="nacimiento"
+                    #nacimiento="ngModel" [(ngModel)]="usuarioModal.nacimiento">
+                </div>
+              </div>
+              <div class="col-md-9 pl-1">
+                <div class="form-group">
+                  <label>Imagen</label>
+                  <textarea type="text" id="imagen" class="form-control" placeholder="Agrega la url de la imagen" value=""
+                    name="imagen" #imagen="ngModel" [(ngModel)]="usuarioModal.imagen"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
               <div class="col-md-12 pl-1">
-                <button class="btn btn-primary button-registrar" (click)="editarUsuarios()" (click)="Deshabilitar()" >Guardar cambios</button>
+                <button class="btn btn-primary button-registrar" (click)="notification(1)" (click)="showNotification('bottom','right')" (click)="editarUsuarios()" (click)="Deshabilitar()"  >Guardar cambios</button>
               </div>
             </div>
           </form>
@@ -178,11 +210,11 @@
         <div class="card-body">
           <div class="author">
             <a>
-              <img class="avatar border-gray" [src]="identidad.imagen" alt="...">
-              <h5 class="title">{{identidad.nombre}} {{identidad.apellido}}</h5>
+              <img class="avatar border-gray" [src]="usuarioModal.imagen" alt="...">
+              <h5 class="title">{{usuarioModal.nombre}} {{usuarioModal.apellido}}</h5>
             </a>
             <p class="description">
-              {{identidad.usuario}}
+              {{usuarioModal.usuario}}
             </p>
           </div>
           <p class="description text-center">

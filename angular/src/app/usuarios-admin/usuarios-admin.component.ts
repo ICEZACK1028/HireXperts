@@ -3,6 +3,7 @@ import { UsuarioService } from 'app/services/usuario.service';
 import { Usuario } from 'app/models/usuario.model';
 import {NgbModal, ModalDismissReasons }from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-usuarios-admin',
@@ -17,7 +18,7 @@ export class UsuariosAdminComponent implements OnInit {
   readonly = null;
   public closeResult: String;
 
-  constructor(private _usuarioService: UsuarioService, private modalService: NgbModal) { 
+  constructor(private _usuarioService: UsuarioService, private modalService: NgbModal, private toastr: ToastrService) { 
     this.usuarioModal = new Usuario("","","","","","","","",new Date(),"","","","",0,"","","","",false,0,false);
     this.usuarioModalAdd = new Usuario("","","","","","","","",new Date(),"","","","",0,"","","","",false,0,false);
     
@@ -25,6 +26,49 @@ export class UsuariosAdminComponent implements OnInit {
 
   ngOnInit() { 
     this.obtenerUsuarios();
+  }
+
+  showNotification(from, align, color){
+      switch(color){
+        case 1:
+        this.toastr.info('<span class="now-ui-icons ui-1_bell-53"></span> Usuario eliminado con éxito.', '', {
+           timeOut: 8000,
+           closeButton: true,
+           enableHtml: true,
+           toastClass: "alert alert-warning alert-with-icon",
+           positionClass: 'toast-' + from + '-' +  align
+         });
+        break;
+        case 2:
+        this.toastr.success(`<span class="now-ui-icons ui-1_bell-53"></span> El usuario <b>${this.usuarioModalAdd.usuario}</b> - se ha registrado con éxito.`, '', {
+           timeOut: 8000,
+           closeButton: true,
+           enableHtml: true,
+           toastClass: "alert alert-success alert-with-icon",
+           positionClass: 'toast-' + from + '-' +  align
+         });
+        break;
+        case 3:
+        this.toastr.info('<span class="now-ui-icons ui-1_bell-53"></span> Usuario actualizado con éxito.', '', {
+           timeOut: 8000,
+           closeButton: true,
+           enableHtml: true,
+           toastClass: "alert alert-info alert-with-icon",
+           positionClass: 'toast-' + from + '-' +  align
+         });
+        break;
+        case 4:
+        this.toastr.error('<span class="now-ui-icons ui-1_bell-53"></span> El usuario ingresado ya existe, intenta con otro nombre de usuario', '', {
+           timeOut: 8000,
+           enableHtml: true,
+           closeButton: true,
+           toastClass: "alert alert-danger alert-with-icon",
+           positionClass: 'toast-' + from + '-' +  align
+         });
+         break;
+        default:
+        break;
+      }
   }
 
   open(content, type) {
@@ -54,7 +98,6 @@ private getDismissReason(reason: any): string {
     }
 }
 
-
   obtenerUsuarios(){
     this._usuarioService.obtenerUsuarios().subscribe(
       response=>{
@@ -70,10 +113,11 @@ private getDismissReason(reason: any): string {
     this._usuarioService.registro(this.usuarioModalAdd).subscribe(
       Response =>{
         this.usuarioModalAdd = Response.usuarioGuardado;
-        console.log(this.usuarioModalAdd);
+        this.showNotification('bottom','right',2);
         this.obtenerUsuarios();
       },error=>{
         console.log(<any>error);
+        this.showNotification('bottom','right',4);
       }
     )
   }
@@ -93,7 +137,7 @@ private getDismissReason(reason: any): string {
     this._usuarioService.editarUsuario(this.usuarioModal).subscribe(
       res =>{
         console.log(res);
-        
+        this.showNotification('bottom','right',3);
         this.obtenerUsuarios();
       },
       err=>{
@@ -106,6 +150,7 @@ private getDismissReason(reason: any): string {
     this._usuarioService.eliminarUsuario(idUsuario).subscribe(
       res =>{
         this.obtenerUsuarios();
+        this.showNotification('bottom','right',1);
       },
       err=>{
         console.log(<any>err);
