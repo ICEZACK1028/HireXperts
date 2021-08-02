@@ -6,8 +6,8 @@
         <p>Busca por profesion:</p>
         <div class="col-sm-6 col-lg-4">
             <div class="input-group" [ngClass]="{'input-group-focus':focus1===true}">
-              <input type="text" class="form-control" placeholder="Profesion..." (focus)="focus1=true" (blur)="focus1=false">
-              <div class="input-group-append cursor">
+              <input type="text" class="form-control" placeholder="Profesion..." (focus)="focus1=true" (blur)="focus1=false" id='nombre' name='nombre' #nombre='ngModel' [(ngModel)]='nombreProfesion'>
+              <div class="input-group-append cursor" (click)='obtenerProfesionalesNombreProfesion()'>
                   <span class="input-group-text"><i class="now-ui-icons ui-1_zoom-bold"></i></span>
               </div>
             </div>
@@ -120,6 +120,53 @@
         </div>
 
         <div class="col-sm-6 col-lg-6 paddig-horizontal" *ngIf="status == 'busquedaNombre'">
+
+          <div *ngFor='let profep of profesionalProfesionGet let i = index'>
+              <div class="blog-card" *ngIf="i%2 == 0" [routerLink]="['/perfil',profep._id]" style="cursor: pointer;">
+                  <div class="meta">
+                    <div class="photo" style="background-image: url({{profep.imagen}})"></div>
+                    <ul class="details">
+                      <!-- <li >- {{profep.correo}}</li> -->
+                      <li ><p>{{profep.telefono}}</p></li>
+                      <li ><p>{{profep.pais}}</p></li>
+                    </ul>
+                    
+                  </div>
+                  <div class="description">
+                    <h1>{{profep.nombre}}</h1>
+                    <h2>{{profep.profesion.nombreProfesion}}</h2>
+                    <p> {{profep.descripcionP}}</p>
+                      
+                    <!-- <p class="read-more">
+                      <a href="#">Read More</a>
+                    </p> -->
+                  </div>
+                </div>
+              
+                <div class="blog-card alt" *ngIf="i%2 == 1" [routerLink]="['/perfil',profep._id]" style="cursor: pointer;">
+                  <div class="meta">
+                    <div class="photo" style="background-image: url({{profep.imagen}})"></div>
+                    <ul class="details list-group">
+                      <!-- <li >- {{profe.correo}}</li> -->
+                      <li ><p>{{profep.telefono}}</p></li>
+                      <li ><p>{{profep.pais}}</p></li>
+
+                    </ul>
+                  </div>
+                  <div class="description">
+                    <h1>{{profep.nombre}}</h1>
+                    <h2>{{profep.profesion.nombreProfesion}}</h2>
+                    <p>{{profep.descripcionP}}</p>
+                    <!-- <p class="read-more">
+                      <a href="#">Read More</a>
+                    </p> -->
+                  </div>
+                </div>
+          </div>
+
+        </div>
+
+        <div class="col-sm-6 col-lg-6 paddig-horizontal" *ngIf="status == 'busquedaProfesion'">
 
           <div *ngFor='let profep of profesionalProfesionGet let i = index'>
               <div class="blog-card" *ngIf="i%2 == 0" [routerLink]="['/perfil',profep._id]" style="cursor: pointer;">

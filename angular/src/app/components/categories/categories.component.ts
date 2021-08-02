@@ -25,6 +25,7 @@ export class CategoriesComponent implements OnInit {
   public profesionBusqueda
   public status = 'inicio'
   public nombreProfesional
+  public nombreProfesion
 
   constructor(private _profesionService: ProfesionService, private _usuarioService: UsuarioService) { 
     this.profesionalBusqueda = new Usuario("","","","","","","","",Date(),"","","","",0,"","","","",false,0,false)
@@ -86,6 +87,15 @@ export class CategoriesComponent implements OnInit {
         console.log(response);
         this.profesionalProfesionGet = response.usuariosEncontrados
         this.status = 'busquedaNombre'
+      }
+    )
+  }
+  obtenerProfesionalesNombreProfesion(){
+    this._usuarioService.obtenerProfesionalesNombreProfesion(this.nombreProfesion).subscribe(
+      (response:any) => {
+        console.log(response);
+        this.profesionalProfesionGet = response.usuariosEncontrados
+        this.status = 'busquedaProfesion'
       }
     )
   }
