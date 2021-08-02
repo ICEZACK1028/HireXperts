@@ -33,7 +33,7 @@ export class PerfilComponent implements OnInit {
     this.token = this._usuarioService.getToken()
     console.log(this.token);
 
-    this.usuarioIdModel = new Usuario("","","","","","","","",Date(),"","","","",0,"","","","",false,0,false)
+    this.usuarioIdModel = new Usuario("","","","","","","","",new Date(),"","","","",0,"","","","",false,0,false)
   }
 
   ngOnInit() {

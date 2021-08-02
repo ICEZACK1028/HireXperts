@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
   usuarioModel: Usuario;
 
   constructor(private _usuarioService: UsuarioService) { 
-    this.usuarioModel = new Usuario("","","","","","","","","","","","","",0,"","","","",false,0,false)
+    this.usuarioModel = new Usuario("","","","","","","","",new Date(),"","","","",0,"","","","",false,0,false)
   }
 
   ngOnInit() {
@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
     body.classList.add('login-page');
 
     var navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.add('navbar-transparent');
+    navbar.classList.remove('navbar-transparent');
 }
   ngOnDestroy(){
       var body = document.getElementsByTagName('body')[0];

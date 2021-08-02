@@ -107,31 +107,55 @@ function obtenerUsuarios (req, res){
 }
 
 function editarMiPerfil (req, res){
-    var usuarioId = req.params.usuarioID;
+    var idUsuario = req.user.idUsuario;
     var params = req.body
-    delete params.password
-    delete params.rol
-    delete params.estrellas
 
-    if(usuarioId = req.user.sub){
-        return res.status(500).send({mensaje: 'No tienes permisos para editar mi perfil'})
-    }
-    usuarioModel.findByIdAndUpdate(usuarioId, params, { new: true}, (err, perfilActualizado)=>{
+    usuarioModel.findOneAndUpdate({_id: idUsuario}, {usuario:params.usuario, 
+        nombre: params.nombre, 
+        apellido: params.apellido, 
+        telefono: params.telefono, 
+        correo: params.correo, 
+        nacimiento: params.nacimiento, 
+        dpi: params.dpi, 
+        direccion: params.direccion, 
+        ciudad: params.ciudad, 
+        pais: params.pais, 
+        imagen: params.imagen, 
+        rol: params.rol,
+        profesion: params.profesion,
+        direccionP: params.direccionP,
+        descripcionP: params.descripcionP
+        },{ new: true, useFindAndModify: false}, (err, perfilActualizado)=>{
         if (err) return res.status(500).send({mensaje: 'Error al editar mi perfil'});
         if(!perfilActualizado) return res.status(500).send({mensaje: 'No se ha podido actualizar mi perfil'});
         return res.status(200).send({perfilActualizado});
-    })
+    });
 }
 
 function editarUsuarios (req, res){
     var params = req.body
     var usuarioId = req.params.usuarioId
 
-    usuarioModel.findOneAndUpdate({_id: usuarioId}, {usuario: params.usuario, nombre: params.nombre, apellido: params.apellido, telefono: params.telefono, correo: params.correo, nacimiento: params.nacimiento, DPI: params.DPI , direccion: params.direccion, ciudad: params.ciudad, imagen: params.imagen}, {new: true, useFindAndModify:false}, (err, usuarioActualizado)=>{
-        if(err) return res.status(500).send({mensaje: 'Error al actualizar el usuario'})
-        return res.status(200).send({usuarioActualizado})
-    })
-
+        usuarioModel.findOneAndUpdate({_id: usuarioId}, {usuario: params.usuario, 
+            nombre: params.nombre, 
+            apellido: params.apellido, 
+            telefono: params.telefono, 
+            correo: params.correo, 
+            nacimiento: params.nacimiento, 
+            dpi: params.dpi , 
+            direccion: params.direccion, 
+            ciudad: params.ciudad, 
+            pais: params.pais, 
+            imagen: params.imagen, 
+            rol: params.rol,
+            profesion: params.profesion,
+            direccionP: params.direccionP,
+            descripcionP: params.descripcionP
+            }, {new: true, useFindAndModify:false}, (err, usuarioActualizado)=>{
+            if(err) return res.status(500).send({mensaje: 'Error al actualizar el usuario'})
+            if(!usuarioActualizado) return res.status(500).send({mensaje: 'No se ha encontrado el usuario'})
+            return res.status(200).send({usuarioActualizado})
+        })
 }
 
 function registrarProfesional (req, res){

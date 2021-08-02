@@ -2,6 +2,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -13,6 +14,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
 
 
@@ -21,6 +23,7 @@ import { BrowserModule } from '@angular/platform-browser';
     declarations: [
         AppComponent,
         NavbarComponent,
+        AdminLayoutComponent,
         // LoginComponent
     ],
     imports: [
@@ -33,7 +36,8 @@ import { BrowserModule } from '@angular/platform-browser';
         ExamplesModule,
         CommonModule,
         BrowserModule,
-        HttpClientModule
+        HttpClientModule,
+        ToastrModule.forRoot()
     ],
     providers: [],
     bootstrap: [AppComponent]

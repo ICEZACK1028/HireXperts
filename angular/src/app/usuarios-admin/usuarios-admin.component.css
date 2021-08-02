@@ -1,0 +1,63 @@
+.btn-group {
+    float: right;
+}
+/* button {
+    font-weight: bold;
+    color: #303443;
+    display: inline-block;
+    text-decoration: none;
+    outline: none !important;
+} */
+td button.edit {
+    color: #FFC107;
+}
+td button.see {
+    color: #0077BE;
+}
+td button.delete {
+    color: #F44336;
+}
+td button.star {
+    color: #F2C705;
+}
+td .buttonEdit:hover {
+    transform: translateY(-2px);
+}
+td i {
+    font-size: 25px;
+}
+.buttonEdit {
+    border: none;
+    background-color: transparent;
+    padding: 1px;
+}
+button:hover{
+  cursor: pointer;
+}
+.bi-eye-fill {
+    color: #0C91EB;
+}
+th{
+    color: black;
+}
+.btn-agregar{
+    background-color: #0C91EB;
+}
+.btn-agregar:active {
+    background: #34aeff !important;
+}
+.buttonAdmin{
+    border: none;
+    background-color: transparent;
+    padding: 1px;
+}
+.form-control{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+option{
+    border-radius: 20px;
+}
+.datepicker{
+    color: #E3E3E3;
+}

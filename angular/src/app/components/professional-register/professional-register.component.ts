@@ -27,7 +27,7 @@ export class ProfessionalRegisterComponent implements OnInit {
 
 
   constructor(private _usuarioService:UsuarioService, private _profesionService: ProfesionService, private modalService: NgbModal, private _router:Router) { 
-    this.usuarioModelAdd = new Usuario("","","","","","","","","","","","","",0,"","","","",false,0,false)
+    this.usuarioModelAdd = new Usuario("","","","","","","","",new Date(),"","","","",0,"","","","",false,0,false)
     this.profesionModelAdd = new Profesion('','','')
   }
 

@@ -8,7 +8,7 @@ export class Usuario {
         public apellido: String,
         public telefono: String,
         public correo: String,
-        public nacimiento: String,
+        public nacimiento: Date,
         public dpi: String,
         public direccion: String,
         public pais: String,

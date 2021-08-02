@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
-    private identidad
+    public identidad;
 
     constructor(public location: Location, private element : ElementRef, public _usuarioService: UsuarioService, private _router:Router) {
         this.sidebarVisible = false;

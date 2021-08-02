@@ -1,0 +1,486 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Usuarios</h4>
+          <a target="_blank" class="btn btn-round btn-agregar" (click)="open(Agregar,'')">Agregar usuario <i
+              class="now-ui-icons ui-1_simple-add"></i></a>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                  DPI
+                </th>
+                <th>
+                  Usuario
+                </th>
+                <th>
+                  Correo
+                </th>
+                <th>
+                  Teléfono
+                </th>
+                <th class="text-right">
+                  Acciones
+                </th>
+              </thead>
+              <tbody *ngFor="let user of usuarios">
+                <tr>
+                  <td>
+                    {{user.dpi}}
+                  </td>
+                  <td>
+                    {{user.usuario}}
+                  </td>
+                  <td>
+                    {{user.correo}}
+                  </td>
+                  <td>
+                    {{user.telefono}}
+                  </td>
+                  <td class="text-right">
+                    <div *ngIf="user.rol != 'ROL_ADMIN'">
+                      <button type="button" class="see buttonEdit" data-bs-toggle="modal" data-bs-target="#ver"
+                        (click)="verUsuario(user._id)" (click)="open(Ver)"><i class="material-icons"
+                          data-toggle="tooltip" title="See">&#xe8f4;</i></button>
+                      <button type="button" class="edit buttonEdit" data-bs-toggle="modal" data-bs-target="#editar"
+                        (click)="verUsuario(user._id)" (click)="open(Editar)"><i class="material-icons"
+                          data-toggle="tooltip" title="Edit">&#xE254;</i></button>
+                      <button type="button" class="delete buttonEdit" data-bs-toggle="modal" data-bs-target="#eliminar"
+                        (click)="verUsuario(user._id)" (click)="open(Eliminar)"><i class="material-icons"
+                          data-toggle="tooltip" title="Delete">&#xE872;</i></button>
+                    </div>
+                    <div *ngIf="user.rol == 'ROL_ADMIN'">
+                      <button class="buttonAdmin" type="button" disabled><i class="material-icons" data-toggle="tooltip"
+                          title="See">&#xe8f4;</i></button>
+                      <button class="buttonAdmin" type="button" disabled><i class="material-icons" data-toggle="tooltip"
+                          title="Ed8it">&#xE254;</i></button>
+                      <button class="buttonAdmin" type="button" disabled><i class="material-icons" data-toggle="tooltip"
+                          title="Delete">&#xE872;</i></button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para Agregar usuario -->
+    <ng-template #Agregar let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h5 class="modal-title text-center"><b>Agregar usuario</b></h5>
+        <button type="button" class="close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4 pr-1">
+            <div class="form-group">
+              <label>Usuario</label>
+              <input type="text" id="usuario" class="form-control" placeholder="Usuario" value="" name="usuario"
+                #usuario="ngModel" [(ngModel)]="usuarioModalAdd.usuario">
+            </div>
+          </div>
+          <div class="col-md-4 px-1">
+            <div class="form-group">
+              <label for="email">Correo</label>
+              <input name="email" id="email" type="email" class="form-control" placeholder="Email" value=""
+                name="correo" #correo="ngModel" [(ngModel)]="usuarioModalAdd.correo">
+            </div>
+          </div>
+          <div class="col-md-4 pl-1">
+            <div class="form-group">
+              <label>Contraseña</label>
+              <input type="password" id="password" class="form-control" placeholder="Contraseña" value="" name="password"
+                #password="ngModel" [(ngModel)]="usuarioModalAdd.password">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 pr-1">
+            <div class="form-group">
+              <label>DPI</label>
+              <input type="text" id="dpi" class="form-control" placeholder="DPI" value="" name="dpi" #dpi="ngModel"
+                [(ngModel)]="usuarioModalAdd.dpi">
+            </div>
+          </div>
+          <div class="col-md-4 px-1">
+            <div class="form-group">
+              <label>Nombre</label>
+              <input type="text" id="nombre" class="form-control" placeholder="Nombre" value="" name="nombre"
+                #nombre="ngModel" [(ngModel)]="usuarioModalAdd.nombre">
+            </div>
+          </div>
+          <div class="col-md-4 pl-1">
+            <div class="form-group">
+              <label>Apellido</label>
+              <input type="text" id="apellido" class="form-control" placeholder="Apellido" value="" name="apellido"
+                #apellido="ngModel" [(ngModel)]="usuarioModalAdd.apellido">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Dirección</label>
+              <input type="text" id="direccion" class="form-control" placeholder="Dirección" value="" name="direccion"
+                #direccion="ngModel" [(ngModel)]="usuarioModalAdd.direccion">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 pr-1">
+            <div class="form-group">
+              <label>Ciudad</label>
+              <input type="text" id="ciudad" class="form-control" placeholder="Ciudad" value="" name="ciudad"
+                #ciudad="ngModel" [(ngModel)]="usuarioModalAdd.ciudad">
+            </div>
+          </div>
+          <div class="col-md-4 px-1">
+            <div class="form-group">
+              <label>País</label>
+              <input type="text" id="pais" class="form-control" placeholder="País" value="" name="pais" #pais="ngModel"
+                [(ngModel)]="usuarioModalAdd.pais">
+            </div>
+          </div>
+          <div class="col-md-4 pl-1">
+            <div class="form-group">
+              <label>Teléfono</label>
+              <input type="Number" id="telefono" class="form-control" placeholder="Teléfono" value="" name="telefono"
+                #telefono="ngModel" [(ngModel)]="usuarioModalAdd.telefono">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 pr-1">
+            <div class="form-group">
+              <label>Nacimiento</label>
+              <input type="date" id="nacimiento" class="form-control datepicker" placeholder="Ciudad" value=""
+                name="nacimiento" #nacimiento="ngModel" [(ngModel)]="usuarioModalAdd.nacimiento">
+            </div>
+          </div>
+          <div class="col-md-6 pl-1">
+            <div class="form-group">
+              <label>Rol</label>
+              <select id="rol" class="form-control" placeholder="rol" value="" name="rol" #rol="ngModel"
+                [(ngModel)]="usuarioModalAdd.rol">
+                <option value="ROL_ADMIN">ROL ADMIN</option>
+                <option value="ROL_USUARIO">ROL USUARIO</option>
+              </select>
+            </div>
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Imagen</label>
+                <textarea type="text" id="imagen" class="form-control" placeholder="Agrega la url de la imagen" value="" name="imagen"
+                  #imagen="ngModel" [(ngModel)]="usuarioModalAdd.imagen"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="modal-footer">
+        <div class="right-side">
+          <button type="button" class="btn btn-danger btn-link" (click)="c('Close click')">Cancelar</button>
+        </div>
+        <div class="divider"></div>
+        <div class="right-side">
+          <button type="button" class="btn btn-success btn-link" (click)="registrarUsuario()" (click)="c('Close click')">Agregar usuario</button>
+        </div>
+      </div>
+    </ng-template>
+
+    <!-- Modal para ver usuario -->
+    <ng-template #Ver let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h5 class="modal-title text-center"><b>Usuario {{ usuarioModal.usuario }}</b></h5>
+        <button type="button" class="close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-5 pr-1">
+            <div class="form-group">
+              <label>DPI</label>
+              <input type="text" id="dpi" class="form-control" disabled="" placeholder="DPI" value="" name="dpi"
+                #dpi="ngModel" [(ngModel)]="usuarioModal.dpi">
+            </div>
+          </div>
+          <div class="col-md-3 px-1">
+            <div class="form-group">
+              <label>Usuario</label>
+              <input type="text" id="usuario" class="form-control" disabled="" placeholder="Usuario" value=""
+                name="usuario" #usuario="ngModel" [(ngModel)]="usuarioModal.usuario">
+            </div>
+          </div>
+          <div class="col-md-4 pl-1">
+            <div class="form-group">
+              <label for="email">Correo</label>
+              <input name="email" id="email" type="email" class="form-control" disabled="" placeholder="Email" value=""
+                name="correo" #correo="ngModel" [(ngModel)]="usuarioModal.correo">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 pr-1">
+            <div class="form-group">
+              <label>Nombre</label>
+              <input type="text" id="nombre" class="form-control" disabled="" placeholder="Nombre" value=""
+                name="nombre" #nombre="ngModel" [(ngModel)]="usuarioModal.nombre">
+            </div>
+          </div>
+          <div class="col-md-6 pl-1">
+            <div class="form-group">
+              <label>Apellido</label>
+              <input type="text" id="apellido" class="form-control" disabled="" placeholder="Apellido" value=""
+                name="apellido" #apellido="ngModel" [(ngModel)]="usuarioModal.apellido">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Dirección</label>
+              <input type="text" id="direccion" class="form-control" disabled="" placeholder="Dirección" value=""
+                name="direccion" #direccion="ngModel" [(ngModel)]="usuarioModal.direccion">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 pr-1">
+            <div class="form-group">
+              <label>Ciudad</label>
+              <input type="text" id="ciudad" class="form-control" disabled="" placeholder="Ciudad" value=""
+                name="ciudad" #ciudad="ngModel" [(ngModel)]="usuarioModal.ciudad">
+            </div>
+          </div>
+          <div class="col-md-4 px-1">
+            <div class="form-group">
+              <label>País</label>
+              <input type="text" id="pais" class="form-control" disabled="" placeholder="País" value="" name="pais"
+                #pais="ngModel" [(ngModel)]="usuarioModal.pais">
+            </div>
+          </div>
+          <div class="col-md-4 pl-1">
+            <div class="form-group">
+              <label>Teléfono</label>
+              <input type="Number" id="telefono" class="form-control" disabled="" placeholder="Teléfono" value=""
+                name="telefono" #telefono="ngModel" [(ngModel)]="usuarioModal.telefono">
+            </div>
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label>Nacimiento</label>
+                <input type="date" id="nacimiento" class="form-control datepicker" placeholder="nacimiento" value="" name="nacimiento"
+                  #nacimiento="ngModel" [(ngModel)]="usuarioModal.nacimiento" disabled>
+              </div>
+            </div>
+            <div class="col-md-6 pl-1">
+              <div class="form-group">
+                <label>Rol</label>
+                <input type="text" id="rol" class="form-control" disabled="" placeholder="rol" value="" name="rol" #rol="ngModel"
+                  [(ngModel)]="usuarioModal.rol">
+              </div>
+            </div>
+          </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Imagen</label>
+                  <textarea type="text" id="imagen" class="form-control" placeholder="Agrega la url de la imagen" value="" name="imagen"
+                    #imagen="ngModel" [(ngModel)]="usuarioModal.imagen" disabled></textarea>
+                </div>
+              </div>
+            </div>
+        </div>
+      <div class="modal-footer">
+        <div class="divider"></div>
+        <div class="right-side">
+          <button type="button" class="btn btn-danger btn-link" (click)="c('Close click')">Cerrar</button>
+        </div>
+      </div>
+    </ng-template>
+
+    <!-- Modal para Editar usuario -->
+    <ng-template #Editar let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h5 class="modal-title text-center"><b>Usuario {{ usuarioModal.usuario }}</b></h5>
+        <button type="button" class="close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-5 pr-1">
+            <div class="form-group">
+              <label>DPI</label>
+              <input type="text" id="dpi" class="form-control" placeholder="DPI" value="" name="dpi" #dpi="ngModel"
+                [(ngModel)]="usuarioModal.dpi">
+            </div>
+          </div>
+          <div class="col-md-3 px-1">
+            <div class="form-group">
+              <label>Usuario</label>
+              <input type="text" id="usuario" class="form-control" placeholder="Usuario" value="" name="usuario"
+                #usuario="ngModel" [(ngModel)]="usuarioModal.usuario">
+            </div>
+          </div>
+          <div class="col-md-4 pl-1">
+            <div class="form-group">
+              <label for="email">Correo</label>
+              <input name="email" id="email" type="email" class="form-control" placeholder="Email" value=""
+                name="correo" #correo="ngModel" [(ngModel)]="usuarioModal.correo">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 pr-1">
+            <div class="form-group">
+              <label>Nombre</label>
+              <input type="text" id="nombre" class="form-control" placeholder="Nombre" value="" name="nombre"
+                #nombre="ngModel" [(ngModel)]="usuarioModal.nombre">
+            </div>
+          </div>
+          <div class="col-md-6 pl-1">
+            <div class="form-group">
+              <label>Apellido</label>
+              <input type="text" id="apellido" class="form-control" placeholder="Apellido" value="" name="apellido"
+                #apellido="ngModel" [(ngModel)]="usuarioModal.apellido">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Dirección</label>
+              <input type="text" id="direccion" class="form-control" placeholder="Dirección" value="" name="direccion"
+                #direccion="ngModel" [(ngModel)]="usuarioModal.direccion">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 pr-1">
+            <div class="form-group">
+              <label>Ciudad</label>
+              <input type="text" id="ciudad" class="form-control" placeholder="Ciudad" value="" name="ciudad"
+                #ciudad="ngModel" [(ngModel)]="usuarioModal.ciudad">
+            </div>
+          </div>
+          <div class="col-md-4 px-1">
+            <div class="form-group">
+              <label>País</label>
+              <input type="text" id="pais" class="form-control" placeholder="País" value="" name="pais" #pais="ngModel"
+                [(ngModel)]="usuarioModal.pais">
+            </div>
+          </div>
+          <div class="col-md-4 pl-1">
+            <div class="form-group">
+              <label>Teléfono</label>
+              <input type="Number" id="telefono" class="form-control" placeholder="Teléfono" value="" name="telefono"
+                #telefono="ngModel" [(ngModel)]="usuarioModal.telefono">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 pr-1">
+            <div class="form-group">
+              <label>Nacimiento</label>
+              <input type="date" id="nacimiento" class="form-control datepicker" placeholder="Nacimiento" value="" name="nacimiento"
+                #nacimiento="ngModel" [(ngModel)]="usuarioModal.nacimiento">
+            </div>
+          </div>
+          <div class="col-md-6 pl-1">
+            <div class="form-group">
+              <label>Rol</label>
+              <select id="rol" class="form-control" placeholder="rol" value="" name="rol" #rol="ngModel"
+                [(ngModel)]="usuarioModal.rol">
+                <option selected="{{usuarioModal.rol}}">{{usuarioModal.rol}}</option>
+                <option value="ROL_ADMIN">ROL ADMIN</option>
+                <option value="ROL_USUARIO">ROL USUARIO</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Imagen</label>
+              <textarea type="text" id="imagen" class="form-control" placeholder="Agrega la url de la imagen" value="" name="imagen"
+                #imagen="ngModel" [(ngModel)]="usuarioModal.imagen"></textarea>
+            </div>
+          </div>
+        </div>
+        <!-- <div *ngIf="usuarioModal.rol != 'ROL_PROFESIONAL'">
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label>Profesión</label>
+                <input id="profesion" class="form-control" name="profesion" #profesion="ngMode" [(ngModel)]="usuarioModal.profesion">
+              </div>
+            </div>
+            <div class="col-md-6 pl-1">
+              <div class="form-group">
+                <label>Dirección</label>
+                <input type="text" id="direccionP" class="form-control" name="direccionP" #direccionP="ngModel" [(ngModel)]="usuarioModal.direccionP">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Descripción de profesional</label>
+                <textarea rows="4" cols="80" class="form-control" name="descripcionP" #descripcionP="ngModel" [(ngModel)]="usuarioModal.descripcionP"></textarea>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <div class="modal-footer">
+        <div class="right-side">
+          <button type="button" class="btn btn-danger btn-link" (click)="c('Close click')">Cancelar</button>
+        </div>
+        <div class="divider"></div>
+        <div class="right-side">
+          <button type="button" class="btn btn-success btn-link" (click)="editarUsuarios()"
+            (click)="c('Close click')">Guardar Cambios</button>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #Eliminar let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h5 class="modal-title text-center"><b>Usuario {{ usuarioModal.usuario }}</b></h5>
+        <button type="button" class="close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <p style="text-align: center;">¿Está seguro que quiere eliminar el usuario?</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="left-side">
+          <button type="button" class="btn btn-danger btn-link" (click)="c('Close click')">Cancelar</button>
+        </div>
+        <div class="divider"></div>
+        <div class="right-side">
+          <button type="button" class="btn btn-success btn-link" (click)="eliminarUsuarios(usuarioModal._id)"
+            (click)="c('Close click')">Eliminar</button>
+        </div>
+      </div>
+    </ng-template>

@@ -12,6 +12,8 @@ import { HomeComponent } from './components/home/home.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ProfessionalRegisterComponent } from './components/professional-register/professional-register.component';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -24,6 +26,22 @@ const routes: Routes =[
     { path: 'perfil/:idUsuario',                component: PerfilComponent },
     { path: 'register',                component: RegisterComponent },
     { path: 'professional-register',                component: ProfessionalRegisterComponent },
+    {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+      }, {
+        path: '',
+        component: AdminLayoutComponent,
+        children: [
+            {
+          path: '',
+          loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+      }]},
+      {
+        path: '**',
+        redirectTo: 'dashboard'
+      }
 
 ];
 

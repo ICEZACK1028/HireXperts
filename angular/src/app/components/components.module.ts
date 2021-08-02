@@ -18,6 +18,9 @@ import { HomeComponent } from './home/home.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfessionalRegisterComponent } from './professional-register/professional-register.component';
+import { FooterAdminComponent } from './footer-admin/footer.component';
+import { SidebarComponent } from './sidebar-admin/sidebar.component';
+import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
 
 @NgModule({
     imports: [
@@ -40,8 +43,16 @@ import { ProfessionalRegisterComponent } from './professional-register/professio
         HomeComponent,
         PerfilComponent,
         RegisterComponent,
-        ProfessionalRegisterComponent
+        ProfessionalRegisterComponent,
+        FooterAdminComponent,
+        NavbarAdminComponent,
+        SidebarComponent
     ],
-    exports:[ ComponentsComponent ]
+    exports:[ 
+        ComponentsComponent,
+        FooterAdminComponent,
+        NavbarAdminComponent,
+        SidebarComponent 
+    ]
 })
 export class ComponentsModule { }

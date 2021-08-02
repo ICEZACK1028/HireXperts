@@ -1,0 +1,210 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content disabled">
+  <div class="row">
+    <div class="col-md-8" *ngIf="status == false">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title">Editar Perfil</h5>
+        </div>
+        <div class="card-body" id="disable">
+          <form>
+            <div class="row">
+              <div class="col-md-5 pr-1">
+                <div class="form-group">
+                  <label>DPI</label>
+                  <input type="text" id="dpi" class="form-control" disabled="" placeholder="DPI"
+                    value="{{usuarioModal.dpi}}">
+                </div>
+              </div>
+              <div class="col-md-3 px-1">
+                <div class="form-group">
+                  <label>Usuario</label>
+                  <input type="text" id="usuario" class="form-control" disabled="" placeholder="Usuario"
+                    value="{{usuarioModal.usuario}}">
+                </div>
+              </div>
+              <div class="col-md-4 pl-1">
+                <div class="form-group">
+                  <label for="email">Correo</label>
+                  <input name="email" id="email" type="email" class="form-control" disabled="" placeholder="Email"
+                    value="{{usuarioModal.correo}}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Nombre</label>
+                  <input type="text" id="nombre" class="form-control" disabled="" placeholder="Nombre"
+                    value="{{usuarioModal.nombre}}">
+                </div>
+              </div>
+              <div class="col-md-6 pl-1">
+                <div class="form-group">
+                  <label>Apellido</label>
+                  <input type="text" id="apellido" class="form-control" disabled="" placeholder="Apellido"
+                    value="{{usuarioModal.apellido}}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Dirección</label>
+                  <input type="text" id="direccion" class="form-control" disabled="" placeholder="Dirección"
+                    value="{{usuarioModal.direccion}}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>Ciudad</label>
+                  <input type="text" id="ciudad" class="form-control" disabled="" placeholder="Ciudad"
+                    value="{{usuarioModal.ciudad}}">
+                </div>
+              </div>
+              <div class="col-md-4 px-1">
+                <div class="form-group">
+                  <label>País</label>
+                  <input type="text" id="pais" class="form-control" disabled="" placeholder="País"
+                    value="{{usuarioModal.pais}}">
+                </div>
+              </div>
+              <div class="col-md-4 pl-1">
+                <div class="form-group">
+                  <label>Teléfono</label>
+                  <input type="number" id="telefono" class="form-control" disabled="" placeholder="Teléfono"
+                    value="{{usuarioModal.telefono}}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 pl-1">
+                <button id="btn-editar" class="btn btn-primary button-registrar" (click)="Habilitar()" (click)="verUsuario(usuarioModal._id)">Editar
+                  Perfil</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8" *ngIf="status == true">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title">Editar Perfil</h5>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="row">
+              <div class="col-md-5 pr-1">
+                <div class="form-group">
+                  <label>DPI</label>
+                  <input type="text" class="form-control" placeholder="DPI" name="dpi" #dpi="ngModel" [(ngModel)]="usuarioModal.dpi">
+                </div>
+              </div>
+              <div class="col-md-3 px-1">
+                <div class="form-group">
+                  <label>Usuario</label>
+                  <input type="text" class="form-control" placeholder="Usuario" name="usuario" #usuario="ngModel" [(ngModel)]="usuarioModal.usuario">
+                </div>
+              </div>
+              <div class="col-md-4 pl-1">
+                <div class="form-group">
+                  <label for="email">Correo</label>
+                  <input name="email" id="email" type="email" class="form-control" placeholder="Email" name="correo" #correo="ngModel" [(ngModel)]="usuarioModal.correo">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Nombre</label>
+                  <input type="text" class="form-control" placeholder="Nombre" name="nombre" #nombre="ngModel" [(ngModel)]="usuarioModal.nombre">
+                </div>
+              </div>
+              <div class="col-md-6 pl-1">
+                <div class="form-group">
+                  <label>Apellido</label>
+                  <input type="text" class="form-control" placeholder="Apellido" name="apellido" #apellido="ngModel" [(ngModel)]="usuarioModal.apellido">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Dirección</label>
+                  <input type="text" class="form-control" placeholder="Dirección" name="direccion" #direccion="ngModel" [(ngModel)]="usuarioModal.direccion">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>Ciudad</label>
+                  <input type="text" class="form-control" placeholder="Ciudad" name="ciudad" #ciudad="ngModel" [(ngModel)]="usuarioModal.ciudad">
+                </div>
+              </div>
+              <div class="col-md-4 px-1">
+                <div class="form-group">
+                  <label>País</label>
+                  <input type="text" class="form-control" placeholder="País" name="pais" #pais="ngModel" [(ngModel)]="usuarioModal.pais">
+                </div>
+              </div>
+              <div class="col-md-4 pl-1">
+                <div class="form-group">
+                  <label>Teléfono</label>
+                  <input type="number" class="form-control" placeholder="Teléfono" name="telefono" #telefono="ngModel" [(ngModel)]="usuarioModal.telefono">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 pl-1">
+                <button class="btn btn-primary button-registrar" (click)="editarUsuarios()" (click)="Deshabilitar()" >Guardar cambios</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div> 
+
+    <div class="col-md-4">
+      <div class="card card-user">
+        <div class="image">
+          <img src="assets/img/bg5.jpg" alt="...">
+        </div>
+        <div class="card-body">
+          <div class="author">
+            <a>
+              <img class="avatar border-gray" [src]="identidad.imagen" alt="...">
+              <h5 class="title">{{identidad.nombre}} {{identidad.apellido}}</h5>
+            </a>
+            <p class="description">
+              {{identidad.usuario}}
+            </p>
+          </div>
+          <p class="description text-center">
+            <b>"No esperes que las
+              <br> oportunidades lleguen solas.
+              <br> Tienes que hacer que ocurra."</b>
+            <br> Dnis Diderot
+          </p>
+        </div>
+        <hr>
+        <div class="button-container">
+          <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+            <i class="fab fa-facebook-f"></i>
+          </button>
+          <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+            <i class="fab fa-twitter"></i>
+          </button>
+          <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+            <i class="fab fa-google-plus-g"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

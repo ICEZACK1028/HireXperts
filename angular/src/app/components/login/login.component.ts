@@ -22,8 +22,8 @@ export class LoginComponent implements OnInit {
     focus1;
 
     constructor(private _usuarioService: UsuarioService, private _router: Router) { 
-        this.usuarioModel = new Usuario("","","","","","","","","","","","","",0,"","","","",false,0,false)
-        this.usuarioLogin = new Usuario("","","","","","","","","","","","","",0,"","","","",false,0,false)
+        this.usuarioModel = new Usuario("","","","","","","","",new Date(),"","","","",0,"","","","",false,0,false)
+        this.usuarioLogin = new Usuario("","","","","","","","",new Date(),"","","","",0,"","","","",false,0,false)
     }
 
     ngOnInit() {
@@ -60,9 +60,9 @@ export class LoginComponent implements OnInit {
             this.identidad = response.usuarioEncontrado;
             sessionStorage.setItem('identidad', JSON.stringify(this.identidad))
             this.getToken();
-            if(this.identidad.rol == "ROL_ADMIN")this._router.navigate(['/home'])
+            if(this.identidad.rol == "ROL_ADMIN")this._router.navigate(['/dashboard'])
             if(this.identidad.rol == "ROL_USUARIO")this._router.navigate(['/home'])
-            this._router.navigate(['/home'])
+            // this._router.navigate(['/home'])
           },
           error => {
             console.log(<any>error);

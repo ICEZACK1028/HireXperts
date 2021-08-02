@@ -59,8 +59,26 @@ export class UsuarioService {
     return this._http.get(this.url + '/obtenerUsuarioId/' + id, {headers:headersToken})
   }
 
+  verUsuario(id:string): Observable<any>{
+    let headersToken = this.headersVariable.set('Authorization', this.getToken());
+
+    return this._http.get(`${this.url}/obtenerUsuarioId/${id}`, {headers: headersToken});
+  }
+
+  obtenerUsuarios(): Observable<any>{
+    return this._http.get(`${this.url}/obtenerUsuarios`, {headers: this.headersVariable})
+  }
+
   obtenerUsuarioLogueado(id){
     return this._http.get(this.url + '/obtenerUsuarioLogueado/'+id, {headers:this.headersVariable})
+  }
+
+  editarUsuario(usuario: Usuario): Observable<any>{
+    return this._http.put(`${this.url}/editarUsuarios/${usuario._id}`, this.JsonConvert(usuario), {headers: this.headersVariable});
+  }
+
+  eliminarUsuario(id:string): Observable<any>{
+    return this._http.delete(`${this.url}/eliminarUsuarios/${id}`, {headers: this.headersVariable});
   }
 
   registro(usuario: Usuario): Observable<any>{

@@ -40,4 +40,11 @@ export class AppComponent implements OnInit {
             });
         });
     }
+    usuarioLogueado(){
+        if(JSON.parse(sessionStorage.getItem('identidad')) == null){
+          return false
+        }else{
+          return true
+        }
+      }
 }
