@@ -16,18 +16,22 @@
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
-            "allowedCommonJsDependencies": ["nouislider", "rellax"],
+            "allowedCommonJsDependencies": ["nouislider", "rellax", "hammerjs", "chart.js"],
             "assets": [
               "src/assets",
               "src/favicon.ico"
             ],
             "styles": [
+              "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
+              "node_modules/ngx-toastr/toastr.css",
+              "src/assets/scss/now-ui-dashboard.scss",
               "src/styles.scss",
               "src/assets/sass/now-ui-kit.scss",
               "src/assets/css/demo.css"
             ],
             "scripts": [
-              "node_modules/rellax/rellax.min.js"
+              "node_modules/rellax/rellax.min.js",
+              "node_modules/chart.js/dist/Chart.min.js"
             ]
           },
           "configurations": {
@@ -78,6 +82,9 @@
               "node_modules/rellax/rellax.min.js"
             ],
             "styles": [
+              "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
+              "node_modules/ngx-toastr/toastr.css",
+              "src/assets/scss/now-ui-dashboard.scss",
               "src/styles.scss",
               "src/assets/sass/now-ui-kit.scss",
               "src/assets/css/demo.css"
