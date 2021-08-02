@@ -41,6 +41,7 @@ export class PerfilComponent implements OnInit {
   public contratoModelAdd
   public contratoPut
   public contratoModelGet: contrato
+  public usuarioEditModel
 
   //SOLICITUDES
   public contratoSolicitud: contrato
@@ -78,6 +79,7 @@ export class PerfilComponent implements OnInit {
     console.log(this.token);
 
     this.usuarioIdModel = new Usuario("", "", "", "", "", "", "", "", Date(), "", "", "", "", 0, "", "", "", "", false, 0, false)
+    this.usuarioEditModel = new  Usuario("", "", "", "", "", "", "", "", Date(), "", "", "", "", 0, "", "", "", "", false, 0, false)
     this.contratoModelAdd = new contrato("", "", new Date(), "", "", "", "", "", new Date(), 0)
     this.contratoPut = new contrato("", "", new Date(), "", "", "", "", "", new Date(), 0)
     this.contratoRespuesta = new contrato("", "", new Date(), "", "", "", "", "", new Date(), 0)
@@ -416,6 +418,19 @@ export class PerfilComponent implements OnInit {
       (response:any) => {
         console.log(response);
         this.resenaModelGet = response.reseñasEncontradas
+      }
+    )
+  }
+
+  //Editar Perfil
+
+  editarMiPerfil(){
+    
+    this._usuarioService.editarMiPerfil(this.usuarioIdModel, this.identidad._id, this.token).subscribe(
+      (response:any)=>{
+        console.log(response);
+        this.usuarioIdModel = response.perfilActualizado
+        this.obtenerUsuarioId()
       }
     )
   }

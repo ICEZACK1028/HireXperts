@@ -85,22 +85,7 @@ function obtenerUsuarios (req, res){
     })
 }
 
-function editarMiPerfil (req, res){
-    var usuarioId = req.params.usuarioID;
-    var params = req.body
-    delete params.password
-    delete params.rol
-    delete params.estrellas
 
-    if(usuarioId = req.user.sub){
-        return res.status(500).send({mensaje: 'No tienes permisos para editar mi perfil'})
-    }
-    usuarioModel.findByIdAndUpdate(usuarioId, params, { new: true}, (err, perfilActualizado)=>{
-        if (err) return res.status(500).send({mensaje: 'Error al editar mi perfil'});
-        if(!perfilActualizado) return res.status(500).send({mensaje: 'No se ha podido actualizar mi perfil'});
-        return res.status(200).send({perfilActualizado});
-    })
-}
 
 function editarUsuarios (req, res){
     var params = req.body
@@ -133,16 +118,29 @@ function registrarProfesional (req, res){
 
 
 
-function eliminarMiPerfil (req, res){
-    var usuarioId = req.params.usuarioId
-    if (usuarioId != req.user.sub){
-        return res.status(500).send({mensaje: 'No tienes permisos para eliminar mi perfil'})
-    }
-    usuarioModel.findByIdAndDelete(usuarioId, (err, perfilEliminado)=>{
-        if(err) return res.status(500).send({mensaje: 'Error al eliminar mi perfil'});
-        if(!perfilEliminado) return res.status(500).send({mensaje: 'No se ha podido eliminar el perfil'});
-        return res.status(200).send({mensaje:'Perfil eliminado'})
-    })
+function editarMiPerfil (req, res){
+    var idUsuario = req.params.idUsuario;
+    var params = req.body
+
+    usuarioModel.findOneAndUpdate({_id: idUsuario}, {usuario:params.usuario, 
+        nombre: params.nombre, 
+        apellido: params.apellido, 
+        telefono: params.telefono, 
+        correo: params.correo, 
+        nacimiento: params.nacimiento, 
+        dpi: params.dpi , 
+        direccion: params.direccion, 
+        ciudad: params.ciudad, 
+        pais: params.pais, 
+        imagen: params.imagen, 
+        profesion: params.profesion,
+        descripcionP: params.descripcionP,
+        direccionP: params.direccionP
+        },{ new: true, useFindAndModify: false}, (err, perfilActualizado)=>{
+        if (err) return res.status(500).send({mensaje: 'Error al editar mi perfil'});
+        if(!perfilActualizado) return res.status(500).send({mensaje: 'No se ha podido actualizar mi perfil'});
+        return res.status(200).send({perfilActualizado});
+    });
 }
 
 function eliminarUsuarios (req, res){
@@ -238,13 +236,13 @@ function obtenerProfesionalesNombreProfesion(req, res){
 
 
 
+
 module.exports = {
     registrarUsuario,
     login,
     obtenerUsuarioId,
     obtenerUsuarioLogueado,
     eliminarUsuarios,
-    eliminarMiPerfil,
     editarUsuarios,
     editarMiPerfil,
     obtenerUsuarios,
