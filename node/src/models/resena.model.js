@@ -5,8 +5,9 @@ var ResenaSchema = Schema({
     titulo: String,
     descripcion: String,
     estrellas: Number,
-    trabajador: {type: Schema.Types.ObjectId, ref:'usuarios'},
-    contratante: {type: Schema.Types.ObjectId, ref:'usuarios'},
+    trabajador: { type: Schema.Types.ObjectId, ref: 'usuarios' },
+    contratante: { type: Schema.Types.ObjectId, ref: 'usuarios' },
+    contrato: { type: Schema.Types.ObjectId, ref: 'contrato' },
 })
 
 module.exports = mongoose.model('resena', ResenaSchema);
