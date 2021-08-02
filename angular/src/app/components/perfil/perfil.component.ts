@@ -36,6 +36,7 @@ export class PerfilComponent implements OnInit {
   public statusTrabajo = 'trabajoFinalizado'
   public statusEnvio = 'enviado'
   public idContrato
+  public fechaActual
 
   //CRUD
   public contratoModelAdd
@@ -261,6 +262,7 @@ export class PerfilComponent implements OnInit {
   trabajoFinalizado(id) {
     this.obtenerIdContrato(id)
     this.obtenerContratoId(id)
+    this.fechaActual = new Date();
     this._contratoService.trabajoFinalizado(this.token, this.idContrato, this.contratoSolicitudAdd).subscribe(
       response => {
         console.log(response);

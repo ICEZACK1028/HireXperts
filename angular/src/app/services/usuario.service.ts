@@ -84,6 +84,9 @@ export class UsuarioService {
   obtenerProfesionalesNombre(nombreProfesional):Observable<any>{
     return this._http.get(this.url+'/obtenerProfesionalesNombre/'+nombreProfesional,{headers:this.headersVariable})
   }
+  obtenerProfesionalesNombreProfesion(nombreProfesion):Observable<any>{
+    return this._http.get(this.url+'/obtenerProfesionalesNombreProfesion/'+nombreProfesion,{headers:this.headersVariable})
+  }
 
   editarMiPerfil(usuario:Usuario, idUsuario, token):Observable<any>{
     let params = JSON.stringify(usuario)
