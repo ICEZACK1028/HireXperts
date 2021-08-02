@@ -140,8 +140,8 @@
 
     <!-- TABS USUARIO data-tabs-color="orange" -->
     <div class="nav-tabs-navigation bg-blanco"
-        *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL' && identidad._id == usuarioIdModel._id && statusEnvio =='enviado'">
-        <div class="nav-tabs-wrapper">
+    *ngIf="(usuarioIdModel.rol == 'ROL_PROFESIONAL' || usuarioIdModel.rol == 'ROL_USUARIO') && identidad._id == usuarioIdModel._id && statusEnvio =='enviado'">
+    <div class="nav-tabs-wrapper">
             <h2 style="text-align: center;">Enviado</h2>
 
             <ngb-tabset [justify]="'center'" class="text-center bg-blanco">
