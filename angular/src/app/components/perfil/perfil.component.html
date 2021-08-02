@@ -36,12 +36,15 @@
         <div class="container ">
             <div class="button-container">
 
-                <button class="btn btn-primary btn-round btn-lg" style="cursor: pointer;"
-                    *ngIf="identidad._id == usuarioIdModel._id">Editar</button>
+                <button class="btn btn-primary btn-round btn-lg" style="cursor: pointer;" 
+                    *ngIf="identidad._id == usuarioIdModel._id"
+                    (click)="open(editarPerfil)">Editar</button>
                 <button class="btn btn-info btn-round btn-lg" style="cursor: pointer;"
                     *ngIf="identidad._id != idUsuario && 'ROL_PROFESIONAL' == usuarioIdModel.rol"
                     (click)="open(classic)">Contratar</button>
             </div>
+
+           
 
             <div *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
                 <h3 class="title">Descripción Profesional</h3>
@@ -137,8 +140,8 @@
 
     <!-- TABS USUARIO data-tabs-color="orange" -->
     <div class="nav-tabs-navigation bg-blanco"
-        *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL' && identidad._id == usuarioIdModel._id && statusEnvio =='enviado'">
-        <div class="nav-tabs-wrapper">
+    *ngIf="(usuarioIdModel.rol == 'ROL_PROFESIONAL' || usuarioIdModel.rol == 'ROL_USUARIO') && identidad._id == usuarioIdModel._id && statusEnvio =='enviado'">
+    <div class="nav-tabs-wrapper">
             <h2 style="text-align: center;">Enviado</h2>
 
             <ngb-tabset [justify]="'center'" class="text-center bg-blanco">
@@ -511,7 +514,6 @@
             <p>Descripcion de la Solicitud:</p>
             <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
 
-
                 <textarea class="form-control textAreaInput" rows="4" cols="80"
                     placeholder="Describa lo que necesita de manera clara y concisa..." name='descripcion'
                     #descripcion='ngModel' [(ngModel)]='contratoModelAdd.descripcion'></textarea>
@@ -672,6 +674,150 @@
         <div class="divider"></div>
         <div class="right-side">
             <button class="btn btn-primary btn-link" (click)="crearResena()" (click)="c('Close click')">Enviar</button>
+        </div>
+    </div>
+</ng-template>
+
+<!-- Modal de Editar -->
+<ng-template #editarPerfil let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h5 class="modal-title text-center">Editar mi usuario</h5>
+        <button type="button" class="close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="col-10">
+                <p>Usuario:</p>
+                <div class="form-group">
+                    <input type="text"  placeholder="Nombre de Usuario..." class="form-control" id='usuario'
+                        name='usuario' #usuario='ngModel' [(ngModel)]='usuarioIdModel.usuario' />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <p>Nombre:</p>
+                <div class="form-group">
+                    <input type="text"  placeholder="Nombre..." class="form-control" id='nombre'
+                        name='nombre' #nombre='ngModel' [(ngModel)]='usuarioIdModel.nombre' />
+                </div>
+            </div>
+            <div class="col-6">
+                <p>Apellido:</p>
+                <div class="form-group">
+                    <input type="text"  placeholder="Apellido..." class="form-control" id='apellido'
+                        name='apellido' #apellido='ngModel' [(ngModel)]='usuarioIdModel.apellido' />
+                </div>
+            </div>  
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <p>Telefono:</p>
+                <div class="form-group">
+                    <input type="text" placeholder="No. de Telefono..." class="form-control" id='telefono'
+                        name='telefono' #telefono='ngModel' [(ngModel)]='usuarioIdModel.telefono' />
+                </div>
+            </div>
+            <div class="col-6">
+                <p>Correo:</p>
+                <div class="form-group">
+                    <input type="text"  placeholder="Correo electronico..." class="form-control" id='correo'
+                        name='correo' #correo='ngModel' [(ngModel)]='usuarioIdModel.correo' />
+                </div>
+            </div>  
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <p>DPI:</p>
+                <div class="form-group">
+                    <input type="text" placeholder="No. de dpi..." class="form-control" id='dpi'
+                        name='dpi' #dpi='ngModel' [(ngModel)]='usuarioIdModel.dpi' />
+                </div>
+            </div>
+            <div class="col-6">
+                <p>Nacimiento:</p>
+                <div class="input-group">
+                    <input type="date" class="form-control datetimepicker" placeholder="Fecha de nacimiento..."
+                        id='nacimiento' name="nacimiento" #nacimiento='ngModel'
+                        [(ngModel)]='usuarioIdModel.nacimiento'>
+                </div>
+            </div>  
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <p>Direccion:</p>
+                <div class="form-group">
+                    <input type="text"  placeholder="Direccion..." class="form-control" id='direccion'
+                        name='direccion' #direccion='ngModel' [(ngModel)]='usuarioIdModel.direccion' />
+                </div>
+            </div>
+            <div class="col-6">
+                <p>Pais:</p>
+                <div class="form-group">
+                    <input type="text"  placeholder="Nombre del Pais..." class="form-control" id='pais'
+                        name='pais' #pais='ngModel' [(ngModel)]='usuarioIdModel.pais' />
+                </div>
+            </div>  
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <p>Ciudad:</p>
+                <div class="form-group">
+                    <input type="text" placeholder="Nombre de la ciudad..." class="form-control" id='ciudad'
+                        name='ciudad' #ciudad='ngModel' [(ngModel)]='usuarioIdModel.ciudad' />
+                </div>
+            </div>
+            <div class="col-6">
+                <p>imagen:</p>
+                <div class="form-group">
+                    <input type="text" placeholder="URL de la imagen..." class="form-control" id='imagen'
+                        name='imagen' #imagen='ngModel' [(ngModel)]='usuarioIdModel.imagen' />
+                </div>
+            </div>  
+        </div>
+        <a *ngIf="usuarioIdModel.rol == 'ROL_PROFESIONAL'">
+        <div class="row">
+            <div class="col-6">
+                <p>Profesion:</p>
+                <div class="form-group">
+                    <input type="text"  placeholder="Nombre de la profesion..." class="form-control" id='profesion'
+                        name='profesion' #profesion='ngModel' [(ngModel)]='usuarioIdModel.profesion' />
+                </div>
+            </div>
+            <div class="col-6">
+                <p>Direccion:</p>
+                <div class="form-group">
+                    <input type="text"  placeholder="Direccion de profesion..." class="form-control" id='direccionP'
+                        name='direccionP' #direccionP='ngModel' [(ngModel)]='usuarioIdModel.direccionP'/>
+                </div>
+            </div>  
+        </div>
+        <div class="col-12">
+            <p>Descripcion:</p>
+            <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                <textarea class="form-control textAreaInput" rows="4" cols="60"
+                    placeholder="Describa lo que necesita de manera clara y concisa..." id='descripcionP' name='descripcionP'
+                    #descripcionP='ngModel' [(ngModel)]='usuarioIdModel.descripcionP'></textarea>
+            </div>
+        </div>
+        </a>
+
+
+
+
+        <!-- Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. -->
+    </div>
+    <div class="modal-footer">
+        <div class="left-side">
+            <button type="button" class="btn btn-default btn-link" (click)="c('Close click')">Cancelar</button>
+        </div>
+        <div class="divider"></div>
+        <div class="right-side">
+            <button type="button" class="btn btn-primary btn-link" (click)="editarMiPerfil()"
+                (click)="c('Close click')">Actualizar</button>
         </div>
     </div>
 </ng-template>

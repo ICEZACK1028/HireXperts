@@ -106,6 +106,11 @@ export class UsuarioService {
     return this._http.get(this.url+'/obtenerProfesionalesNombreProfesion/'+nombreProfesion,{headers:this.headersVariable})
   }
 
-  
-  
+  editarMiPerfil(usuario:Usuario, idUsuario, token):Observable<any>{
+    let params = JSON.stringify(usuario)
+    let headersToken = this.headersVariable.set('Authorization', token)
+    return this._http.put(this.url+'/editarMiPerfil/'+ idUsuario, params,{headers:headersToken})
+  }
+
+
 }
