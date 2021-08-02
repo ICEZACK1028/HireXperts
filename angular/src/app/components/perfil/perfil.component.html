@@ -399,7 +399,6 @@
 				            	<!-- Contenedor del Comentario -->
 				            	<div class="comment-box">
 				            		<div class="comment-head">
-                                        
 				            			<h6 class="comment-name by-author"><a>{{res.contratante.nombre}} {{res.contratante.apellido}}</a></h6>
 				            			<!-- <span>hace 20 minutos</span> -->
 				            			<i class="fa fa-reply"></i>
@@ -407,7 +406,7 @@
 				            		</div>
                                     
 				            		<div class="comment-content">
-                        <h5 style="margin-bottom: 5px !important;margin-top: 5px !important;">{{res.titulo}}</h5>
+                                    <h5 style="margin-bottom: 5px !important;margin-top: 5px !important;">{{res.contrato.titulo}}</h5>
 
 				            			{{res.descripcion}}
 				            		</div>
@@ -607,7 +606,7 @@
                         Fecha Inicial:
                     </th>
                     <th scope="col">
-                        {{contratoModelGet.fechaIncial | date:'short'}}
+                        {{contratoModelGet.fechaInicial | date:'short'}}
                     </th>
                 </tr>
                 <tr>
@@ -615,7 +614,7 @@
                         Fecha Final:
                     </th>
                     <th scope="col">
-                        {{contratoModelGet.fechaFinal | date:'short'}}
+                        {{fechaActual | date:'short'}}
                     </th>
                 </tr>
                 <tr>
