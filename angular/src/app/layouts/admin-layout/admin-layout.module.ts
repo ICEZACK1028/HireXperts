@@ -9,7 +9,6 @@ import { ProfesionesComponent } from '../../profesiones/profesiones.component';
 import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
-import { ResenasComponent } from '../../resenas/resenas.component';
 
 @NgModule({
   imports: [
@@ -23,7 +22,6 @@ import { ResenasComponent } from '../../resenas/resenas.component';
   declarations: [
     UserProfileComponent,
     UsuariosAdminComponent,
-    ResenasComponent,
     ProfesionesComponent,
   ]
 })

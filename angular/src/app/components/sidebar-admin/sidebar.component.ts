@@ -10,10 +10,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/profesiones', title: 'Profesiones',  icon:'business_briefcase-24', class: '' },
 
     { path: '/usuarios-admin', title: 'Usuarios',  icon:'users_circle-08', class: '' },
-    { path: '/resenas', title: 'Reseñas',  icon:'education_paper', class: '' },
     { path: '/user-profile', title: 'Perfil',  icon:'users_single-02', class: '' },
-    { path: '/login', title: 'Cerrar sesión',  icon:'arrows-1_share-66', class: 'active active-pro' }
-
 ];
 
 @Component({
