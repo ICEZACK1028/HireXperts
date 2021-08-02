@@ -61,6 +61,7 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('identidad', JSON.stringify(this.identidad))
             this.getToken();
             if(this.identidad.rol == "ROL_ADMIN")this._router.navigate(['/profesiones'])
+            if(this.identidad.rol == "ROL_PROFESIONAL")this._router.navigate(['/home'])
             if(this.identidad.rol == "ROL_USUARIO")this._router.navigate(['/home'])
             // this._router.navigate(['/home'])
           },

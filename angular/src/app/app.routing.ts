@@ -25,7 +25,8 @@ const routes: Routes =[
     { path: 'home',                component: HomeComponent },
     { path: 'perfil/:idUsuario',                component: PerfilComponent },
     { path: 'register',                component: RegisterComponent },
-    { path: 'professional-register',                component: ProfessionalRegisterComponent }, {
+    { path: 'professional-register',                component: ProfessionalRegisterComponent }, 
+    {
         path: '',
         component: AdminLayoutComponent,
         children: [
