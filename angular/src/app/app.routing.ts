@@ -14,6 +14,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ProfessionalRegisterComponent } from './components/professional-register/professional-register.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CategoriesComponent } from './components/categories/categories.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -41,7 +42,8 @@ const routes: Routes =[
       {
         path: '**',
         redirectTo: 'dashboard'
-      }
+      },
+    { path: 'categories',                component: CategoriesComponent}
 
 ];
 

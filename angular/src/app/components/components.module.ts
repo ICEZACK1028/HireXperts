@@ -21,6 +21,7 @@ import { ProfessionalRegisterComponent } from './professional-register/professio
 import { FooterAdminComponent } from './footer-admin/footer.component';
 import { SidebarComponent } from './sidebar-admin/sidebar.component';
 import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
     imports: [
@@ -46,7 +47,8 @@ import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
         ProfessionalRegisterComponent,
         FooterAdminComponent,
         NavbarAdminComponent,
-        SidebarComponent
+        SidebarComponent,
+        CategoriesComponent
     ],
     exports:[ 
         ComponentsComponent,

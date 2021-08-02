@@ -1,0 +1,231 @@
+
+
+<div class="container paddig-up">
+
+    <div class="row">
+        <p>Busca por profesion:</p>
+        <div class="col-sm-6 col-lg-4">
+            <div class="input-group" [ngClass]="{'input-group-focus':focus1===true}">
+              <input type="text" class="form-control" placeholder="Profesion..." (focus)="focus1=true" (blur)="focus1=false" id='nombre' name='nombre' #nombre='ngModel' [(ngModel)]='nombreProfesion'>
+              <div class="input-group-append cursor" (click)='obtenerProfesionalesNombreProfesion()'>
+                  <span class="input-group-text"><i class="now-ui-icons ui-1_zoom-bold"></i></span>
+              </div>
+            </div>
+        </div>
+        <p>Busca por nombre:</p>
+        <div class="col-sm-6 col-lg-4">
+            <div class="input-group" [ngClass]="{'input-group-focus':focus1===true}">
+              <input type="text" class="form-control cursor" placeholder="Nombre..." (focus)="focus1=true" (blur)="focus1=false" id='nombre' name='nombre' #nombre='ngModel' [(ngModel)]='nombreProfesional'>
+              <div class="input-group-append" (click)='obtenerProfesionalesNombre()' style="cursor: pointer;">
+                  <span class="input-group-text" ><i class="now-ui-icons ui-1_zoom-bold"></i></span>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:75px">
+
+        <div class="col-sm-6 col-lg-6 paddig-horizontal" *ngIf="status == 'inicio'">
+
+            <div *ngFor='let profe of profesionalModelGet let i = index'>
+                <div class="blog-card" *ngIf="i%2 == 0" [routerLink]="['/perfil',profe._id]" style="cursor: pointer;">
+                    <div class="meta">
+                      <div class="photo" style="background-image: url({{profe.imagen}})"></div>
+                      <ul class="details">
+                        <!-- <li >- {{profe.correo}}</li> -->
+                        <li ><p>{{profe.telefono}}</p></li>
+                        <li ><p>{{profe.pais}}</p></li>
+                      </ul>
+                      
+                    </div>
+                    <div class="description">
+                      <h1>{{profe.nombre}}</h1>
+                      <h2>{{profe.profesion.nombreProfesion}}</h2>
+                      <p> {{profe.descripcionP}}</p>
+                        
+                      <!-- <p class="read-more">
+                        <a href="#">Read More</a>
+                      </p> -->
+                    </div>
+                  </div>
+                
+                  <div class="blog-card alt" *ngIf="i%2 == 1" [routerLink]="['/perfil',profe._id]" style="cursor: pointer;">
+                    <div class="meta">
+                      <div class="photo" style="background-image: url({{profe.imagen}})"></div>
+                      <ul class="details list-group">
+                        <!-- <li >- {{profe.correo}}</li> -->
+                        <li ><p>{{profe.telefono}}</p></li>
+                        <li ><p>{{profe.pais}}</p></li>
+
+                      </ul>
+                    </div>
+                    <div class="description">
+                      <h1>{{profe.nombre}}</h1>
+                      <h2>{{profe.profesion.nombreProfesion}}</h2>
+                      <p>{{profe.descripcionP}}</p>
+                      <!-- <p class="read-more">
+                        <a href="#">Read More</a>
+                      </p> -->
+                    </div>
+                  </div>
+            </div>
+
+        </div>
+
+        <div class="col-sm-6 col-lg-6 paddig-horizontal" *ngIf="status == 'activo2'">
+
+          <div *ngFor='let profep of profesionalProfesionGet let i = index'>
+              <div class="blog-card" *ngIf="i%2 == 0" [routerLink]="['/perfil',profep._id]" style="cursor: pointer;">
+                  <div class="meta">
+                    <div class="photo" style="background-image: url({{profep.imagen}})"></div>
+                    <ul class="details">
+                      <!-- <li >- {{profep.correo}}</li> -->
+                      <li ><p>{{profep.telefono}}</p></li>
+                      <li ><p>{{profep.pais}}</p></li>
+                    </ul>
+                    
+                  </div>
+                  <div class="description">
+                    <h1>{{profep.nombre}}</h1>
+                    <h2>{{profep.profesion.nombreProfesion}}</h2>
+                    <p> {{profep.descripcionP}}</p>
+                      
+                    <!-- <p class="read-more">
+                      <a href="#">Read More</a>
+                    </p> -->
+                  </div>
+                </div>
+              
+                <div class="blog-card alt" *ngIf="i%2 == 1" [routerLink]="['/perfil',profep._id]" style="cursor: pointer;">
+                  <div class="meta">
+                    <div class="photo" style="background-image: url({{profep.imagen}})"></div>
+                    <ul class="details list-group">
+                      <!-- <li >- {{profe.correo}}</li> -->
+                      <li ><p>{{profep.telefono}}</p></li>
+                      <li ><p>{{profep.pais}}</p></li>
+
+                    </ul>
+                  </div>
+                  <div class="description">
+                    <h1>{{profep.nombre}}</h1>
+                    <h2>{{profep.profesion.nombreProfesion}}</h2>
+                    <p>{{profep.descripcionP}}</p>
+                    <!-- <p class="read-more">
+                      <a href="#">Read More</a>
+                    </p> -->
+                  </div>
+                </div>
+          </div>
+
+        </div>
+
+        <div class="col-sm-6 col-lg-6 paddig-horizontal" *ngIf="status == 'busquedaNombre'">
+
+          <div *ngFor='let profep of profesionalProfesionGet let i = index'>
+              <div class="blog-card" *ngIf="i%2 == 0" [routerLink]="['/perfil',profep._id]" style="cursor: pointer;">
+                  <div class="meta">
+                    <div class="photo" style="background-image: url({{profep.imagen}})"></div>
+                    <ul class="details">
+                      <!-- <li >- {{profep.correo}}</li> -->
+                      <li ><p>{{profep.telefono}}</p></li>
+                      <li ><p>{{profep.pais}}</p></li>
+                    </ul>
+                    
+                  </div>
+                  <div class="description">
+                    <h1>{{profep.nombre}}</h1>
+                    <h2>{{profep.profesion.nombreProfesion}}</h2>
+                    <p> {{profep.descripcionP}}</p>
+                      
+                    <!-- <p class="read-more">
+                      <a href="#">Read More</a>
+                    </p> -->
+                  </div>
+                </div>
+              
+                <div class="blog-card alt" *ngIf="i%2 == 1" [routerLink]="['/perfil',profep._id]" style="cursor: pointer;">
+                  <div class="meta">
+                    <div class="photo" style="background-image: url({{profep.imagen}})"></div>
+                    <ul class="details list-group">
+                      <!-- <li >- {{profe.correo}}</li> -->
+                      <li ><p>{{profep.telefono}}</p></li>
+                      <li ><p>{{profep.pais}}</p></li>
+
+                    </ul>
+                  </div>
+                  <div class="description">
+                    <h1>{{profep.nombre}}</h1>
+                    <h2>{{profep.profesion.nombreProfesion}}</h2>
+                    <p>{{profep.descripcionP}}</p>
+                    <!-- <p class="read-more">
+                      <a href="#">Read More</a>
+                    </p> -->
+                  </div>
+                </div>
+          </div>
+
+        </div>
+
+        <div class="col-sm-6 col-lg-6 paddig-horizontal" *ngIf="status == 'busquedaProfesion'">
+
+          <div *ngFor='let profep of profesionalProfesionGet let i = index'>
+              <div class="blog-card" *ngIf="i%2 == 0" [routerLink]="['/perfil',profep._id]" style="cursor: pointer;">
+                  <div class="meta">
+                    <div class="photo" style="background-image: url({{profep.imagen}})"></div>
+                    <ul class="details">
+                      <!-- <li >- {{profep.correo}}</li> -->
+                      <li ><p>{{profep.telefono}}</p></li>
+                      <li ><p>{{profep.pais}}</p></li>
+                    </ul>
+                    
+                  </div>
+                  <div class="description">
+                    <h1>{{profep.nombre}}</h1>
+                    <h2>{{profep.profesion.nombreProfesion}}</h2>
+                    <p> {{profep.descripcionP}}</p>
+                      
+                    <!-- <p class="read-more">
+                      <a href="#">Read More</a>
+                    </p> -->
+                  </div>
+                </div>
+              
+                <div class="blog-card alt" *ngIf="i%2 == 1" [routerLink]="['/perfil',profep._id]" style="cursor: pointer;">
+                  <div class="meta">
+                    <div class="photo" style="background-image: url({{profep.imagen}})"></div>
+                    <ul class="details list-group">
+                      <!-- <li >- {{profe.correo}}</li> -->
+                      <li ><p>{{profep.telefono}}</p></li>
+                      <li ><p>{{profep.pais}}</p></li>
+
+                    </ul>
+                  </div>
+                  <div class="description">
+                    <h1>{{profep.nombre}}</h1>
+                    <h2>{{profep.profesion.nombreProfesion}}</h2>
+                    <p>{{profep.descripcionP}}</p>
+                    <!-- <p class="read-more">
+                      <a href="#">Read More</a>
+                    </p> -->
+                  </div>
+                </div>
+          </div>
+
+        </div>
+
+        
+        <div class="col-sm-6 col-lg-6 paddig-horizontal">
+            <div class="row">
+                <div class="col-md-4" *ngFor='let prof of profesionModelGet'  (click)="obtenerProfesionalesPorProfesion(prof._id)">
+                      <div class="profile-card-2"><img src="{{prof.imagen}}" class="img img-responsive" width="200px">
+                          <div class="profile-name">{{prof.nombreProfesion}}</div>
+                          <!-- <div class="profile-username">@johndoesurname</div> -->
+                          <div class="profile-icons"><a><i class="fa fa-facebook"></i></a><a><i class="fa fa-twitter"></i></a><a><i class="fa fa-linkedin"></i></a></div>
+
+                      </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
