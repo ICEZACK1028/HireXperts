@@ -120,7 +120,7 @@
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-red,
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-red {
     color: #fff;
-    background: #FF3636;
+    background: #f86f6f;
 }
 
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-default,
@@ -259,7 +259,7 @@
 }
 
 .bootstrap-switch.bootstrap-switch-on .bootstrap-switch-red~.bootstrap-switch-default {
-    background-color: #FF3636;
+    background-color: #f86f6f;
 }
 
 .bootstrap-switch.bootstrap-switch-on .bootstrap-switch-orange~.bootstrap-switch-default {
@@ -667,7 +667,7 @@
 
 .slider.slider-danger .noUi-connect,
 .slider.slider-danger.noUi-connect {
-    background-color: #FF3636;
+    background-color: #f86f6f;
 }
 
 .slider.slider-danger.noUi-target {
@@ -675,7 +675,7 @@
 }
 
 .slider.slider-danger .noUi-handle {
-    background-color: #FF3636;
+    background-color: #f86f6f;
 }
 
 .section-isometricGrids {
@@ -1958,7 +1958,7 @@ select.selectpicker {
 }
 
 .bootstrap-tagsinput .tag.tag-danger {
-    background-color: #FF3636;
+    background-color: #f86f6f;
     color: #FFFFFF;
     border: none;
 }
@@ -1968,7 +1968,7 @@ select.selectpicker {
 }
 
 .bootstrap-tagsinput .tag.tag-danger .tagsinput-add {
-    color: #FF3636;
+    color: #f86f6f;
 }
 
 .bootstrap-tagsinput .tag:hover {
@@ -2109,11 +2109,11 @@ select.selectpicker {
 }
 
 .form-group.has-error .fileinput .fileinput-preview {
-    color: #FF3636;
+    color: #f86f6f;
 }
 
 .form-group.has-error .fileinput .thumbnail {
-    border-color: #FF3636;
+    border-color: #f86f6f;
 }
 
 .form-group.has-success .fileinput .fileinput-preview {
@@ -2634,7 +2634,7 @@ input.datetimepicker[data-color="green"]+.bootstrap-datetimepicker-widget.dropdo
 }
 
 input.datetimepicker[data-color="red"]+.bootstrap-datetimepicker-widget {
-    background-color: #FF3636;
+    background-color: #f86f6f;
 }
 
 input.datetimepicker[data-color="red"]+.bootstrap-datetimepicker-widget table td.active>div,
@@ -2642,7 +2642,7 @@ input.datetimepicker[data-color="red"]+.bootstrap-datetimepicker-widget table td
 input.datetimepicker[data-color="red"]+.bootstrap-datetimepicker-widget button[data-action],
 input.datetimepicker[data-color="red"]+.bootstrap-datetimepicker-widget.dropdown-menu.top:after,
 input.datetimepicker[data-color="red"]+.bootstrap-datetimepicker-widget.dropdown-menu.bottom:before {
-    color: #FF3636;
+    color: #f86f6f;
 }
 
 input.datetimepicker[data-color="yellow"]+.bootstrap-datetimepicker-widget {
@@ -3784,7 +3784,7 @@ fieldset[disabled] .btn-warning.active {
 }
 
 .btn-danger {
-    background-color: #FF3636;
+    background-color: #f86f6f;
     color: #FFFFFF;
 }
 
@@ -3832,13 +3832,13 @@ fieldset[disabled] .btn-danger:focus,
 fieldset[disabled] .btn-danger.focus,
 fieldset[disabled] .btn-danger:active,
 fieldset[disabled] .btn-danger.active {
-    background-color: #FF3636;
-    border-color: #FF3636;
+    background-color: #f86f6f;
+    border-color: #f86f6f;
 }
 
 .btn-danger.btn-simple {
-    color: #FF3636;
-    border-color: #FF3636;
+    color: #f86f6f;
+    border-color: #f86f6f;
 }
 
 .btn-danger.btn-simple:hover,
@@ -3851,7 +3851,7 @@ fieldset[disabled] .btn-danger.active {
 }
 
 .btn-danger.btn-link {
-    color: #FF3636;
+    color: #f86f6f;
 }
 
 .btn-danger.btn-link:hover,
@@ -3917,7 +3917,7 @@ fieldset[disabled] .btn-neutral.active {
 }
 
 .btn-neutral.btn-danger {
-    color: #FF3636;
+    color: #f86f6f;
 }
 
 .btn-neutral.btn-danger:hover,
@@ -4217,7 +4217,7 @@ fieldset[disabled] .btn-link.active {
 
 .has-danger .form-control {
     border-color: #ffcfcf;
-    color: #FF3636;
+    color: #f86f6f;
     background-color: rgba(222, 222, 222, 0.1);
 }
 
@@ -4264,7 +4264,7 @@ fieldset[disabled] .btn-link.active {
 
 .has-danger:after {
     content: "\ea53";
-    color: #FF3636;
+    color: #f86f6f;
 }
 
 .form-group.form-group-no-border.input-lg .input-group-addon,
@@ -4376,7 +4376,7 @@ fieldset[disabled] .btn-link.active {
 
 .has-error .form-control-feedback,
 .has-error .control-label {
-    color: #FF3636;
+    color: #f86f6f;
 }
 
 .has-success .form-control-feedback,
@@ -4403,7 +4403,7 @@ fieldset[disabled] .btn-link.active {
 }
 
 .has-danger .form-control:focus+.input-group-addon {
-    color: #FF3636;
+    color: #f86f6f;
 }
 
 .has-success .form-control:focus+.input-group-addon {
@@ -4757,12 +4757,12 @@ textarea.form-control:active {
 }
 
 .progress-container.progress-danger .progress-bar {
-    background: #FF3636;
+    background: #f86f6f;
 }
 
 .progress-container.progress-danger .progress-value,
 .progress-container.progress-danger .progress-badge {
-    color: #FF3636;
+    color: #f86f6f;
 }
 
 
@@ -4815,8 +4815,8 @@ textarea.form-control:active {
 }
 
 .badge-danger {
-    border-color: #FF3636;
-    background-color: #FF3636;
+    border-color: #f86f6f;
+    background-color: #f86f6f;
 }
 
 .badge-neutral {
@@ -4912,8 +4912,8 @@ textarea.form-control:active {
 .pagination.pagination-danger .page-item.active>.page-link,
 .pagination.pagination-danger .page-item.active>.page-link:focus,
 .pagination.pagination-danger .page-item.active>.page-link:hover {
-    background-color: #FF3636;
-    border-color: #FF3636;
+    background-color: #f86f6f;
+    border-color: #f86f6f;
 }
 
 .pagination.pagination-neutral .page-item>.page-link {
@@ -5084,7 +5084,7 @@ p {
 }
 
 .text-danger {
-    color: #FF3636 !important;
+    color: #f86f6f !important;
 }
 
 .text-black {
@@ -5115,12 +5115,12 @@ p {
 }
 
 .blockquote.blockquote-danger {
-    border-color: #FF3636;
-    color: #FF3636;
+    border-color: #f86f6f;
+    color: #f86f6f;
 }
 
 .blockquote.blockquote-danger small {
-    color: #FF3636;
+    color: #f86f6f;
 }
 
 .blockquote.blockquote-white {
@@ -5311,7 +5311,7 @@ body {
 .nav-pills.nav-pills-danger .nav-item .nav-link.active,
 .nav-pills.nav-pills-danger .nav-item .nav-link.active:focus,
 .nav-pills.nav-pills-danger .nav-item .nav-link.active:hover {
-    background-color: #FF3636;
+    background-color: #f86f6f;
 }
 
 .tab-space {
@@ -5392,7 +5392,7 @@ body {
 }
 
 .nav-tabs.nav-tabs-danger>.nav-item>.nav-link.active {
-    background-color: #FF3636;
+    background-color: #f86f6f;
 }
 
 .nav-tabs.nav-tabs-warning>.nav-item>.nav-link.active {
@@ -5592,7 +5592,7 @@ body {
 }
 
 .bg-danger {
-    background-color: #FF3636 !important;
+    background-color: #f86f6f !important;
 }
 
 .bg-warning {
@@ -6150,7 +6150,7 @@ img {
 }
 
 .popover.popover-danger {
-    background-color: #FF3636;
+    background-color: #f86f6f;
 }
 
 .popover.popover-danger .popover-body {
@@ -6158,19 +6158,19 @@ img {
 }
 
 .popover.popover-danger.bs-popover-right .arrow:after {
-    border-right-color: #FF3636;
+    border-right-color: #f86f6f;
 }
 
 .popover.popover-danger.bs-popover-top .arrow:after {
-    border-top-color: #FF3636;
+    border-top-color: #f86f6f;
 }
 
 .popover.popover-danger.bs-popover-bottom .arrow:after {
-    border-bottom-color: #FF3636;
+    border-bottom-color: #f86f6f;
 }
 
 .popover.popover-danger.bs-popover-left .arrow:after {
-    border-left-color: #FF3636;
+    border-left-color: #f86f6f;
 }
 
 .popover.popover-danger .popover-header {
@@ -6943,7 +6943,7 @@ Created using IcoMoon - icomoon.io
 }
 
 .info.info-hover:hover .icon.icon-danger+.info-title {
-    color: #FF3636;
+    color: #f86f6f;
 }
 
 .info.info-hover:hover .icon.icon-primary+.info-title {
@@ -7056,7 +7056,7 @@ Created using IcoMoon - icomoon.io
 }
 
 .icon.icon-danger {
-    color: #FF3636;
+    color: #f86f6f;
 }
 
 .icon.icon-danger.icon-circle {
@@ -7230,7 +7230,7 @@ Created using IcoMoon - icomoon.io
 }
 
 .modal.modal-mini .modal-profile.modal-profile-danger {
-    background-color: #FF3636;
+    background-color: #f86f6f;
 }
 
 .modal.modal-mini .modal-profile.modal-profile-warning {
@@ -7496,7 +7496,7 @@ Created using IcoMoon - icomoon.io
 }
 
 .modal.modal-danger .modal-content {
-    background-color: #FF3636;
+    background-color: #f86f6f;
     color: #FFFFFF;
 }
 
@@ -7986,7 +7986,7 @@ Created using IcoMoon - icomoon.io
 }
 
 .modal .modal-header .close {
-    color: #FF3636;
+    color: #f86f6f;
     text-shadow: none;
 }
 
@@ -8162,7 +8162,7 @@ Created using IcoMoon - icomoon.io
 }
 
 .card[data-background-color="red"] {
-    background-color: #FF3636;
+    background-color: #f86f6f;
 }
 
 .card[data-background-color="yellow"] {
@@ -8250,7 +8250,7 @@ Created using IcoMoon - icomoon.io
 }
 
 .card-product .price-new {
-    color: #FF3636;
+    color: #f86f6f;
 }
 
 .card-product:not(.card-plain) .card-image {
@@ -8341,7 +8341,7 @@ Created using IcoMoon - icomoon.io
 }
 
 .card-testimonial .icon.icon-danger i {
-    color: #FF3636;
+    color: #f86f6f;
 }
 
 .card-testimonial .icon.icon-warning i {
@@ -8460,8 +8460,8 @@ Created using IcoMoon - icomoon.io
 }
 
 .card-pricing .icon.icon-danger i {
-    box-shadow: 0px 9px 30px -6px #FF3636;
-    color: #FF3636;
+    box-shadow: 0px 9px 30px -6px #f86f6f;
+    color: #f86f6f;
 }
 
 .card-pricing h1 small {
@@ -10850,11 +10850,11 @@ Created using IcoMoon - icomoon.io
         background: linear-gradient(#f96332 0%, #000 80%);
     }
     .navbar-collapse[data-color="red"]:after {
-        background: #FF3636;
-        background: -webkit-linear-gradient(#FF3636 0%, #000 80%);
-        background: -o-linear-gradient(#FF3636 0%, #000 80%);
-        background: -moz-linear-gradient(#FF3636 0%, #000 80%);
-        background: linear-gradient(#FF3636 0%, #000 80%);
+        background: #f86f6f;
+        background: -webkit-linear-gradient(#f86f6f 0%, #000 80%);
+        background: -o-linear-gradient(#f86f6f 0%, #000 80%);
+        background: -moz-linear-gradient(#f86f6f 0%, #000 80%);
+        background: linear-gradient(#f86f6f 0%, #000 80%);
     }
     .navbar-collapse[data-color="yellow"]:after {
         background: #FFB236;
@@ -11423,11 +11423,11 @@ Created using IcoMoon - icomoon.io
         background: linear-gradient(#f96332 0%, #000 80%);
     }
     .burger-menu .navbar-collapse[data-color="red"]:after {
-        background: #FF3636;
-        background: -webkit-linear-gradient(#FF3636 0%, #000 80%);
-        background: -o-linear-gradient(#FF3636 0%, #000 80%);
-        background: -moz-linear-gradient(#FF3636 0%, #000 80%);
-        background: linear-gradient(#FF3636 0%, #000 80%);
+        background: #f86f6f;
+        background: -webkit-linear-gradient(#f86f6f 0%, #000 80%);
+        background: -o-linear-gradient(#f86f6f 0%, #000 80%);
+        background: -moz-linear-gradient(#f86f6f 0%, #000 80%);
+        background: linear-gradient(#f86f6f 0%, #000 80%);
     }
     .burger-menu .navbar-collapse[data-color="yellow"]:after {
         background: #FFB236;
