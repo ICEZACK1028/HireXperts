@@ -1,4 +1,4 @@
-  <nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent" color-on-scroll="500">
+  <nav class="navbar navbar-expand-lg bg-primary fixed-top" color-on-scroll="500">
     <div class="container">
       <div class="dropdown button-dropdown">
         <div ngbDropdown>
@@ -11,17 +11,14 @@
              <a class="dropdown-header">Menú</a>
              <a class="dropdown-header" *ngIf="identidad.rol == ''">INICIA SESION</a>
              <a class="dropdown-item" [routerLink]="['/perfil',identidad._id]" *ngIf='identidad.rol == "ROL_USUARIO"'>Perfil</a>
-             <a class="dropdown-item" [routerLink]="['/index']" *ngIf='identidad.rol == "ROL_USUARIO"'>Solicitudes</a>
-             <a class="dropdown-item" [routerLink]="['/index']" *ngIf='identidad.rol == "ROL_USUARIO"'>Trabajos</a>
              <a class="dropdown-item" [routerLink]="['/perfil', identidad._id]" *ngIf='identidad.rol == "ROL_PROFESIONAL"'>Perfil</a>
-             <a class="dropdown-item" [routerLink]="['/index']" *ngIf='identidad.rol == "ROL_PROFESIONAL"'>Solicitudes</a>
-             <a class="dropdown-item" [routerLink]="['/index']" *ngIf='identidad.rol == "ROL_PROFESIONAL"'>Trabajos</a>
              <div class="dropdown-divider" *ngIf='identidad.rol == "ROL_USUARIO"'></div>
-             <a class="dropdown-item" [routerLink]="['/index']" *ngIf='identidad.rol == "ROL_USUARIO"'>Hazte Profesional</a>
+             <a class="dropdown-item" [routerLink]="['/professional-register']" *ngIf='identidad.rol == "ROL_USUARIO"'>Házte Profesional</a>
+             <a class="dropdown-item" [routerLink]="['/categories']">Categorías</a>
              <div class="dropdown-divider"></div>
-             <a class="dropdown-item" [routerLink]="['/login']" (click)='cerrarSesion()' *ngIf='identidad.rol == "ROL_ADMIN"'>Cerrar Sesion</a>
-             <a class="dropdown-item" [routerLink]="['/login']" (click)='cerrarSesion()' *ngIf='identidad.rol == "ROL_USUARIO"'>Cerrar Sesion</a>
-             <a class="dropdown-item" [routerLink]="['/login']" (click)='cerrarSesion()' *ngIf='identidad.rol == "ROL_PROFESIONAL"'>Cerrar Sesion</a>
+             <a class="dropdown-item" [routerLink]="['/login']" (click)='cerrarSesion()' *ngIf='identidad.rol == "ROL_ADMIN"'>Cerrar Sesión</a>
+             <a class="dropdown-item" [routerLink]="['/login']" (click)='cerrarSesion()' *ngIf='identidad.rol == "ROL_USUARIO"'>Cerrar Sesión</a>
+             <a class="dropdown-item" [routerLink]="['/login']" (click)='cerrarSesion()' *ngIf='identidad.rol == "ROL_PROFESIONAL"'>Cerrar Sesión</a>
            </div>
          </div>
       </div>
@@ -40,23 +37,8 @@
         </div>
         <div class="collapse navbar-collapse" data-nav-image="assets/img/blurred-image-1.jpg" data-color="orange">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                  <a class="nav-link" href="" target="_blank">
-                      <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-                      <p>Descarga HireXperts</p>
-                  </a>
-              </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://creativetimofficial.github.io/now-ui-kit-angular/documentation/tutorial" target="_blank">
-                      <i class="now-ui-icons files_paper"></i>
-                      <p>Manual</p>
-                    </a>
-                </li>
-
-                <li class="nav-item"><a class="nav-link">{{identidad.nombre}}</a></li>
-                <li class="nav-item" *ngIf='identidad.rol == "ROL_ADMIN"' (click)='cerrarSesion()'><button class="btn btn-primary nav-link" routerLink="/login" (click)='cerrarSesion()'>Cerrar Sesión</button>    </li>
-                <li class="nav-item" *ngIf='identidad.rol == "ROL_PROFESIONAL"' (click)='cerrarSesion()'><button class="btn btn-primary nav-link" routerLink="/login" (click)='cerrarSesion()'>Cerrar Sesión</button>  </li>
-                <li class="nav-item" *ngIf='identidad.rol == "ROL_USUARIO"' (click)='cerrarSesion()'><button class="btn btn-primary nav-link" routerLink="/login" (click)='cerrarSesion()'>Cerrar Sesión</button></li>
+                <li class="nav-item"><a class="nav-link" [routerLink]="['/perfil',identidad._id]"><i class="now-ui-icons users_circle-08"></i> {{identidad.nombre}}</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="/login" (click)='cerrarSesion()'><i class="now-ui-icons arrows-1_share-66"></i> Cerrar Sesión</a>    </li>
             </ul>
         </div>
     </div>
