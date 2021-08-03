@@ -60,10 +60,6 @@ export class RegisterComponent implements OnInit {
     )
   }
 
-  regresar(){
-    this._router.navigate(['/login']);
-  }
-
   refreshPage(){
     window.location.reload();
   }
