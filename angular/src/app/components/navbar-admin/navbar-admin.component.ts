@@ -150,6 +150,12 @@ export class NavbarAdminComponent implements OnInit {
               return this.listTitles[item].title;
           }
       }
-      return 'Dashboard';
+      return 'HireXperts';
+    }
+
+    cerrarSesion(){
+      sessionStorage.removeItem('token')
+      sessionStorage.removeItem('identidad');
+      this.router.navigate(['/login'])
     }
 }

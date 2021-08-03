@@ -39,12 +39,14 @@ export class AppComponent implements OnInit {
                 }
             });
         });
+        this.usuarioLogueado();
     }
+
     usuarioLogueado(){
-        if(JSON.parse(sessionStorage.getItem('identidad')) == null){
-          return false
+        if(JSON.parse(sessionStorage.getItem('identidad')) == null || JSON.parse(sessionStorage.getItem('identidad')).rol == 'ROL_ADMIN'){
+            return false;
         }else{
-          return true
+            return true;
         }
       }
 }
