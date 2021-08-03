@@ -15,7 +15,7 @@
         <p>Busca por nombre:</p>
         <div class="col-sm-6 col-lg-4">
             <div class="input-group" [ngClass]="{'input-group-focus':focus1===true}">
-              <input type="text" class="form-control cursor" placeholder="Nombre..." (focus)="focus1=true" (blur)="focus1=false" id='nombre' name='nombre' #nombre='ngModel' [(ngModel)]='nombreProfesional'>
+              <input type="text" class="form-control" placeholder="Nombre..." (focus)="focus1=true" (blur)="focus1=false" id='nombre' name='nombre' #nombre='ngModel' [(ngModel)]='nombreProfesional'>
               <div class="input-group-append" (click)='obtenerProfesionalesNombre()' style="cursor: pointer;">
                   <span class="input-group-text" ><i class="now-ui-icons ui-1_zoom-bold"></i></span>
               </div>

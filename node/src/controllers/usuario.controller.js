@@ -117,11 +117,10 @@ function registrarProfesional(req, res) {
 
     if (req.user.rol != 'ROL_USUARIO') return res.status(500).send({ mensaje: 'No tienes permisos para ser profesional' })
     usuarioModel.findByIdAndUpdate(usuarioId, {
-        rol: 'ROL_PROFESIONAL', profesion: params.profesion,
-
-        descripcionP: params.descripcionP, direccionP: params.direccionP, verificado: false,
-
-        estrellasP: 0, disponible: true
+        rol: 'ROL_PROFESIONAL', 
+        profesion: params.profesion,
+        descripcionP: params.descripcionP, 
+        direccionP: params.direccionP
     }, { new: true, useFindAndModify: false },
 
         (err, profesionalRegistrado) => {
