@@ -112,16 +112,16 @@
                         <div class="col-6">
                             <div class="input-group">
                                 <input type="text" value="{{usuarioIdModel.profesion.nombreProfesion}}"
-                                    placeholder="Nombre" class="form-control divition" disabled />
+                                    placeholder="Nombre de profesión" class="form-control divition" disabled />
                             </div>
                             <div class="input-group">
-                                <input type="text" value="{{usuarioIdModel.direccionP}}" placeholder="País"
+                                <input type="text" value="{{usuarioIdModel.direccionP}}" placeholder="Dirección"
                                     class="form-control divition" disabled />
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="input-group">
-                                <input type="text" value="{{usuarioIdModel.estrellasP}}" placeholder="DPI"
+                                <input type="text" value="{{usuarioIdModel.descripcionP}}" placeholder="Descripción"
                                     class="form-control divition" disabled />
                             </div>
                         </div>
@@ -272,7 +272,7 @@
                     </ng-template>
                 </ngb-tab>
 
-                <ngb-tab title="Ultimos Contratos">
+                <ngb-tab title="Últimos Contratos">
                     <ng-template ngbTabContent>
                         <div class="row">
                             <div class="container">
@@ -407,7 +407,7 @@
 				            		</div>
                                     
 				            		<div class="comment-content">
-                                    <h5 style="margin-bottom: 5px !important;margin-top: 5px !important;">{{res.contrato.titulo}}</h5>
+                                    <h5 style="margin-bottom: 5px !important;margin-top: 5px !important;">{{res.titulo}}</h5>
 
 				            			{{res.descripcion}}
 				            		</div>
@@ -421,7 +421,7 @@
                     </ng-template>
                 </ngb-tab>
 
-                <ngb-tab title="Ultimos Contratos">
+                <ngb-tab title="Últimos Contratos">
                     <ng-template ngbTabContent>
                         <div class="row">
                             <div class="container">
