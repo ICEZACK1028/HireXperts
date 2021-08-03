@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt-nodejs')
 const Usuario = require('./src/models/usuario.model')
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/hireXperts', { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+mongoose.connect('mongodb+srv://admin:admin@hirexperts.9tm3d.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
 
     console.log('Conectado a la base de datos HireXperts');
     app.listen(process.env.PORT || 3000, function() {
